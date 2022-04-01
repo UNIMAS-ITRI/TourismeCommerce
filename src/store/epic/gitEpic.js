@@ -1,11 +1,10 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-self-assign */
-import { Observable } from "rxjs";
-import { ActionsObservable } from "redux-observable";
+import 'rxjs'
+
 import { GitAction } from "../action/gitAction";
-import { toast } from "react-toastify";
+import { toast} from "react-toastify";
 import axios from "axios";
 import { ServerConfiguration } from "../serverConf";
+const { filter, map } = require('rxjs/operators');
 
 
 /**
@@ -21,122 +20,81 @@ export class GitEpic {
   ///////////////////////////////////////////////////  user account credentials ///////////////////////////////////////////////////
 
   User_Login = action$ =>
-    action$.ofType(GitAction.Login).switchMap(async ({ payload }) => {
-      console.log(
-        url +
-        "User_Login?" +
-        "username=" + payload.username +
-        "&password=" + payload.password
-      )
-      try {
-        const response = await fetch(url +
-          "User_Login?" +
-          "username=" + payload.username +
-          "&password=" + payload.password
-        );
-
-
-
-        let json = await response.json();
-        json = JSON.parse(json)
-        return {
-          type: GitAction.LoginSuccess,
-          payload: json,
-        };
+    action$.pipe(filter(action => action.type === GitAction.Login), map(action => {
+      return dispatch => {
+        try {
+          return fetch(url + "VerifyUserLogin?" +
+            "StaffUsername=" + action.payload.username +
+            "&StaffPassword=" + action.payload.password)
+            .then(response => response.json())
+            .then(json => {
+              json = JSON.parse(json)
+              return dispatch({ type: GitAction.LoginSuccess, payload: json });
+            });
+        } catch (error) {
+          toast.error("Error Code: VerifyUserLogin")
+          return dispatch({ type: GitAction.LoginSuccess, payload: [] });
+        }
       }
-      catch (error) {
-        toast.error("Error Code: User_Login")
-        return {
-          type: GitAction.LoginSuccess,
-          payload: [],
-        };
-      }
-    });
+    }));
 
   User_Logout = action$ =>
-    action$.ofType(GitAction.Logout).switchMap(async ({ payload }) => {
-      // console.log(url + 
-      //   double_click_and_paste_url_here
-      // )
-      try {
-        const response = await fetch(url +
-          "User_Logout?UserId=" + payload.UserId
-        );
-
-        let json = await response.json();
-        json = JSON.parse(json)
-        return {
-          type: GitAction.LoggedOutSuccess,
-          payload: json,
-        };
+    action$.pipe(filter(action => action.type === GitAction.Logout), map(action => {
+      return dispatch => {
+        try {
+          return fetch(url + "User_Logout?" +
+            "UserId=" + action.payload.UserId)
+            .then(response => response.json())
+            .then(json => {
+              json = JSON.parse(json)
+              return dispatch({ type: GitAction.LoggedOutSuccess, payload: json });
+            });
+        } catch (error) {
+          toast.error("Error Code: User_Logout")
+          return dispatch({ type: GitAction.LoggedOutSuccess, payload: [] });
+        }
       }
-      catch (error) {
-        toast.error("Error Code: User_Logout")
-        return {
-          type: GitAction.LoggedOutSuccess,
-          payload: [],
-        };
-      }
-    });
+    }));
 
   User_Register = action$ =>
-
-    action$.ofType(GitAction.RegisterUser).switchMap(async ({ payload }) => {
-      // console.log(url + 
-      //   double_click_and_paste_url_here
-      // )
-      try {
-        const response = await fetch(url +
-          "User_Register?" +
-          "userFirstName=" + payload.userFirstName +
-          "&userLastName=" + payload.userLastName +
-          "&username=" + payload.username +
-          "&userEmail=" + payload.userEmail +
-          "&password=" + payload.password
-        );
-
-        let json = await response.json();
-        json = JSON.parse(json)
-        return {
-          type: GitAction.UserRegistered,
-          payload: json,
-        };
+    action$.pipe(filter(action => action.type === GitAction.RegisterUser), map(action => {
+      return dispatch => {
+        try {
+          return fetch(url + "User_Register?" +
+            "userFirstName=" + action.payload.userFirstName +
+            "&userLastName=" + action.payload.userLastName +
+            "&username=" + action.payload.username +
+            "&userEmail=" + action.payload.userEmail +
+            "&password=" + action.payload.password)
+            .then(response => response.json())
+            .then(json => {
+              json = JSON.parse(json)
+              return dispatch({ type: GitAction.UserRegistered, payload: json });
+            });
+        } catch (error) {
+          toast.error("Error Code: RegisterUser")
+          return dispatch({ type: GitAction.UserRegistered, payload: [] });
+        }
       }
-      catch (error) {
-        toast.error("Error Code: RegisterUser")
-        return {
-          type: GitAction.UserRegistered,
-          payload: [],
-        };
-      }
-    });
+    }));
 
   User_ProfileByID = action$ =>
-    action$.ofType(GitAction.GetUserProfile).switchMap(async ({ payload }) => {
-      // console.log(url + 
-      //   double_click_and_paste_url_here
-      // )
-      try {
-        const response = await fetch(url +
-          "User_ProfileByID?" +
-          "USERID=" + payload.USERID
-        );
-
-        let json = await response.json();
-        json = JSON.parse(json)
-        return {
-          type: GitAction.GotUserProfile,
-          payload: json,
-        };
+    action$.pipe(filter(action => action.type === GitAction.GetUserProfile), map(action => {
+      return dispatch => {
+        try {
+          return fetch(url + "User_ProfileByID?" +
+            "USERID=" + action.payload.USERID)
+            .then(response => response.json())
+            .then(json => {
+              json = JSON.parse(json)
+              return dispatch({ type: GitAction.GotUserProfile, payload: json });
+            });
+        } catch (error) {
+          toast.error("Error Code: GetUserProfile")
+          return dispatch({ type: GitAction.GotUserProfile, payload: [] });
+        }
       }
-      catch (error) {
-        toast.error("Error Code: GetUserProfile")
-        return {
-          type: GitAction.GotUserProfile,
-          payload: [],
-        };
-      }
-    });
+    }));
 
 
 
@@ -187,7 +145,7 @@ export let gitEpic = new GitEpic();
 // by get API
 // User_ViewPage = action$ =>
 //   action$.ofType(GitAction.FetchSidebar).switchMap(async ({ payload }) => {
-//     // console.log(url + 
+//     // console.log(url +
 //     //   double_click_and_paste_url_here
 //     // )
 //     try {

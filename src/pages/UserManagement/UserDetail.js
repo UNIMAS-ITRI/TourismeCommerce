@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { GitAction } from "../../store/action/gitAction";
-import { withRouter } from "react-router";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -119,4 +118,4 @@ class UserDetail extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserDetail));
+export default connect(mapStateToProps, mapDispatchToProps)(UserDetail);

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
-import { GitAction } from "../../store/action/gitAction";
-import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom';
 import {
   ProSidebar,
@@ -115,4 +113,4 @@ const Aside = ({ rtl, toggled, handleToggleSidebar, sidebarItems }) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Aside));
+export default connect(mapStateToProps, mapDispatchToProps)(Aside);

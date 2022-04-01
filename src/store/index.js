@@ -1,5 +1,7 @@
-import { combineReducers, createStore, applyMiddleware } from "redux";
-import { combineEpics, createEpicMiddleware } from "redux-observable";
+import 'rxjs'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import { createEpicMiddleware, combineEpics } from 'redux-observable'
 import { counterReducer } from "./reducer/gitReducer"; //reducers
 import { gitEpic } from "./epic/gitEpic"; //epics
 
@@ -11,7 +13,13 @@ const rootEpic = combineEpics(
   gitEpic.User_ViewPage,
 );
 
+const epicMiddleware = createEpicMiddleware();
 const rootReducer = combineReducers({ counterReducer });
-const epicMiddleware = createEpicMiddleware(rootEpic);
-const createStoreWithMiddleware = applyMiddleware(epicMiddleware)(createStore);
-export default createStoreWithMiddleware(rootReducer);
+const middleware = [
+  thunk,
+  epicMiddleware
+]
+const initialState = {};
+const store = createStore(rootReducer,initialState, applyMiddleware(...middleware))
+epicMiddleware.run(rootEpic);
+export default store
