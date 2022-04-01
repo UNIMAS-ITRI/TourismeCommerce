@@ -38,8 +38,8 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <div>
-                <SearchBar
+            <div style={{height:"1vw"}}>
+                {/* <SearchBar
                     label="search"
                     placeholder="Enter Member No, Tracking No or Container No to search"
                     buttonOnClick={() => this.onSearch("", "")}
@@ -50,11 +50,11 @@ class Dashboard extends Component {
                     value={this.state.searchKeywords}
                     variant="standard"
                     hideButton={true}
-                />
+                /> */}
 
-                <div className="w-100 d-flex">
+                <div className="w-100 d-flex" style={{height:"1vw"}}>
                     <Button onClick={() => this.setState({ openModal: true })}>Toggle Modal</Button>
-                    <Button onClick={() => this.setState({ openFullScreenModal: true })}>Toggle Full Screen Modal</Button>
+                    {/* <Button onClick={() => this.setState({ openFullScreenModal: true })}>Toggle Full Screen Modal</Button> */}
                 </div>
                 <ModalComponent
                     open={this.state.openModal}
