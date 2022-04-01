@@ -3,9 +3,11 @@ import Aside from './Aside';
 import Main from './Main';
 import { isUserLogon, getSidebaritems } from "../auth/AuthManagement";
 import Login from "../../pages/Login/Login";
-import sidebar_items from './data/SidebarConfiguration'; 
+import sidebar_items from './data/SidebarConfiguration';
 import "./styles/sidebar.css";
 import { isArrayNotEmpty } from '../../tools/Helpers';
+import PanelHeader from './PanelHeader';
+import PanelFooter from './PanelFooter';
 
 function Layout() {
   const [rtl, setRtl] = useState(false);
@@ -37,20 +39,20 @@ function Layout() {
       {
         isLogon === true ?
           <>
-            <Aside
+            {/* <Aside
               image={false} // can set the background image for the sidebar here
               rtl={rtl}
               sidebarItems={isArrayNotEmpty(renderSidebarItems()) ? renderSidebarItems() : sidebar_items}
               toggled={toggled}
               handleToggleSidebar={handleToggleSidebar}
-            />
-            <Main
-              image={false} // can set the background image for the sidebar here
-              toggled={toggled}
-              rtl={rtl}
-              handleToggleSidebar={handleToggleSidebar}
-              handleRtlChange={handleRtlChange}
-            />
+      /> */}
+              <Main
+                image={false} // can set the background image for the sidebar here
+                toggled={toggled}
+                rtl={rtl}
+                handleToggleSidebar={handleToggleSidebar}
+                handleRtlChange={handleRtlChange}
+              />
           </>
           :
           <Login />

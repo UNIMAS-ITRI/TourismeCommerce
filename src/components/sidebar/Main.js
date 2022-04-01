@@ -17,26 +17,32 @@ const Main = ({
   handleImageChange,
 }) => {
   return (
-    <main>
-      <div className="btn-toggle" onClick={() => handleToggleSidebar(true)}>
-        <MenuOutlinedIcon />
-      </div>
-      <PanelHeader />
-      <div className="block ">
-        <Switch>
-          {
-            routes.map((route, index) => {
-              return (
-                <Route key={index} path={route.path} exact={route.exact}>
-                  {route.element}
-                </Route>
-              )
-            })
-          }
-        </Switch>
-      </div>
-      <PanelFooter />
-    </main>
+    <>
+      {/* <PanelHeader /> */}
+      <main>
+        <PanelHeader />
+        {/* <div className="btn-toggle" onClick={() => handleToggleSidebar(true)}>
+          <MenuOutlinedIcon />
+        </div> */}
+        {/* <PanelHeader /> */}
+        <div className="block ">
+          <Switch>
+            {
+              routes.map((route, index) => {
+                return (
+                  <Route key={index} path={route.path} exact={route.exact}>
+                    {route.element}
+                  </Route>
+                )
+              })
+            }
+          </Switch>
+        </div>
+        <PanelFooter />
+
+      </main>
+    </>
+
   );
 };
 
