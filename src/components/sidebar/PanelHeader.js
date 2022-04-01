@@ -23,6 +23,11 @@ export default function PanelHeader(props) {
                     </div>
                 </div>
             </Box>
+            <Box sx={{ backgroundColor: "#8fb136", height: '65px', padding: "0.5vw 3vw" }} >
+                <div className='row'>
+                    Nav
+                </div>
+            </Box>
             {/* <h1>
                 <img width={80} src={reactLogo} alt="react logo" /> Template
             </h1> */}
