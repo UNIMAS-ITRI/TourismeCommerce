@@ -1,0 +1,50 @@
+/* #app { height: 100% }
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+} */
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100vw;
+    height: 35.5vw;
+    object-fit: cover;
+}
+
+.swiper-pagination {
+    background-color: rgba(80,80,80,.75) !important;
+    height: 2.5vw !important;
+    bottom: 0 !important;
+    padding-top: 0.9vw !important;
+}
+
+.swiper-pagination-bullet {
+    border-radius: 25% !important;
+    width: 15px !important;
+    height: 15px !important;
+}
+
+.modalLanding {
+    padding-top: 4vw !important; 
+    background: rgba(0, 0, 0, 0.75) !important; 
+}

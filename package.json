@@ -23,6 +23,7 @@
     "react-dom": "^17.0.2",
     "react-draggable": "^4.4.4",
     "react-dropzone": "^11.1.0",
+    "react-player": "^2.10.0",
     "react-pro-sidebar": "^0.7.1",
     "react-redux": "^7.2.6",
     "react-router": "^6.3.0",
@@ -38,6 +39,7 @@
     "redux-thunk": "^2.4.1",
     "rxjs": "^5.5.12",
     "sass": "^1.49.9",
+    "swiper": "^8.0.7",
     "web-vitals": "^1.1.2",
     "xlsx": "^0.17.4"
   },

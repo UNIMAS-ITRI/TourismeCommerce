@@ -6,6 +6,13 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import Button from "@mui/material/Button";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 
+// Core modules imports are same as usual
+import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper';
+// Direct React component imports
+import { Swiper, SwiperSlide } from 'swiper/react';
+import './swiperstyle.css';
+import ReactPlayer from "react-player";
+
 function mapStateToProps(state) {
     return {
     };
@@ -19,12 +26,35 @@ function mapDispatchToProps(dispatch) {
 const INITIAL_STATE = {
     openModal: false,
     openFullScreenModal: false,
+    swiperImg: [
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb1.jpg" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb4.jpg" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb5.jpg" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb6.jpg" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb7.jpg" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
+    ],
+    player: "",
+    url: null,
+    pip: false,
+    playing: true,
+    controls: true,
+    light: false,
+    volume: 0.8,
+    muted: false,
+    played: 0,
+    loaded: 0,
+    duration: 0,
+    playbackRate: 1.0,
+    loop: false,
 }
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = INITIAL_STATE
+
+        this.myRef = React.createRef();
 
     }
 
@@ -36,9 +66,204 @@ class Dashboard extends Component {
 
     }
 
+    load = (url) => {
+        this.setState({
+            url,
+            played: 0,
+            loaded: 0,
+            pip: false,
+        });
+    };
+
+    handlePlayPause = () => {
+        this.setState({ playing: !this.state.playing });
+    };
+
+    handleStop = () => {
+        this.setState({ url: null, playing: false });
+    };
+
+    handleToggleControls = () => {
+        const url = this.state.url;
+        this.setState(
+            {
+                controls: !this.state.controls,
+                url: null,
+            },
+            () => this.load(url)
+        );
+    };
+
+    handleToggleLight = () => {
+        this.setState({ light: !this.state.light });
+    };
+
+    handleToggleLoop = () => {
+        this.setState({ loop: !this.state.loop });
+    };
+
+    handleVolumeChange = (e) => {
+        this.setState({ volume: parseFloat(e.target.value) });
+    };
+
+    handleToggleMuted = () => {
+        this.setState({ muted: !this.state.muted });
+    };
+
+    handleSetPlaybackRate = (e) => {
+        this.setState({ playbackRate: parseFloat(e.target.value) });
+    };
+
+    handleTogglePIP = () => {
+        this.setState({ pip: !this.state.pip });
+    };
+
+    handlePlay = () => {
+        this.setState({ playing: true });
+    };
+
+    handleEnablePIP = () => {
+        this.setState({ pip: true });
+    };
+
+    handleDisablePIP = () => {
+        this.setState({ pip: false });
+    };
+
+    handlePause = () => {
+        this.setState({ playing: false });
+    };
+
+    handleSeekMouseDown = (e) => {
+        this.setState({ seeking: true });
+    };
+
+    handleSeekChange = (e) => {
+        this.setState({ played: parseFloat(e.target.value) });
+    };
+
+    handleSeekMouseUp = (e) => {
+        this.setState({ seeking: false });
+        this.player.seekTo(parseFloat(e.target.value));
+    };
+
+    handleProgress = (state) => {
+        if (state.playedSeconds > 10) {
+            if (this.state.enrolled == false && this.state.userCourseEnroll == false) {
+                this.handlePause();
+                this.modalenrollOpen();
+                this.setState({ controls: false });
+            }
+            else if (this.state.userCourseEnroll == true) {
+                this.setState({ controls: true });
+            }
+            else {
+                this.setState({ controls: true });
+            }
+        }
+    };
+
+    handleEnded = () => {
+        this.setState({ playing: this.state.loop });
+    };
+
+    handleDuration = (duration) => {
+        this.setState({ duration });
+    };
+
+    ref = (player) => {
+        this.player = player;
+    };
+
     render() {
+        const { playing, controls, light, volume, muted, loop, playbackRate, pip, } = this.state;
         return (
-            <div style={{height:"1vw"}}>
+            <div >
+                <Swiper
+                    modules={[EffectFade, Pagination, Autoplay]}
+                    effect="fade"
+                    onSlideChange={() => console.log('slide change')}
+                    onSwiper={(swiper) => console.log(swiper)}
+                    height={300}
+                    width={300}
+                    autoplay={{ delay: 5000, }}
+                    pagination={{
+                        clickable: true,
+                        // renderBullet: function (index, className) {
+                        //     return '<span class="' + className + '">' + (index + 1) + "</span>";
+                        // },
+                    }}
+                    loop={true}
+                >
+                    {
+                        this.state.swiperImg.map((el) => {
+                            return <SwiperSlide><img src={el.image} /></SwiperSlide>
+                        })
+                    }
+                </Swiper>
+                <div className="row" style={{ margin: "2.5vw 0 3vw 0" }}>
+                    <div className="col-12 col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7" style={{ height: "65%" }}>
+                        <p style={{ display: "flex", justifyContent: "center" }}>
+                            <h1 style={{ color: "#91b362", fontSize: "2.9vw", }}>Sarawak</h1>
+                            <h1 style={{ fontSize: "2.9vw" }}>, More to Discover</h1>
+                        </p>
+                        <p style={{ fontSize: "1.185vw", lineHeight: "1.6", textAlign: "justify", paddingLeft: "2vw", paddingRight: "2vw" }}>
+                            Sarawak, the Land of the Hornbills, there is so much more Sarawak can offer than what meets the eye.
+                            Home to 27 ethnic groups, Sarawak is a unique plethora of culture, adventure, nature, food, and festivals (CANFF).
+                            It is the place where the journey of endless exploration starts.
+                            <h3 style={{ fontSize: "1.185vw", color: "#91b362", fontStyle: "italic", cursor: "pointer", fontWeight: "bold" }}
+                                onClick={() => this.setState({ openModal: true })}
+                            >
+                                Discover more...
+                            </h3>
+                        </p>
+                    </div>
+                    <div className="col-12 col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+                        {/* {JSON.parse(this.props.coursedetail[0].CourseMedia)[0]
+                            .CourseMediaUrl ? ( */}
+                        <ReactPlayer
+                            ref={this.ref}
+                            className="react-player"
+                            width="98%"
+                            height="100%"
+                            url="https://www.sarawak2discover.com/TourismApi/images/overall_okshe.mp4"
+                            // {
+                            //     JSON.parse(
+                            //         this.props.coursedetail[0].CourseMedia
+                            //     )[0].CourseMediaUrl
+                            // }
+                            pip={pip}
+                            playing={playing}
+                            controls={controls}
+                            light={light}
+                            loop={loop}
+                            playbackRate={playbackRate}
+                            volume={volume}
+                            muted={muted}
+                            onReady={() => console.log("onReady")}
+                            onStart={() => console.log("onStart")}
+                            onPlay={this.handlePlay}
+                            onEnablePIP={this.handleEnablePIP}
+                            onDisablePIP={this.handleDisablePIP}
+                            onPause={this.handlePause}
+                            onBuffer={() => console.log("onBuffer")}
+                            onSeek={(e) => console.log("onSeek", e)}
+                            onEnded={this.handleEnded}
+                            onError={(e) => console.log("onError", e)}
+                            onProgress={this.handleProgress}
+                            onDuration={this.handleDuration}
+                        />
+                        {/* ) : (
+                            <a href="">
+                                <img alt="" src={BLOG_01} className="img-fluid" />
+                            </a>
+                        )} */}
+                    </div>
+                    <div>
+                        <div className="row"></div>
+                    </div>
+                    
+                </div>
                 {/* <SearchBar
                     label="search"
                     placeholder="Enter Member No, Tracking No or Container No to search"
@@ -52,20 +277,21 @@ class Dashboard extends Component {
                     hideButton={true}
                 /> */}
 
-                <div className="w-100 d-flex" style={{height:"1vw"}}>
+                <div className="w-100 d-flex" style={{ height: "1vw" }}>
                     <Button onClick={() => this.setState({ openModal: true })}>Toggle Modal</Button>
                     {/* <Button onClick={() => this.setState({ openFullScreenModal: true })}>Toggle Full Screen Modal</Button> */}
                 </div>
                 <ModalComponent
                     open={this.state.openModal}
                     fullScreen={false}
-                    maxWidth={"sm"}
+                    maxWidth={"xl"}
                     title={"Modal Title"}
                     draggable={true}
+                    className="modalLanding"
                     handleOnClose={() => this.setState({ openModal: false })}
                     DialogActionsButton={
                         <div className="d-flex">
-                            <Button className="ml-auto">Something</Button>
+                            <Button className="ml-auto">Close</Button>
                         </div>
                     }
                 >
@@ -91,7 +317,7 @@ class Dashboard extends Component {
                         Consequat interdum varius sit amet. Turpis massa tincidunt dui ut ornare. Cras fermentum odio eu feugiat. Lacinia quis vel eros donec. Feugiat in ante metus dictum at tempor commodo ullamcorper a. Vel facilisis volutpat est velit egestas dui id ornare. Elementum nisi quis eleifend quam adipiscing vitae proin. Nisi porta lorem mollis aliquam ut. Sagittis vitae et leo duis ut diam quam. Laoreet suspendisse interdum consectetur libero id faucibus nisl. Fringilla est ullamcorper eget nulla. Volutpat diam ut venenatis tellus in metus vulputate. Consectetur a erat nam at lectus urna. Leo duis ut diam quam nulla porttitor massa id neque. Donec adipiscing tristique risus nec feugiat. Egestas maecenas pharetra convallis posuere morbi leo. Morbi tristique senectus et netus et malesuada. Dui faucibus in ornare quam viverra orci sagittis eu volutpat. Erat velit scelerisque in dictum non consectetur a.
                     </div>
                 </ModalComponent>
-                <ModalComponent
+                {/* <ModalComponent
                     open={this.state.openFullScreenModal}
                     fullScreen={true}
                     maxWidth={"sm"}
@@ -125,7 +351,7 @@ class Dashboard extends Component {
 
                         Consequat interdum varius sit amet. Turpis massa tincidunt dui ut ornare. Cras fermentum odio eu feugiat. Lacinia quis vel eros donec. Feugiat in ante metus dictum at tempor commodo ullamcorper a. Vel facilisis volutpat est velit egestas dui id ornare. Elementum nisi quis eleifend quam adipiscing vitae proin. Nisi porta lorem mollis aliquam ut. Sagittis vitae et leo duis ut diam quam. Laoreet suspendisse interdum consectetur libero id faucibus nisl. Fringilla est ullamcorper eget nulla. Volutpat diam ut venenatis tellus in metus vulputate. Consectetur a erat nam at lectus urna. Leo duis ut diam quam nulla porttitor massa id neque. Donec adipiscing tristique risus nec feugiat. Egestas maecenas pharetra convallis posuere morbi leo. Morbi tristique senectus et netus et malesuada. Dui faucibus in ornare quam viverra orci sagittis eu volutpat. Erat velit scelerisque in dictum non consectetur a.
                     </div>
-                </ModalComponent>
+                </ModalComponent> */}
             </div>
         )
     }

@@ -3,6 +3,9 @@ import { BrowserRouter as Router} from "react-router-dom";
 import Layout from '../components/sidebar/Layout';
 import './App.scss';
 import './App_modified.css';
+// eslint-disable-next-line
+import "swiper/css/bundle";
+import "../pages/Dashboard/swiperstyle.css";
 
 /**
  * "user manual": basname will affect the routing
