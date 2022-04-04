@@ -8,6 +8,7 @@ import {
 import routes from './data/RouterConfiguration';
 import PanelHeader from './PanelHeader';
 import PanelFooter from './PanelFooter';
+import Dashboard from '../../pages/Dashboard/Dashboard';
 const Main = ({
   collapsed,
   rtl,
@@ -20,12 +21,14 @@ const Main = ({
     <>
       {/* <PanelHeader /> */}
       <main>
-        <PanelHeader />
+        <div><PanelHeader /></div>
+        <div><Dashboard /></div>
+        <div><PanelFooter /></div>
         {/* <div className="btn-toggle" onClick={() => handleToggleSidebar(true)}>
           <MenuOutlinedIcon />
         </div> */}
         {/* <PanelHeader /> */}
-        <div className="block ">
+        {/* <div className="block "> */}
           {/* <Switch>
             {
               routes.map((route, index) => {
@@ -37,8 +40,8 @@ const Main = ({
               })
             }
           </Switch> */}
-        </div>
-        <PanelFooter />
+        {/* </div> */}
+        
 
       </main>
     </>

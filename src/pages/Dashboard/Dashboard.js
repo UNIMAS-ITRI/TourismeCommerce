@@ -278,7 +278,7 @@ class Dashboard extends Component {
                 /> */}
 
                 <div className="w-100 d-flex" style={{ height: "1vw" }}>
-                    <Button onClick={() => this.setState({ openModal: true })}>Toggle Modal</Button>
+                    {/* <Button onClick={() => this.setState({ openModal: true })}>Toggle Modal</Button> */}
                     {/* <Button onClick={() => this.setState({ openFullScreenModal: true })}>Toggle Full Screen Modal</Button> */}
                 </div>
                 <ModalComponent
