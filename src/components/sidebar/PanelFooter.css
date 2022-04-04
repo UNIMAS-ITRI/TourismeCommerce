@@ -1,0 +1,23 @@
+.footerTitle {
+    color: #dfeabe;
+    font-Size: 18px;
+    letter-Spacing: 1px;
+    padding-Top: 15px;
+}
+
+.footerBorder {
+    border-Color: #dfeabe;
+    width: 60px;
+}
+
+.footerLabel {
+    font-Size: 16px;
+    color: white;
+    font-Weight: 500;
+    letter-Spacing: 1px
+}
+
+.footerText {
+    color: white;
+    font-Size: 13.5px;
+}

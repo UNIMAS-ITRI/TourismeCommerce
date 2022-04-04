@@ -26,7 +26,7 @@ const Main = ({
         </div> */}
         {/* <PanelHeader /> */}
         <div className="block ">
-          <Switch>
+          {/* <Switch>
             {
               routes.map((route, index) => {
                 return (
@@ -36,7 +36,7 @@ const Main = ({
                 )
               })
             }
-          </Switch>
+          </Switch> */}
         </div>
         <PanelFooter />
 
