@@ -20,6 +20,7 @@
 
  */
 import Dashboard from "../../../pages/Dashboard/Dashboard";
+import PlaceDetail from "../../../pages/Place/PlaceDetails";
 import UserManagement from '../../../pages/UserManagement/UserManagement';
 import OverallStock from "../../../pages/Stock/OverallStock/OverallStock";
 import StockGoods from "../../../pages/Stock/StockGoods/StockGoods";
@@ -40,65 +41,70 @@ const routes = [
         element: <Dashboard />,
     },
     {
-        path: "/UserManagement",
+        path: "/PlaceDetail",
         exact: true,
-        element: <UserManagement />,
-    },
-    {
-        path: "/OverallStock",
-        exact: true,
-        element: <OverallStock />,
-    },
-    {
-        path: "/StockGoods",
-        exact: true,
-        element: <StockGoods />,
-    },
-    {
-        path: "/Invoice",
-        exact: true,
-        element: <Invoice />,
-    },
-    {
-        path: "/DeliveryOrder",
-        exact: true,
-        element: <DeliveryOrder />,
-    },
-    {
-        path: "/CreditNote",
-        exact: true,
-        element: <CreditNote />,
-    },
-    {
-        path: "/ImportExcelData",
-        exact: true,
-        element: <DataManagement />,
-    },
-    {
-        path: "/AllPayments",
-        exact: true,
-        element: <AllPayments />,
-    },
-    {
-        path: "/BalanceSettlement",
-        exact: true,
-        element: <BalanceSettlement />,
-    },
-    {
-        path: "/Statements",
-        exact: true,
-        element: <Statements />,
-    },
-    {
-        path: "/UserDetail/:name/:fat",
-        exact: true,
-        element: <UserDetail />,
-    },
-    {
-        path: "/AddUser",
-        exact: true,
-        element: <AddUser />,
-    },
+        element: <PlaceDetail />,
+    }
+    // {
+    //     path: "/UserManagement",
+    //     exact: true,
+    //     element: <UserManagement />,
+    // },
+    // {
+    //     path: "/OverallStock",
+    //     exact: true,
+    //     element: <OverallStock />,
+    // },
+    // {
+    //     path: "/StockGoods",
+    //     exact: true,
+    //     element: <StockGoods />,
+    // },
+    // {
+    //     path: "/Invoice",
+    //     exact: true,
+    //     element: <Invoice />,
+    // },
+    // {
+    //     path: "/DeliveryOrder",
+    //     exact: true,
+    //     element: <DeliveryOrder />,
+    // },
+    // {
+    //     path: "/CreditNote",
+    //     exact: true,
+    //     element: <CreditNote />,
+    // },
+    // {
+    //     path: "/ImportExcelData",
+    //     exact: true,
+    //     element: <DataManagement />,
+    // },
+    // {
+    //     path: "/AllPayments",
+    //     exact: true,
+    //     element: <AllPayments />,
+    // },
+    // {
+    //     path: "/BalanceSettlement",
+    //     exact: true,
+    //     element: <BalanceSettlement />,
+    // },
+    // {
+    //     path: "/Statements",
+    //     exact: true,
+    //     element: <Statements />,
+    // },
+    // {
+    //     path: "/UserDetail/:name/:fat",
+    //     exact: true,
+    //     element: <UserDetail />,
+    // },
+    // {
+    //     path: "/AddUser",
+    //     exact: true,
+    //     element: <AddUser />,
+    // },
 
 ]
 

@@ -22,14 +22,14 @@ const Main = ({
       {/* <PanelHeader /> */}
       <main>
         <div><PanelHeader /></div>
-        <div><Dashboard /></div>
-        <div><PanelFooter /></div>
+        {/* <div><Dashboard /></div> */}
+
         {/* <div className="btn-toggle" onClick={() => handleToggleSidebar(true)}>
           <MenuOutlinedIcon />
         </div> */}
         {/* <PanelHeader /> */}
-        {/* <div className="block "> */}
-          {/* <Switch>
+        <div className="block ">
+          <Switch>
             {
               routes.map((route, index) => {
                 return (
@@ -39,10 +39,10 @@ const Main = ({
                 )
               })
             }
-          </Switch> */}
-        {/* </div> */}
-        
+          </Switch>
+        </div>
 
+        <div><PanelFooter /></div>
       </main>
     </>
 

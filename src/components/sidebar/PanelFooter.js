@@ -1,16 +1,20 @@
 // "user manual": You can set your footer here
 import React from 'react'
 import Box from '@mui/material/Box';
+
+// Icon for setting
 import RoomIcon from '@mui/icons-material/Room';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import FaxIcon from '@mui/icons-material/Fax';
 
+// Icon for social media
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 
+// Icon for download app
 import androidApp from '../../assets/androidApp.png';
 import appleApp from '../../assets/appleApp.png';
 import AppleIcon from '@mui/icons-material/Apple';
