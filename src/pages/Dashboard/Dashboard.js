@@ -12,6 +12,9 @@ import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './swiperstyle.css';
 import ReactPlayer from "react-player";
+import { Fade } from "react-awesome-reveal";
+import { Card, CardContent, CardActionArea, Typography, Box, Grid, CardActions } from '@mui/material';
+
 
 function mapStateToProps(state) {
     return {
@@ -33,6 +36,15 @@ const INITIAL_STATE = {
         { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb6.jpg" },
         { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb7.jpg" },
         { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
     ],
     player: "",
     url: null,
@@ -47,6 +59,13 @@ const INITIAL_STATE = {
     duration: 0,
     playbackRate: 1.0,
     loop: false,
+    CNAFF: [
+        { icon: "https://www.sarawak2discover.com/images/culture.png", alt: "Culture", iconName: "Culture" },
+        { icon: "https://www.sarawak2discover.com/images/adventure.png", alt: "Adventure", iconName: "Adventure" },
+        { icon: "https://www.sarawak2discover.com/images/nature.png", alt: "Nature", iconName: "Nature" },
+        { icon: "https://www.sarawak2discover.com/images/food.png", alt: "Food", iconName: "Food" },
+        { icon: "https://www.sarawak2discover.com/images/Festival.png", alt: "Festival", iconName: "Festival" },
+    ]
 }
 
 class Dashboard extends Component {
@@ -217,6 +236,46 @@ class Dashboard extends Component {
                                 Discover more...
                             </h3>
                         </p>
+                        <div style={{ height: "43%", padding: "0px 0.6vw 0 0.8vw", margin: "0px 0px 0 0.8vw" }}>
+                            <div className="row" style={{ textAlign: "center" }}>
+                                {/* {
+                                    this.state.CNAFF !== null && this.state.CNAFF.map((data) => {
+                                        return ( */}
+                                <div style={{ width: "20%", cursor: "pointer" }}>
+                                    <Fade direction="left" delay={1000}>
+                                        <img src="https://www.sarawak2discover.com/images/culture.png" width="80%" alt="Culture" />
+                                        <p style={{ fontSize: "1.185vw" }}>Culture</p>
+                                    </Fade>
+                                </div>
+                                <div style={{ width: "20%", cursor: "pointer" }}>
+                                    <Fade direction="left" delay={2000}>
+                                        <img src="https://www.sarawak2discover.com/images/adventure.png" width="80%" alt="Adventure" />
+                                        <p style={{ fontSize: "1.185vw" }}>Adventure</p>
+                                    </Fade>
+                                </div>
+                                <div style={{ width: "20%", cursor: "pointer" }}>
+                                    <Fade direction="left" delay={2800}>
+                                        <img src="https://www.sarawak2discover.com/images/nature.png" width="80%" alt="Nature" />
+                                        <p style={{ fontSize: "1.185vw" }}>Nature</p>
+                                    </Fade>
+                                </div>
+                                <div style={{ width: "20%", cursor: "pointer" }}>
+                                    <Fade direction="left" delay={3600}>
+                                        <img src="https://www.sarawak2discover.com/images/food.png" width="80%" alt="Food" />
+                                        <p style={{ fontSize: "1.185vw" }}>Food</p>
+                                    </Fade>
+                                </div>
+                                <div style={{ width: "20%", cursor: "pointer" }}>
+                                    <Fade direction="left" delay={4200}>
+                                        <img src="https://www.sarawak2discover.com/images/Festival.png" width="80%" alt="Festival" />
+                                        <p style={{ fontSize: "1.185vw" }}>Festival</p>
+                                    </Fade>
+                                </div>
+                                {/* )
+                                    })
+                                } */}
+                            </div>
+                        </div>
                     </div>
                     <div className="col-12 col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
                         {/* {JSON.parse(this.props.coursedetail[0].CourseMedia)[0]
@@ -236,7 +295,7 @@ class Dashboard extends Component {
                             playing={playing}
                             controls={controls}
                             light={light}
-                            loop={loop}
+                            // loop={loop}
                             playbackRate={playbackRate}
                             volume={volume}
                             muted={muted}
@@ -259,11 +318,83 @@ class Dashboard extends Component {
                             </a>
                         )} */}
                     </div>
-                    <div>
-                        <div className="row"></div>
+                </div >
+                <div className="row" style={{ margin: "2.5vw " }}>
+                    <Swiper
+                        // direction="horizontal"
+                        // spaceBetween={30}
+                        slidesPerView={3}
+                        slidesPerColumn={2}
+                        // slidesPerGroup={3}
+                        // spaceBetween={1}
+                        slidesPerColumnFill="column"
+                        // grid={{ fill: 'row', rows: 2 }}
+                        navigation={true}
+                    >
+                        <div className="row">
+                            <div className="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" >
+                                {
+                                    this.state.swiperImg.map((el) => {
+                                        return (
+                                            <SwiperSlide >
+                                                <img src={el.image} style={{ height: "20vw", width: "30vw", display: "block", objectFit: "cover", padding: "1vw" }} />
+                                            </SwiperSlide>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </Swiper>
+                </div >
+                <div className="row" style={{ margin: "3vw 0 3vw 0" }}>
+                    <p style={{ display: "flex", justifyContent: "center" }}>
+                        <h1 style={{ fontSize: "2.9vw" }}>What's New</h1>
+                    </p>
+                    <div style={{ padding: "0 3.1vw" }}>
+                        <Card style={{ margin: "0 0.25vw", height: "20vw", borderRadius: "10px", boxShadow: "2px 3px 5px #888888", border: "0px solid #000", position: "relative" }} elevation={0} sx={{ maxWidth: 280 }} >
+                            <CardActionArea
+                                // onClick={() => this.handleCardClick(x)}
+                                style={{ display: "flex", flexDirection: "column", height: "20vw", position: "absolute", background: "rgba(0, 0, 0, 0.35)", boxShadow: "2px 3px 5px #888888", }}
+                            >
+                                <img
+                                    alt="/"
+                                    src="https://www.sarawak2discover.com/TourismApi/images/event/event.png"
+                                    // onError={e => (e.target.src = defaultImageUrl())}
+                                    height="500"
+                                // width="50px"
+                                />
+                                <p style={{ position: "relative", justifyContent:"center" }}>haha</p>
+
+                                {/* <span>More ...</span> */}
+                                {/* <CardContent>
+                                <Typography variant="body1" style={{ textAlign: 'center', fontWeight: "bold" }}>
+                                    {x.foodName}
+                                </Typography>
+                                <div style={{ overflow: "auto", height: "8vw" }}><span className="text-start fs-6" >Description:
+                                    {x.foodDesc}
+                                </span></div>
+                                <div><span className="text-start fs-6">Tags:
+                                    {x.foodCat}
+                                </span></div>
+                            </CardContent> */}
+                            </CardActionArea>
+                            {/* <CardActions >
+                            <Grid item xs={12} sm={12} justify="center" alignItems="center" style={{ marginTop: '3%' }}>
+                                <Button active block style={{ color: 'white', backgroundColor: "#8fb136", }} size="md"
+                                // onClick={}
+                                // fullWidth
+                                >
+                                    <span style={{ paddingRight: "0.5vw", fontWeight: "bold", fontSize: "0.682vw" }}> Add To Cart</span> <AddShoppingCartIcon />
+                                </Button>
+
+                            </Grid>
+                        </CardActions> */}
+                        </Card>
                     </div>
-                    
+
                 </div>
+
+
                 {/* <SearchBar
                     label="search"
                     placeholder="Enter Member No, Tracking No or Container No to search"
@@ -277,10 +408,10 @@ class Dashboard extends Component {
                     hideButton={true}
                 /> */}
 
-                <div className="w-100 d-flex" style={{ height: "1vw" }}>
-                    {/* <Button onClick={() => this.setState({ openModal: true })}>Toggle Modal</Button> */}
-                    {/* <Button onClick={() => this.setState({ openFullScreenModal: true })}>Toggle Full Screen Modal</Button> */}
-                </div>
+                {/* <div className="w-100 d-flex" style={{ height: "1vw" } }> */}
+                {/* <Button onClick={() => this.setState({ openModal: true })}>Toggle Modal</Button> */}
+                {/* <Button onClick={() => this.setState({ openFullScreenModal: true })}>Toggle Full Screen Modal</Button> */}
+                {/* </div > */}
                 <ModalComponent
                     open={this.state.openModal}
                     fullScreen={false}
@@ -317,6 +448,7 @@ class Dashboard extends Component {
                         Consequat interdum varius sit amet. Turpis massa tincidunt dui ut ornare. Cras fermentum odio eu feugiat. Lacinia quis vel eros donec. Feugiat in ante metus dictum at tempor commodo ullamcorper a. Vel facilisis volutpat est velit egestas dui id ornare. Elementum nisi quis eleifend quam adipiscing vitae proin. Nisi porta lorem mollis aliquam ut. Sagittis vitae et leo duis ut diam quam. Laoreet suspendisse interdum consectetur libero id faucibus nisl. Fringilla est ullamcorper eget nulla. Volutpat diam ut venenatis tellus in metus vulputate. Consectetur a erat nam at lectus urna. Leo duis ut diam quam nulla porttitor massa id neque. Donec adipiscing tristique risus nec feugiat. Egestas maecenas pharetra convallis posuere morbi leo. Morbi tristique senectus et netus et malesuada. Dui faucibus in ornare quam viverra orci sagittis eu volutpat. Erat velit scelerisque in dictum non consectetur a.
                     </div>
                 </ModalComponent>
+
                 {/* <ModalComponent
                     open={this.state.openFullScreenModal}
                     fullScreen={true}
@@ -352,7 +484,7 @@ class Dashboard extends Component {
                         Consequat interdum varius sit amet. Turpis massa tincidunt dui ut ornare. Cras fermentum odio eu feugiat. Lacinia quis vel eros donec. Feugiat in ante metus dictum at tempor commodo ullamcorper a. Vel facilisis volutpat est velit egestas dui id ornare. Elementum nisi quis eleifend quam adipiscing vitae proin. Nisi porta lorem mollis aliquam ut. Sagittis vitae et leo duis ut diam quam. Laoreet suspendisse interdum consectetur libero id faucibus nisl. Fringilla est ullamcorper eget nulla. Volutpat diam ut venenatis tellus in metus vulputate. Consectetur a erat nam at lectus urna. Leo duis ut diam quam nulla porttitor massa id neque. Donec adipiscing tristique risus nec feugiat. Egestas maecenas pharetra convallis posuere morbi leo. Morbi tristique senectus et netus et malesuada. Dui faucibus in ornare quam viverra orci sagittis eu volutpat. Erat velit scelerisque in dictum non consectetur a.
                     </div>
                 </ModalComponent> */}
-            </div>
+            </div >
         )
     }
 }
