@@ -5,9 +5,29 @@ import { browserHistory } from "react-router";
 
 import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-
+import Rating from "@material-ui/lab/Rating";
 import PageHeader from "../../tools/breadcrumb/breadcrumb";
+
+import OperateHour from '@mui/icons-material/AccessTime';
+import EmailIcon from '@mui/icons-material/Email';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import Website from '@mui/icons-material/Language';
+import Marker from '@mui/icons-material/Room';
+import MapModule from '../../utils/Map/MapModule';
+import StarIcon from '@mui/icons-material/Star';
+import USER from "../../assets/user.png";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import Typography from '@mui/material/Typography';
+
+// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
+
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+
+import { LinearProgress } from '@mui/material';
 
 function mapStateToProps(state) {
     return {
@@ -37,7 +57,9 @@ const INITIAL_STATE = {
         { title: "Attraction", url: "https://www.sarawak2discover.com/MainPlaceOfInterest.aspx" },
         { title: "Old Kuching Heritage Building and Monuments", url: "https://www.sarawak2discover.com/Heritage.aspx?hid=15" },
         { title: "Brooke Memorial", url: "" }
-    ]
+    ],
+    indexImageHover: "",
+    mediaClick: "",
 }
 
 class PlaceDetails extends Component {
@@ -55,6 +77,58 @@ class PlaceDetails extends Component {
     }
 
 
+    showMedia = (name) => {
+        switch (name) {
+            case "Gallery":
+
+                const Gallery = [
+                    { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery1.jpg", description: "First page of the monument showing the endorsement towards Rajah Charles Brooke." },
+                    { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery2.jpg", description: "Brooke Memorial with the Old Kuching Courthouse." },
+                    { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery3.jpg", description: "Brooke Memorial with the other famous attractions, such as The Square Tower and Darul Hana Bridge." },
+                    { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery4.jpg", description: "Brooke Memorial during daytime." },
+                    { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery5.jpg", description: "Brooke Memorial during nightime." },
+                    { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery6.jpg", description: "Kenyah Tribe’s hero." },
+                    { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery7.jpg", description: "Chinese Tribe’s hero." },
+                    { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery8.jpg", description: "Penan Tribe’s hero" },
+                    { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery9.jpg", description: "Malay Tribe’s hero." },
+                    { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery10.jpg", description: "Portrait sculpture of Charles Brooke – Rajah Sarawak." }
+                ]
+
+                return (
+                    <div className="row" style={{ paddingTop: "30px" }}>
+                        {
+                            Gallery.length > 0 && Gallery.map((x, index) => {
+                                return (
+                                    <div class="CardView" className="col">
+                                        <Card onClick={() => ""} style={{ boxShadow: "2px 3px 5px #888888" }}>
+                                            <CardMedia
+                                                component="img"
+                                                height="194"
+                                                image={x.image}
+                                                alt={x.description}
+                                            />
+                                            {/* <CardContent>
+                                                <Typography color="text" style={{ fontWeight: "bold", textAlign: "center" }}>
+                                                    {x.description}
+                                                </Typography>
+                                            </CardContent> */}
+                                        </Card>
+                                    </div>
+
+                                )
+                            })
+                        }
+                    </div>
+                )
+
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
     render() {
 
         const PlaceDetails = [
@@ -67,9 +141,9 @@ class PlaceDetails extends Component {
                 OperateTime: "Open 24-hours",
                 Rating: 5,
                 Review: [
-                    { Name: "UAT Tester", Rating: 5, Review: "Nice Place" },
-                    { Name: "riantysaimon19", Rating: 5, Review: "Beautiful" },
-                    { Name: "Cccddd83", Rating: 5, Review: "wow" },
+                    { Name: "UAT Tester", Rating: 5, Review: "Nice Place", Date: "22/03/2022" },
+                    { Name: "riantysaimon19", Rating: 5, Review: "Beautiful", Date: "01/01/2022" },
+                    { Name: "Cccddd83", Rating: 5, Review: "wow", Date: "15/02/2022" },
                 ],
                 latitude: 1.559935000000000,
                 longitude: 110.345102000000000,
@@ -77,42 +151,41 @@ class PlaceDetails extends Component {
             }
         ]
 
-        const Gallery = [
-            { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery1.jpg", description: "First page of the monument showing the endorsement towards Rajah Charles Brooke." },
-            { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery2.jpg", description: "Brooke Memorial with the Old Kuching Courthouse." },
-            { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery3.jpg", description: "Brooke Memorial with the other famous attractions, such as The Square Tower and Darul Hana Bridge." },
-            { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery4.jpg", description: "Brooke Memorial during daytime." },
-            { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery5.jpg", description: "Brooke Memorial during nightime." },
-            { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery6.jpg", description: "Kenyah Tribe’s hero." },
-            { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery7.jpg", description: "Chinese Tribe’s hero." },
-            { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery8.jpg", description: "Penan Tribe’s hero" },
-            { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery9.jpg", description: "Malay Tribe’s hero." },
-            { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/gallery10.jpg", description: "Portrait sculpture of Charles Brooke – Rajah Sarawak." }
+        const MediaList = [
+            { image: "https://www.sarawak2discover.com/images/web/icon_gallery.png", value: "Gallery" },
+            { image: "https://www.sarawak2discover.com/images/web/icon_video.png", value: "Video" },
+            { image: "https://www.sarawak2discover.com/images/web/icon_vr.png", value: "Panorama/360° VR" },
+            { image: "https://www.sarawak2discover.com/images/web/icon_street.png", value: "Street View" },
+            { image: "https://www.sarawak2discover.com/images/web/icon_3d.png", value: "3D Model" }
+
         ]
 
         const Video = [{ url: "https://www.sarawak2discover.com/TourismApi/images/place/487/media/Brooke_Memorial.mp4" }]
-        
-        const Pano=[
-            {url:"https://www.sarawak2discover.com/TourismAPI/images/place/487/360/487_360_photo01.jpg"},
-            {url:"https://www.sarawak2discover.com/TourismAPI/images/place/487/360/487_360_photo02.jpg"},
-            {url:"https://www.sarawak2discover.com/TourismAPI/images/place/487/360/487_360_photo03.jpg"},
-            {url:"https://www.sarawak2discover.com/TourismAPI/images/place/487/360/487_360_photo04.jpg"}
+
+        const Pano = [
+            { url: "https://www.sarawak2discover.com/TourismAPI/images/place/487/360/487_360_photo01.jpg" },
+            { url: "https://www.sarawak2discover.com/TourismAPI/images/place/487/360/487_360_photo02.jpg" },
+            { url: "https://www.sarawak2discover.com/TourismAPI/images/place/487/360/487_360_photo03.jpg" },
+            { url: "https://www.sarawak2discover.com/TourismAPI/images/place/487/360/487_360_photo04.jpg" }
         ]
 
         const recommend = [
-            {image:"https://www.sarawak2discover.com/TourismApi/images/place/493/493_slider1.jpg", url:"https://www.sarawak2discover.com/PlaceDetail.aspx?pid=493&plat=1.560269000000000&plng=110.345553000000000", name:"Square Tower"},
-            {image:"https://www.sarawak2discover.com/TourismApi/images/place/488/488_slider1.jpg", url:"https://www.sarawak2discover.com/PlaceDetail.aspx?pid=488&plat=1.559240000000000&plng=110.344550000000000", name:"The Japanese Building"},
-            {image:"https://www.sarawak2discover.com/TourismApi/images/place/2745/2745_slider1.jpg", url:"https://www.sarawak2discover.com/PlaceDetail.aspx?pid=2745&plat=1.559292000000000&plng=110.346161000000000", name:"Kuching Waterfront Lodge"},
-            {image:"https://www.sarawak2discover.com/TourismApi/images/place/74/74_slider1.jpg", url:"https://www.sarawak2discover.com/PlaceDetail.aspx?pid=74&plat=1.558715000000000&plng=110.344500000000000", name:"The Waterfront Hotel Kuching"},
-            
-            {image:"https://www.sarawak2discover.com/TourismApi/images/place/496/496_slider1.jpg", url:"https://www.sarawak2discover.com/PlaceDetail.aspx?pid=496&plat=1.558591000000000&plng=110.344826000000000", name:"The Pavilion (Textile Museum)"},
-            {image:"https://www.sarawak2discover.com/TourismApi/images/place/10/10_slider1.jpg", url:"https://www.sarawak2discover.com/PlaceDetail.aspx?pid=10&plat=1.558551000000000&plng=110.345679000000000", name:"Mei Xin's Laksa, Lau Ya Keng Foodcourt"},
-            {image:"https://www.sarawak2discover.com/TourismApi/images/place/179/179_slider1.jpg", url:"https://www.sarawak2discover.com/PlaceDetail.aspx?pid=179&plat=1.559484000000000&plng=110.346528000000000", name:"Kuching Waterfront"},
-            {image:"https://www.sarawak2discover.com/images/main.png", url:"https://www.sarawak2discover.com/PlaceDetail.aspx?pid=3000&plat=1.559484000000000&plng=110.346528000000000", name:"Sarawak Regatta"}
+            { image: "https://www.sarawak2discover.com/TourismApi/images/place/493/493_slider1.jpg", url: "https://www.sarawak2discover.com/PlaceDetail.aspx?pid=493&plat=1.560269000000000&plng=110.345553000000000", name: "Square Tower" },
+            { image: "https://www.sarawak2discover.com/TourismApi/images/place/488/488_slider1.jpg", url: "https://www.sarawak2discover.com/PlaceDetail.aspx?pid=488&plat=1.559240000000000&plng=110.344550000000000", name: "The Japanese Building" },
+            { image: "https://www.sarawak2discover.com/TourismApi/images/place/2745/2745_slider1.jpg", url: "https://www.sarawak2discover.com/PlaceDetail.aspx?pid=2745&plat=1.559292000000000&plng=110.346161000000000", name: "Kuching Waterfront Lodge" },
+            { image: "https://www.sarawak2discover.com/TourismApi/images/place/74/74_slider1.jpg", url: "https://www.sarawak2discover.com/PlaceDetail.aspx?pid=74&plat=1.558715000000000&plng=110.344500000000000", name: "The Waterfront Hotel Kuching" },
+
+            { image: "https://www.sarawak2discover.com/TourismApi/images/place/496/496_slider1.jpg", url: "https://www.sarawak2discover.com/PlaceDetail.aspx?pid=496&plat=1.558591000000000&plng=110.344826000000000", name: "The Pavilion (Textile Museum)" },
+            { image: "https://www.sarawak2discover.com/TourismApi/images/place/10/10_slider1.jpg", url: "https://www.sarawak2discover.com/PlaceDetail.aspx?pid=10&plat=1.558551000000000&plng=110.345679000000000", name: "Mei Xin's Laksa, Lau Ya Keng Foodcourt" },
+            { image: "https://www.sarawak2discover.com/TourismApi/images/place/179/179_slider1.jpg", url: "https://www.sarawak2discover.com/PlaceDetail.aspx?pid=179&plat=1.559484000000000&plng=110.346528000000000", name: "Kuching Waterfront" },
+            { image: "https://www.sarawak2discover.com/images/main.png", url: "https://www.sarawak2discover.com/PlaceDetail.aspx?pid=3000&plat=1.559484000000000&plng=110.346528000000000", name: "Sarawak Regatta" }
         ]
+
+        const RatingList = [{ id: 5, value: 5 }, { id: 4, value: 4 }, { id: 3, value: 3 }, { id: 2, value: 2 }, { id: 1, value: 1 }]
+
         return (
-            <div>
-                <div style={{ float: "left", marginTop: "15px", marginLeft: "15px" , position:"relative"}} >
+            <div style={{ backgroundColor: "white" }}>
+                <div style={{ float: "left", marginTop: "15px", marginLeft: "15px", position: "relative" }} >
                     <PageHeader breadcrumb={this.state.breadcrumb} />
                 </div>
                 <Swiper
@@ -121,7 +194,7 @@ class PlaceDetails extends Component {
                     onSlideChange={() => console.log('slide change')}
                     onSwiper={(swiper) => console.log(swiper)}
                     height={250}
-                    width={300}  
+                    width={300}
                     autoplay={{ delay: 5000, }}
                     pagination={{
                         clickable: true,
@@ -134,7 +207,156 @@ class PlaceDetails extends Component {
                         })
                     }
                 </Swiper>
-                <div style={{ fontsize: "1.185vw", textAlign: "JUSTIFY", fontFamily: "Future Md BT", padding: "2.3vw" }}></div>
+
+                <div className="row justify-content-center" style={{ padding: "50px" }}>
+                    <div style={{ fontsize: "1.185vw", textAlign: "justify", fontFamily: "Future Md BT" }}>
+                        <h1 style={{ fontSize: "2vw" }}>
+                            <span style={{ fontWeight: "bold" }}>{PlaceDetails[0].name}</span>
+                        </h1>
+                        <span style={{ color: "#A4A2A2", fontSize: "1.2vw" }}>{PlaceDetails[0].State}</span>
+                        <br />
+                        <span style={{ verticalAlign: "middle", display: "inline-flex" }}>
+                            <Rating style={{ fontSize: "1.8rem" }} value={PlaceDetails[0].Rating} /> <label style={{ fontWeight: "bold", paddingLeft: "10px", fontSize: "1.0vw" }}>{PlaceDetails[0].Rating} ( {PlaceDetails[0].Review.length} Review(s))</label>
+                        </span>
+                    </div>
+                    <div className="row justify-content-center" style={{ paddingTop: "20px" }}>
+                        <div className='col-md-6 col-lg-6 col-xl-6 col-sm-12 mx-auto' style={{ borderRight: "1px solid #596a2a" }} >
+                            <ul class="list-unstyled" style={{ float: "none" }}>
+                                <li><p style={{ color: "#596a2a", letterSpacing: "2px", display: "block" }}><OperateHour style={{ fill: '#596a2a', fontSize: "30px" }} /><label style={{ paddingLeft: "20px", fontWeight: "400", fontFamily: "Futura Md BT", fontSize: "1.12vw", color: "black" }}>{PlaceDetails[0].OperateTime}</label> </p></li>
+                                <li><p style={{ color: "#596a2a", letterSpacing: "2px", display: "block" }}><EmailIcon style={{ fill: '#596a2a', fontSize: "30px" }} /><label style={{ paddingLeft: "20px", fontWeight: "400", fontFamily: "Futura Md BT", fontSize: "1.12vw", color: "black" }}> {PlaceDetails[0].Email}</label></p></li>
+                            </ul>
+                        </div>
+                        <div className='col-md-6 col-lg-6 col-xl-6 col-sm-12 mx-auto' >
+                            <ul class="list-unstyled" style={{ float: "none" }}>
+                                <li><p style={{ color: "#596a2a", letterSpacing: "2px", display: "block" }}><LocalPhoneIcon style={{ fill: '#596a2a', fontSize: "30px" }} /> <label style={{ paddingLeft: "20px", fontFamily: "Futura Md BT", fontSize: "1.12vw", fontWeight: "400", color: "black" }}>{PlaceDetails[0].Contact}</label></p></li>
+                                <li><p style={{ color: "#596a2a", letterSpacing: "2px", display: "block" }}><Website style={{ fill: '#596a2a', fontSize: "30px" }} /> <label style={{ paddingLeft: "20px", fontWeight: "400", fontFamily: "Futura Md BT", fontSize: "1.12vw", color: "black" }}>{PlaceDetails[0].Website}</label></p></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style={{ paddingTop: "50px" }}>
+                        <span style={{ fontWeight: "500", fontSize: "1.185vw", fontFamily: 'Futura Md BT', textAlign: "justify", color: "black" }}>
+                            {PlaceDetails[0].PlaceDesc}
+                        </span>
+                    </div>
+                    <div className="row justify-content-center" style={{ paddingTop: "50px" }}>
+                        <table>
+                            <tr>
+                                {
+                                    MediaList.length > 0 && MediaList.map((x, index) => {
+                                        return (
+                                            <>
+                                                <td style={{ paddingRight: "50px", textAlign: "center" }}>
+                                                    <img src={x.image} style={{ width: "70%", maxWidth: 200 }} borderWidth="0px" alt={x.value} onClick={() => this.setState({ mediaClick: x.value })} />
+                                                    <div style={{ paddingTop: "20px" }}> <label style={{ fontWeight: "400", fontSize: "2vw", color: "black" }}>{x.value}</label></div>
+                                                </td>
+
+                                            </>
+                                        )
+                                    })
+                                }
+                            </tr>
+                        </table>
+                        {this.state.mediaClick !== "" && this.showMedia(this.state.mediaClick)}
+                    </div>
+                    <div style={{ paddingTop: "50px" }}>
+                        <span style={{ verticalAlign: "middle", display: "inline-flex" }}>
+                            <Marker style={{ fill: '#596a2a', fontSize: "2.8vw" }} /> <h2 style={{ color: "#596a2a", paddingTop: "10px", paddingLeft: "20px" }}>Location Map</h2>
+                        </span>
+                        <div style={{ paddingTop: "20px" }}>
+                            <MapModule
+                                coordinate={{ address: PlaceDetails[0].name, lat: PlaceDetails[0].latitude, lng: PlaceDetails[0].longitude }}
+                                showMarker={true}
+                                height={500}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="row justify-content-center" style={{ padding: "50px" }}>
+                    <span style={{ verticalAlign: "middle", display: "inline-flex" }}>
+                        <StarIcon style={{ fill: '#596a2a', fontSize: "2.5vw" }} /> <h2 style={{ color: "#596a2a", paddingTop: "10px", fontWeight: "500", paddingLeft: "20px" }}>Review (s)</h2>
+                    </span>
+                    <div className="row justify-content-center" style={{ paddingTop: "20px" }}>
+                        <div className='col-md-3 col-lg-3 col-xl-3 col-sm-12 mx-auto' style={{ textAlign: "center" }}>
+                            <div>      <label style={{ fontWeight: "bold", fontSize: "2vw" }}>{PlaceDetails[0].Rating}</label></div>
+                            <div>      <Rating style={{ fontSize: "1.8vw" }} value={PlaceDetails[0].Rating} /></div>
+                            <div> <label style={{ fontWeight: "500", fontSize: "1.4vw", color: "#808080" }}> {PlaceDetails[0].Review.length} Rating(s)</label></div>
+                        </div>
+                        <div className='col-md-9 col-lg-9 col-xl-9 col-sm-12 mx-auto' >
+                            <table style={{ width: "-webkit-fill-available" }}>
+                                {
+                                    RatingList.map((x) => {
+                                        return (
+                                            <tr style={{ paddingTop: "20px" }}>
+                                                <td style={{ width: "5%" }}><label style={{ fontWeight: "bold", fontSize: "0.9vw" }}>{x.value} star</label></td>
+                                                <td style={{ width: "90%" }}> <LinearProgress color="success" style={{ color: "#596a2a", height: "20px" }} variant="determinate" value={PlaceDetails[0].Review.filter((y) => y.Rating === x.value).length / PlaceDetails[0].Review.length * 100} /></td>
+                                                <td style={{ width: "5%", paddingLeft: "10px" }}><label style={{ fontWeight: "bold", fontSize: "0.9vw" }}>{PlaceDetails[0].Review.filter((y) => y.Rating === x.value).length}</label></td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </table>
+                        </div>
+                    </div>
+
+                    <div className="row justify-content-center" style={{ paddingTop: "30px" }}>
+                        <table style={{ width: "-webkit-fill-available" }}>
+                            {
+                                PlaceDetails[0].Review.length > 0 && PlaceDetails[0].Review.map((x) => {
+                                    return (
+                                        <tr style={{ paddingTop: "30px" }}>
+                                            <td style={{ width: "5%", textAlign: "right" }}> <img width="50%" src={USER ? USER : USER} alt={123} onError={(e) => (e.target.src = USER)} /></td>
+                                            <td style={{ width: "90%", padding: "20px" }}>
+                                                <div className="'col-md-10 col-lg-10 col-xl-10 col-sm-10'">
+                                                    <div id="review_content" className=" review__content" style={{ width: "100%", textAlign: "left" }}>
+                                                        <div id="review_author" className=" review__author" style={{ fontWeight: "bold", fontSize: "1.0vw" }}>{x.Name} <label style={{ fontSize: "0.7vw", color: "#c6c6c6", fontWeight: "500" }}>({x.Date})</label></div>
+                                                        <div id="review_rating" className=" review__rating">
+                                                            <Rating style={{ fontSize: "1.2rem" }} value={x.Rating} />
+                                                        </div>
+                                                        <div id="review_comment"><label style={{ fontSize: "0.9vw" }}>{x.Review}</label></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </table>
+                    </div>
+                </div>
+
+                <div className="row justify-content-center" style={{ padding: "50px" }}>
+                    <span style={{ verticalAlign: "middle", display: "inline-flex" }}>
+                        <ThumbUpIcon style={{ fill: '#596a2a', fontSize: "2.5vw" }} /> <h2 style={{ color: "#596a2a", paddingTop: "10px", fontWeight: "500", paddingLeft: "20px" }}>You may also like</h2>
+                    </span>
+                    <div className="row" style={{ paddingTop: "30px" }}>
+                        {
+                            recommend.length > 0 && recommend.map((x, index) => {
+                                return (
+                                    <div class="CardView" className="col">
+                                        <Card onClick={() => window.open(x.url, "_blank")} sx={{ minHeight: 300 }} style={{ boxShadow: "2px 3px 5px #888888" }}>
+                                            <CardMedia
+                                                component="img"
+                                                height="194"
+                                                image={x.image}
+                                                alt={x.name}
+                                                style={{ opacity: this.state.indexImageHover === index ? "50%" : "100%" }}
+                                                onMouseOver={() => this.setState({ indexImageHover: index })}
+                                                onMouseOut={() => this.setState({ indexImageHover: "" })}
+                                            />
+                                            <CardContent>
+                                                <Typography color="text" style={{ fontWeight: "bold", textAlign: "center" }}>
+                                                    {x.name}
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </div>
+
+                                )
+                            })
+                        }
+                    </div>
+                </div>
             </div>
         )
     }
