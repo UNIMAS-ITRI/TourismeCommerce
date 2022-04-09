@@ -32,7 +32,7 @@ body {
 }
 
 .swiper-pagination {
-    background-color: rgba(80,80,80,.75) !important;
+    background-color: rgba(80, 80, 80, .75) !important;
     height: 2.5vw !important;
     bottom: 0 !important;
     padding-top: 0.9vw !important;
@@ -45,6 +45,189 @@ body {
 }
 
 .modalLanding {
-    padding-top: 4vw !important; 
-    background: rgba(0, 0, 0, 0.75) !important; 
+    padding-top: 4vw !important;
+    background: rgba(0, 0, 0, 0.75) !important;
+}
+
+.mainDiv {
+    position: relative;
+}
+
+.middleDiv {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 95.5%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.185vw;
+    font-weight: bold;
+    text-shadow: 0px 0px 6px black;
+    background: rgba(0, 0, 0, 0.40);
+}
+
+.mainContainer {
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+.text {
+    text-align: center;
+    color: white;
+    font-size: 1.4vw;
+    width: 100%;
+}
+
+.hrtCard:hover .middleDiv {
+    opacity: 0;
+}
+
+.hovertxt {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.3vw;
+    width: 100%;
+    font-weight: bold;
+}
+
+.image {
+    opacity: 1;
+    display: block;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    cursor: pointer;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 95.5%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0px 0px 6px black;
+    background: rgba(0, 0, 0, 0.10);
+}
+
+.hrtCard:hover .image {
+    opacity: 0.9;
+}
+
+.hrtCard:hover .middle {
+    opacity: 1;
+    padding: 20px;
+    box-shadow: -1px 10px 29px 0px rgba(0,0,0,0.8);
+}
+
+.moreCard {
+    margin: 0 0.25vw;
+    border-radius: 10px;
+    box-shadow: 2px 3px 5px #888888;
+    border: 0px solid #000;
+    position: relative;
+}
+
+.cardActionArea {
+    display: flex;
+    flex-direction: column;
+    height: 20vw;
+    position: absolute;
+    background: "rgba(0, 0, 0, 0.35)";
+    box-Shadow: "2px 3px 5px #888888";
+}
+
+.cardActionAreaImg {
+    display: block;
+    transition: .5s ease;
+    opacity: 1;
+    position: absolute;
+}
+
+.MoreTxt {
+    position: relative;
+    justify-content: center;
+}
+
+.middleDivCard {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.185vw;
+    font-weight: bold;
+    text-shadow: 0px 0px 6px black;
+    background: rgba(0, 0, 0, 0.40);
+}
+
+.middleCard {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0px 0px 6px black;
+    background: rgba(0, 0, 0, 0.10);
+}
+
+.moreCard:hover  {
+    opacity: 0.9;
+    box-shadow: -1px 10px 29px 0px rgba(0,0,0,0.8);
+}
+
+.moreCard:hover .middleDivCard {
+    opacity: 0;
+}
+
+.moreCard:hover .middleCard {
+    opacity: 1;
+    text-transform: lowercase;
+    box-shadow: -1px 5px 24px 0px rgba(0,0,0,0.8);
+}
+
+.imgbgMap {
+    padding: 22vw 0 0 0;
+    background: url(https://www.sarawak2discover.com/images/headerImg.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+.imgbgMap1 {
+    padding: 22vw 0 0 0;
+    background: url(https://www.sarawak2discover.com/images/web/attraction.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+#panel1a-header {
+    display: contents !important;
+    justify-content: center !important;
+}
+
+.MuiAccordionSummary-expandIconWrapper {
+    justify-content: center !important;
+}
+
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root 
+.css-o4b71y-MuiAccordionSummary-content {
+    margin: 0 !important;
 }

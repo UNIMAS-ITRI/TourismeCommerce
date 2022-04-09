@@ -13,8 +13,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import './swiperstyle.css';
 import ReactPlayer from "react-player";
 import { Fade } from "react-awesome-reveal";
-import { Card, CardContent, CardActionArea, Typography, Box, Grid, CardActions } from '@mui/material';
+import { Card, CardActionArea, Typography, Grid, Accordion, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { style } from "@mui/system";
 
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 function mapStateToProps(state) {
     return {
@@ -26,6 +31,18 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
+// const param = {
+//     swiperOption: {
+//         navigation: {
+//             nextEl: ".swiper-button-next",
+//             prevEl: ".swiper-button-prev",
+//         },
+//         grid: {
+//             rows: 2,
+//         },
+//     }
+// }
+
 const INITIAL_STATE = {
     openModal: false,
     openFullScreenModal: false,
@@ -35,15 +52,6 @@ const INITIAL_STATE = {
         { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb5.jpg" },
         { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb6.jpg" },
         { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb7.jpg" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
         { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
     ],
     player: "",
@@ -65,7 +73,34 @@ const INITIAL_STATE = {
         { icon: "https://www.sarawak2discover.com/images/nature.png", alt: "Nature", iconName: "Nature" },
         { icon: "https://www.sarawak2discover.com/images/food.png", alt: "Food", iconName: "Food" },
         { icon: "https://www.sarawak2discover.com/images/Festival.png", alt: "Festival", iconName: "Festival" },
-    ]
+    ],
+    heritageImg: [
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/487_slider1.jpg", heritageName: "BROOKE MEMORIAL", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/538/538_slider1.jpg", heritageName: "DARUL KURNIA @ HAJI TAHA ROAD", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/186/186_slider1.jpg", heritageName: "FORT MARGERITA", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/497/497_slider1.jpg", heritageName: "GENERAL POST OFFICE", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/542/542_slider1.jpg", heritageName: "HERITAGE HOUSE OF BENTARA/DARUL MAZIAH", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/540/540_slider1.jpg", heritageName: "HERITAGE HOUSE OF DATU BANDAR HAJI MOHD KASSIM", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/541/541_slider1.jpg", heritageName: "HERITAGE HOUSE OF TAN SRI DATO SERI ABANG AHMAD URAI BIN DATU HAKIM ABANG HJ MOHIDEEN", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/532/532_slider1.jpg", heritageName: "HIANG THIAN SIANG TI TEMPLE", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/536/536_slider1.jpg", heritageName: "INDIAN MOSQUE", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/533/533_slider1.jpg", heritageName: "KUEH SENG ONN TEMPLE", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/537/537_slider1.jpg", heritageName: "MASJID BANDARAYA KUCHING", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/490/490_slider1.jpg", heritageName: "OLD CHINESE COURT (CHINESE HISTORY MUSEUM)", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/495/495_slider1.jpg", heritageName: "OLD GOVERNMENT PRINTING OFFICE", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/486/486_slider1.jpg", heritageName: "OLD KUCHING COURTHOUSE", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/492/492_slider1.jpg", heritageName: "OLD SARAWAK STEAMSHIP BUILDING", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/539/539_slider1.jpg", heritageName: "PERSAUDARAAN KAMPONG MASJID, BINTANGOR AND JALAN HAJI TAHA, KUCHING (MBHT)", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/494/494_slider1.jpg", heritageName: "SARAWAK CULTURAL VILLAGE", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/535/535_slider1.jpg", heritageName: "SIKH TEMPLE", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/493/493_slider1.jpg", heritageName: "SQUARE TOWER", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/488/488_slider1.jpg", heritageName: "THE JAPANESE BUILDING", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/496/496_slider1.jpg", heritageName: "THE PAVILION (TEXTILE MUSEUM)", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/489/489_slider1.jpg", heritageName: "THE ROUND TOWER", url: "/" },
+        { image: "https://www.sarawak2discover.com/TourismApi/images/place/180/180_slider1.jpg", heritageName: "TUA PEK KONG TEMPLE", url: "/" },
+    ],
+    isCollapse: true,
+    // panel1a-header: true
 }
 
 class Dashboard extends Component {
@@ -194,6 +229,12 @@ class Dashboard extends Component {
         this.player = player;
     };
 
+    handleChangeAccordion() {
+        this.setState({ expanded: false })
+        // else (this.setState({ expanded: true }))
+        console.log(this.state.expanded)
+    }
+
     render() {
         const { playing, controls, light, volume, muted, loop, playbackRate, pip, } = this.state;
         return (
@@ -292,7 +333,7 @@ class Dashboard extends Component {
                             //     )[0].CourseMediaUrl
                             // }
                             pip={pip}
-                            playing={playing}
+                            // playing={playing}
                             controls={controls}
                             light={light}
                             // loop={loop}
@@ -321,24 +362,47 @@ class Dashboard extends Component {
                 </div >
                 <div className="row" style={{ margin: "2.5vw " }}>
                     <Swiper
-                        // direction="horizontal"
-                        // spaceBetween={30}
+                        // {...param}
+
+                        modules={[Navigation]}
                         slidesPerView={3}
                         slidesPerColumn={2}
-                        // slidesPerGroup={3}
-                        // spaceBetween={1}
                         slidesPerColumnFill="column"
-                        // grid={{ fill: 'row', rows: 2 }}
                         navigation={true}
+                    // style={{
+                    //     "--swiper-navigation-color": "#fff",
+                    //     "--swiper-navigation-size": "2vw",
+                    // }}
                     >
                         <div className="row">
                             <div className="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" >
                                 {
-                                    this.state.swiperImg.map((el) => {
+                                    this.state.heritageImg.map((el) => {
                                         return (
-                                            <SwiperSlide >
-                                                <img src={el.image} style={{ height: "20vw", width: "30vw", display: "block", objectFit: "cover", padding: "1vw" }} />
-                                            </SwiperSlide>
+                                            <>
+                                                <SwiperSlide >
+                                                    <div className="hrtCard">
+                                                        <div className="mainDiv mainContainer">
+                                                            <img src={el.image} style={{ height: "20vw", width: "30vw", display: "block", objectFit: "cover", opacity: 1 }} />
+                                                        </div>
+                                                        <div className="middleDiv">
+                                                            <span style={{ textAlign: "center" }}>{el.heritageName}</span>
+                                                        </div>
+                                                        <div className="middle">
+                                                            <div className="text">
+                                                                <p className="hovertxt">
+                                                                    {el.heritageName}
+                                                                </p>
+                                                                <hr className="mt-0 d-inline-block mx-auto" style={{ borderColor: "#ffffff", width: "95px" }} />
+                                                                <p className="hovertxt">
+                                                                    View Details
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </SwiperSlide>
+                                            </>
+
                                         )
                                     })
                                 }
@@ -351,46 +415,280 @@ class Dashboard extends Component {
                         <h1 style={{ fontSize: "2.9vw" }}>What's New</h1>
                     </p>
                     <div style={{ padding: "0 3.1vw" }}>
-                        <Card style={{ margin: "0 0.25vw", height: "20vw", borderRadius: "10px", boxShadow: "2px 3px 5px #888888", border: "0px solid #000", position: "relative" }} elevation={0} sx={{ maxWidth: 280 }} >
+                        <Card className="moreCard" elevation={0} sx={{ maxWidth: 280, maxHeight: "20vw" }} >
                             <CardActionArea
                                 // onClick={() => this.handleCardClick(x)}
-                                style={{ display: "flex", flexDirection: "column", height: "20vw", position: "absolute", background: "rgba(0, 0, 0, 0.35)", boxShadow: "2px 3px 5px #888888", }}
+                                className="cardActionArea"
                             >
                                 <img
                                     alt="/"
                                     src="https://www.sarawak2discover.com/TourismApi/images/event/event.png"
                                     // onError={e => (e.target.src = defaultImageUrl())}
-                                    height="500"
-                                // width="50px"
+                                    height="385"
                                 />
-                                <p style={{ position: "relative", justifyContent:"center" }}>haha</p>
-
-                                {/* <span>More ...</span> */}
-                                {/* <CardContent>
-                                <Typography variant="body1" style={{ textAlign: 'center', fontWeight: "bold" }}>
-                                    {x.foodName}
-                                </Typography>
-                                <div style={{ overflow: "auto", height: "8vw" }}><span className="text-start fs-6" >Description:
-                                    {x.foodDesc}
-                                </span></div>
-                                <div><span className="text-start fs-6">Tags:
-                                    {x.foodCat}
-                                </span></div>
-                            </CardContent> */}
+                                {/* <p className="MoreTxt">More</p> */}
+                                <div className="middleDivCard">
+                                    <span style={{ textAlign: "center" }}>MORE...</span>
+                                </div>
+                                <div className="middleCard">
+                                    <div className="text">
+                                        <p className="hovertxt">
+                                            More...
+                                        </p>
+                                    </div>
+                                </div>
                             </CardActionArea>
-                            {/* <CardActions >
-                            <Grid item xs={12} sm={12} justify="center" alignItems="center" style={{ marginTop: '3%' }}>
-                                <Button active block style={{ color: 'white', backgroundColor: "#8fb136", }} size="md"
-                                // onClick={}
-                                // fullWidth
-                                >
-                                    <span style={{ paddingRight: "0.5vw", fontWeight: "bold", fontSize: "0.682vw" }}> Add To Cart</span> <AddShoppingCartIcon />
-                                </Button>
-
-                            </Grid>
-                        </CardActions> */}
                         </Card>
                     </div>
+                </div>
+
+                <div class="imgbgMap">
+                    {/* <div className="imgbgMap1">
+                    </div> */}
+                    {/* <article class="dooreffects">
+                        <div class="ctrl-box">
+                            <h2 style="color: #000000;">Travel Highlights</h2>
+                            <div class="viewpoint">
+                                <div class="bg-box">
+                                    <div class="title" style="color: #000000;">Cities/Towns</div>
+                                    <div class="btn-open"><a href="javascript: void(0);" title="City/Town"></a></div>
+                                    <div class="btn-into"><a href="CityList.aspx" title="City/Town"></a></div>
+                                    <ul class="list-box">
+                                        <li class="item-n">
+                                            <figure>
+                                                <div class="graphic"><img src="images/web/btn/Miri.png" alt="Miri" /></div>
+                                                <figcaption>Miri</figcaption>
+                                                <a href="CityInfo.aspx?did=4" title="Miri">Miri</a>
+                                            </figure>
+                                        </li>
+                                        <li class="item-g">
+                                            <figure>
+                                                <div class="graphic2"><img src="images/web/btn/Limbang.png" alt="Limbang" /></div>
+                                                <figcaption>Limbang</figcaption>
+                                                <a href="CityInfo.aspx?did=5" title="Limbang">Limbang</a>
+                                            </figure>
+                                        </li>
+
+                                        <li class="item-c">
+                                            <figure>
+                                                <div class="graphic2"><img src="images/web/btn/Samarahan.png" alt="Samarahan" /></div>
+                                                <figcaption>Samarahan</figcaption>
+                                                <a href="CityInfo.aspx?did=9" title="Samarahan">Samarahan</a>
+                                            </figure>
+                                        </li>
+                                        <li class="item-s">
+                                            <figure>
+                                                <div class="graphic2"><img src="images/web/btn/Betong.png" alt="Betong" /></div>
+                                                <figcaption>Betong</figcaption>
+                                                <a href="CityInfo.aspx?did=11" title="Betong">Betong</a>
+                                            </figure>
+                                        </li>
+                                        <li class="item-b">
+                                            <figure>
+                                                <div class="graphic"><img src="images/web/btn/Sibu.png" alt="Sibu" /></div>
+                                                <figcaption>Sibu</figcaption>
+                                                <a href="CityInfo.aspx?did=3" title="Sibu">Sibu</a>
+                                            </figure>
+                                        </li>
+                                        <li class="item-d">
+                                            <figure>
+                                                <div class="graphic2"><img src="images/web/btn/Sarikei.png" alt="Sarikei" /></div>
+                                                <figcaption>Sarikei</figcaption>
+                                                <a href="CityInfo.aspx?did=6" title="Sarikei">Sarikei</a>
+                                            </figure>
+                                        </li>
+                                        <li class="item-f">
+                                            <figure>
+                                                <div class="graphic2"><img src="images/web/btn/Kapit.png" alt="Kapit" /></div>
+                                                <figcaption>Kapit</figcaption>
+                                                <a href="CityInfo.aspx?did=7" title="Kapit">Kapit</a>
+                                            </figure>
+                                        </li>
+                                        <li class="item-e">
+                                            <figure>
+                                                <div class="graphic"><img src="images/web/btn/Bintulu.png" alt="Bintulu" /></div>
+                                                <figcaption>Bintulu</figcaption>
+                                                <a href="CityInfo.aspx?did=8" title="Bintulu">Bintulu</a>
+                                            </figure>
+                                        </li>
+                                        <li class="item-a">
+                                            <figure>
+                                                <div class="graphic2"><img src="images/web/btn/Mukah.png" alt="Mukah" /></div>
+                                                <figcaption>Mukah</figcaption>
+                                                <a href="CityInfo.aspx?did=10" title="Mukah">Mukah</a>
+                                            </figure>
+                                        </li>
+                                        <li class="item-m">
+                                            <figure>
+                                                <div class="graphic2"><img src="images/web/btn/SriAman.png" alt="Sri Aman" /></div>
+                                                <figcaption>Sri Aman</figcaption>
+                                                <a href="CityInfo.aspx?did=2" title="Sri Aman">Sri Aman</a>
+                                            </figure>
+                                        </li>
+                                        <li class="item-p">
+                                            <figure>
+                                                <div class="graphic2"><img src="images/web/btn/Serian.png" alt="Serian" /></div>
+                                                <figcaption>Serian</figcaption>
+                                                <a href="CityInfo.aspx?did=12" title="Serian">Serian</a>
+                                            </figure>
+                                        </li>
+                                        <li class="item-k">
+                                            <figure>
+                                                <div class="graphic"><img src="images/web/btn/Kuching.png" alt="Kuching" /></div>
+                                                <figcaption>Kuching</figcaption>
+                                                <a href="CityInfo.aspx?did=1" title="Kuching">Kuching</a>
+                                            </figure>
+                                        </li>
+                                    </ul>
+                                    <div class="btn-back"><a href="javascript: void(0);" title="Back">Back</a></div>
+                                </div>
+                            </div>
+                            <div class="festival">
+                                <div class="bg-box">
+                                    <div class="title" style="color: #000000;">Top Attractions</div>
+                                    <div class="btn-open"><a href="javascript: void(0);" title="Top Attraction"></a></div>
+                                    <div class="btn-into"><a href="MainPlaceOfInterest.aspx"></a></div>
+                                    <ul class="list-box">
+
+                                        <li class="item-attraction-c">
+                                            <figure>
+                                                <div class="graphic_a"><img src="images/web/btn/Bako.png" alt="Bako National Park" height="150" /></div>
+                                                <figcaption>Bako National Park</figcaption>
+                                                <a href="PlaceDetail.aspx?pid=188&plat=1.716720000000000&plng=110.466688000000000" title="Bako National Park">Bako National Park</a>
+                                            </figure>
+                                        </li>
+                                        <li class="item-attraction-g">
+                                            <figure>
+                                                <div class="graphic_a"><img src="images/web/btn/Pinnacle.png" alt="The Pinnacles Trail" height="120" /></div>
+                                                <figcaption>The Pinnacles Trail</figcaption>
+                                                <a href="PlaceDetail.aspx?pid=446&plat=4.092000000000000&plng=114.895773000000000" title="The Pinnacles Trail">The Pinnacles Trail</a>
+                                            </figure>
+                                        </li>
+                                        <li class="item-attraction-e">
+                                            <figure>
+                                                <div class="graphic_a"><img src="images/web/btn/Mulu.png" alt="Mulu National Park" height="130" /></div>
+                                                <figcaption>Mulu National Park</figcaption>
+                                                <a href="PlaceDetail.aspx?pid=425&plat=4.041940000000000&plng=114.812922000000000" title="Mulu National Park">Mulu National Park</a>
+                                            </figure>
+                                        </li>
+                                        <li class="item-attraction-b">
+                                            <figure>
+                                                <div class="graphic_a"><img src="images/web/btn/Semenggoh.png" alt="Semenggoh Wildlife Centre" height="150" /></div>
+                                                <figcaption>Semenggoh Wildlife Centre</figcaption>
+                                                <a href="PlaceDetail.aspx?pid=423&plat=1.399899000000000&plng=110.324480000000000" title="Semenggoh Wildlife Centre">Semenggoh Wildlife Centre</a>
+                                            </figure>
+                                        </li>
+                                        <li class="item-attraction-n">
+                                            <figure>
+                                                <div class="graphic_a"><img src="images/web/btn/Niah.png" alt="Niah National Park" height="120" /></div>
+                                                <a href="PlaceDetail.aspx?pid=147&plat=3.801544000000000&plng=113.784189000000000" title="Niah National Park">Niah National Park</a>
+                                            </figure>
+                                        </li>
+                                    </ul>
+                                    <div class="btn-back"><a href="javascript: void(0);" title="Back">Back</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </article> */}
+                </div>
+
+                <div className="row" style={{ margin: "3vw 0 3vw 0" }}>
+                    <div style={{ textAlign: "center" }}>
+                        <IconButton onClick={() => this.setState({ isCollapse: !this.state.isCollapse })}>
+                            {this.state.isCollapse === true ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                        </IconButton>
+                    </div>
+                    <Accordion expanded={this.state.isCollapse} style={{ background: "none", boxShadow: "none" }}
+                        onClick={() => this.setState({ isCollapse: !this.state.isCollapse })}
+                    >
+                        <AccordionSummary
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <div style={{ display: "flex", width: "100%" }}>
+                                <hr className="mt-5 d-inline-block mx-auto" style={{ borderColor: "black", width: "100%", height: "5px" }} />
+                                <Typography style={{ fontSize: "2.853vw", textAlign: "center", justifyContent: "center", width: "100%" }}>
+                                    More On Sarawak Travel
+                                </Typography>
+                                <hr className="mt-5 d-inline-block mx-auto" style={{ borderColor: "black", width: "100%", height: "5px" }} />
+                            </div>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <div className="row" style={{ textAlign: "center", marginTop:"1.5vw" }}>
+                                {/* {
+                                    this.state.CNAFF !== null && this.state.CNAFF.map((data) => {
+                                        return ( */}
+                                <div style={{ width: "20%", cursor: "pointer" }}>
+                                    <Fade direction="left" delay={1000}>
+                                        <img src="	https://www.sarawak2discover.com/TourismApi/images/category/ATM.png" width="40%" alt="Culture" />
+                                        <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>ATM</p>
+                                    </Fade>
+                                </div>
+                                <div style={{ width: "20%", cursor: "pointer" }}>
+                                    <Fade direction="left" delay={2000}>
+                                        <img src="https://www.sarawak2discover.com/TourismApi/images/category/Emergency.png" width="40%" alt="Adventure" />
+                                        <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Emergency Contact</p>
+                                    </Fade>
+                                </div>
+                                <div style={{ width: "20%", cursor: "pointer" }}>
+                                    <Fade direction="left" delay={2800}>
+                                        <img src="https://www.sarawak2discover.com/TourismApi/images/category/Hospital.png" width="40%" alt="Nature" />
+                                        <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Hospital</p>
+                                    </Fade>
+                                </div>
+                                <div style={{ width: "20%", cursor: "pointer" }}>
+                                    <Fade direction="left" delay={3600}>
+                                        <img src="https://www.sarawak2discover.com/TourismApi/images/category/Library.png" width="40%" alt="Food" />
+                                        <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Library</p>
+                                    </Fade>
+                                </div>
+                                <div style={{ width: "20%", cursor: "pointer" }}>
+                                    <Fade direction="left" delay={4200}>
+                                        <img src="	https://www.sarawak2discover.com/TourismApi/images/category/MoneyChanger.png" width="40%" alt="Festival" />
+                                        <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Money Changer</p>
+                                    </Fade>
+                                </div>
+                                {/* )
+                                    })
+                                } */}
+                            </div>
+                            <div className="row" style={{ textAlign: "center", marginTop: "1.5vw" }}>
+                                {/* {
+                                    this.state.CNAFF !== null && this.state.CNAFF.map((data) => {
+                                        return ( */}
+                                <div style={{ width: "20%", cursor: "pointer" }}>
+                                    <Fade direction="left" delay={5000}>
+                                        <img src="https://www.sarawak2discover.com/TourismApi/images/category/PetroStation.png" width="40%" alt="Culture" />
+                                        <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Petrol Station</p>
+                                    </Fade>
+                                </div>
+                                <div style={{ width: "20%", cursor: "pointer" }}>
+                                    <Fade direction="left" delay={6000}>
+                                        <img src="https://www.sarawak2discover.com/TourismApi/images/category/PoliceStation.png" width="40%" alt="Adventure" />
+                                        <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Police Station</p>
+                                    </Fade>
+                                </div>
+                                <div style={{ width: "20%", cursor: "pointer" }}>
+                                    <Fade direction="left" delay={6800}>
+                                        <img src="	https://www.sarawak2discover.com/TourismApi/images/category/Telecommunication.png" width="40%" alt="Nature" />
+                                        <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Telecommunication</p>
+                                    </Fade>
+                                </div>
+                                <div style={{ width: "20%", cursor: "pointer" }}>
+                                    <Fade direction="left" delay={7600}>
+                                        <img src="https://www.sarawak2discover.com/TourismApi/images/category/Transportation.png" width="40%" alt="Food" />
+                                        <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Transport</p>
+                                    </Fade>
+                                </div>
+                                {/* )
+                                    })
+                                } */}
+                            </div>
+                        </AccordionDetails>
+                    </Accordion>
+                    {/* <div className="row" style={{ fontSize: "3vw", textAlign: "center", justifyContent: "center" }}>
+                        More On Sarawak Travel
+                    </div> */}
 
                 </div>
 
