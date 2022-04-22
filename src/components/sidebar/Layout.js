@@ -46,13 +46,13 @@ function Layout() {
               toggled={toggled}
               handleToggleSidebar={handleToggleSidebar}
       /> */}
-              <Main
-                image={false} // can set the background image for the sidebar here
-                toggled={toggled}
-                rtl={rtl}
-                handleToggleSidebar={handleToggleSidebar}
-                handleRtlChange={handleRtlChange}
-              />
+            <Main
+              image={false} // can set the background image for the sidebar here
+              toggled={toggled}
+              rtl={rtl}
+              handleToggleSidebar={handleToggleSidebar}
+              handleRtlChange={handleRtlChange}
+            />
           </>
           :
           <Login />

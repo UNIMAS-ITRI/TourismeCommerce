@@ -32,16 +32,16 @@ export default function PanelHeader(props) {
                             <img src='https://www.sarawak2discover.com/images/logo_w.png' height="69px" width="222px" borderWidth="0px" alt="Logo" />
                         </div>
                     </div>
-                    <div className='col-2' style={{ position: "absolute", top: "30px", right: "0px" }}>
+                    <div className='col-2' style={{ position: "relative", top: "1.5vw", right: "0vw" }}>
                         <div style={{ display: "flex" }}>
                             <label style={{ fontWeight: "500", color: "white", paddingRight: "20px" }}><a href="https://www.sarawak2discover.com/ContactUs.aspx"></a>Contact Us</label>
-                            <label style={{ paddingRight: "20px" }}><PersonIcon style={{ fill: 'white' }} /></label>
-                            <label style={{ paddingRight: "20px" }}><SearchIcon style={{ fill: 'white' }} /></label>
+                            <label style={{ paddingRight: "1vw" }}><PersonIcon style={{ fill: 'white' }} /></label>
+                            <label style={{ paddingRight: "1vw" }}><SearchIcon style={{ fill: 'white' }} /></label>
                         </div>
                     </div>
                 </div>
             </Box>
-            <Box sx={{ backgroundColor: "#8fb136", height: '65px' }} >
+            <Box sx={{ backgroundColor: "#8fb136", height: '3.25vw' }} >
                 <div style={{ paddingLeft: "4%", paddingRight: "5%", paddingTop: "0.5%" }}>
                     <div class="navbar">
                         {

@@ -72,13 +72,16 @@ export default function ModalComponent(props) {
         </AppBar>
       }
 
-      <DialogTitle id="modal-component" className="d-flex justify-content-between">
-        {props.title}
-        <IconButton sx={{ marginLeft: 'auto' }} onClick={() => { typeof props.handleOnClose === "function" ? props.handleOnClose() : console.log("Dialog -> handleOnClose() required") }}>
-          <CloseIcon />
-        </IconButton>
-      </DialogTitle>
-      <DialogContent>
+      {!props.fullScreen &&
+        <DialogTitle id="modal-component" className="d-flex justify-content-between">
+          {props.title}
+          <IconButton sx={{ marginLeft: 'auto' }} onClick={() => { typeof props.handleOnClose === "function" ? props.handleOnClose() : console.log("Dialog -> handleOnClose() required") }}>
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+      }
+
+      <DialogContent style={{ overflow: "hidden" }}>
         <DialogContentText>
           {props.children}
         </DialogContentText>
