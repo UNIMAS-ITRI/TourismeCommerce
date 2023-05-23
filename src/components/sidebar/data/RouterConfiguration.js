@@ -21,18 +21,20 @@
  */
 import Dashboard from "../../../pages/Dashboard/Dashboard";
 import PlaceDetail from "../../../pages/Place/PlaceDetails";
-import UserManagement from '../../../pages/UserManagement/UserManagement';
-import OverallStock from "../../../pages/Stock/OverallStock/OverallStock";
-import StockGoods from "../../../pages/Stock/StockGoods/StockGoods";
-import CreditNote from '../../../pages/Reporting/CreditNote/CreditNote';
-import DeliveryOrder from "../../../pages/Reporting/DeliveryOrder/DeliveryOrder";
-import Invoice from "../../../pages/Reporting/Invoice/Invoice";
-import DataManagement from "../../../pages/DataManagement/DataManagement";
-import AllPayments from "../../../pages/Payments/AllPayments/AllPayments";
-import BalanceSettlement from "../../../pages/Payments/BalanceSettlement/BalanceSettlement";
-import Statements from "../../../pages/Statements/Statements";
-import UserDetail from "../../../pages/UserManagement/UserDetail"
-import AddUser from "../../../pages/UserManagement/AddUser";
+import LocalFoodCategories from "../../../pages/LocalFood/LocalFoodCategories";
+import LocalFoodDetail from "../../../pages/LocalFood/LocalFoodDetail";
+// import UserManagement from '../../../pages/UserManagement/UserManagement';
+// import OverallStock from "../../../pages/Stock/OverallStock/OverallStock";
+// import StockGoods from "../../../pages/Stock/StockGoods/StockGoods";
+// import CreditNote from '../../../pages/Reporting/CreditNote/CreditNote';
+// import DeliveryOrder from "../../../pages/Reporting/DeliveryOrder/DeliveryOrder";
+// import Invoice from "../../../pages/Reporting/Invoice/Invoice";
+// import DataManagement from "../../../pages/DataManagement/DataManagement";
+// import AllPayments from "../../../pages/Payments/AllPayments/AllPayments";
+// import BalanceSettlement from "../../../pages/Payments/BalanceSettlement/BalanceSettlement";
+// import Statements from "../../../pages/Statements/Statements";
+// import UserDetail from "../../../pages/UserManagement/UserDetail"
+// import AddUser from "../../../pages/UserManagement/AddUser";
 
 const routes = [
     {
@@ -44,6 +46,16 @@ const routes = [
         path: "/PlaceDetail",
         exact: true,
         element: <PlaceDetail />,
+    },
+    {
+        path: "/FoodCategory",
+        exact: true,
+        element: <LocalFoodCategories />,
+    },
+    {
+        path: "/FoodDetail/:id",
+        exact: true,
+        element: <LocalFoodDetail />,
     }
     // {
     //     path: "/UserManagement",
