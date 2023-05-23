@@ -17,7 +17,7 @@ export default function PanelHeader(props) {
         { name: "Home", url: "./", submenu: [] },
         { name: "Cities", url: "https://www.sarawak2discover.com/CityList.aspx", submenu: [] },
         { name: "Attractions", url: "https://www.sarawak2discover.com/MainPlaceOfInterest.aspx", submenu: [] },
-        { name: "Local Food", url: "https://www.sarawak2discover.com/LocalFood.aspx", submenu: [] },
+        { name: "Local Food", url: "/FoodCategory", submenu: [] },
         { name: "Bioscape", url: "./", submenu: [{ name: "Biodiversity", url: "https://www.sarawak2discover.com/Biodiversity.aspx?bid=1" }, { name: "Landscape", url: "https://www.sarawak2discover.com/BiodiversityList.aspx?species=Landscape" }] },
         { name: "Heritage", url: "./", submenu: [{ name: "Old Kuching Smart Heritage", url: "https://www.sarawak2discover.com/Heritage.aspx?hid=-1" }, { name: "Old Kuching Heritage Buildings and Monuments", url: "https://www.sarawak2discover.com/Heritage.aspx?hid=15" }, { name: "Kampung Heritage", url: "https://www.sarawak2discover.com/Heritage.aspx?hid=16" }] },
         { name: "Event & Festivals", url: "https://www.sarawak2discover.com/EventList.aspx", submenu: [] },
