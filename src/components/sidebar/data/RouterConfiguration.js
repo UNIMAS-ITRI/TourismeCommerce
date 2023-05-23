@@ -21,6 +21,7 @@
  */
 import Dashboard from "../../../pages/Dashboard/Dashboard";
 import PlaceDetail from "../../../pages/Place/PlaceDetails";
+import HotelDetail from "../../../pages/Hotel/HotelDetails";
 import UserManagement from '../../../pages/UserManagement/UserManagement';
 import OverallStock from "../../../pages/Stock/OverallStock/OverallStock";
 import StockGoods from "../../../pages/Stock/StockGoods/StockGoods";
@@ -44,6 +45,11 @@ const routes = [
         path: "/PlaceDetail",
         exact: true,
         element: <PlaceDetail />,
+    },
+    {
+        path: "/HotelDetail",
+        exact: true,
+        element: <HotelDetail />,
     }
     // {
     //     path: "/UserManagement",
