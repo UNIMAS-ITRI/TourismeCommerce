@@ -33,6 +33,7 @@ import BalanceSettlement from "../../../pages/Payments/BalanceSettlement/Balance
 import Statements from "../../../pages/Statements/Statements";
 import UserDetail from "../../../pages/UserManagement/UserDetail"
 import AddUser from "../../../pages/UserManagement/AddUser";
+import ShoppingCart from "../../../pages/Payments/ShoppingCart/ShoppingCart";
 
 const routes = [
     {
@@ -44,6 +45,11 @@ const routes = [
         path: "/PlaceDetail",
         exact: true,
         element: <PlaceDetail />,
+    },
+    {
+        path: "/ShoppingCart",
+        exact: true,
+        element: <ShoppingCart />,
     }
     // {
     //     path: "/UserManagement",
