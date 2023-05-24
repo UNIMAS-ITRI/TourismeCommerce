@@ -17,6 +17,7 @@ import StepLabel from '@mui/material/StepLabel';
 // data stubs
 import { toast } from 'react-toastify';
 import {Typography} from '@mui/material';
+import PaymentComplete from './PaymentComplete';
 
 const steps = ['Check Order', 'Place Order', 'Payment', 'Complete'];
 
@@ -31,6 +32,8 @@ class ShoppingCart extends Component {
             cart: [],
             subtotal: 0,
             checkOutState: false,
+            paymentState: false,
+            successPurchaseState: false,
             setDetails: false,
             selectedIndex: "",
 
@@ -165,15 +168,23 @@ class ShoppingCart extends Component {
 
     // ---------------------------------------------------- Check Out ------------------------------------
 
-    CheckOutOnClick = () => {
-        console.log('selected', this.state.selectedProductDetailList)
+    PlaceOrderClick = () => {
         this.setState({checkOutState:true, activeStep:1});
     };
+
+    CheckOutClick = () => {  //proceed to payment page
+        console.log('checkOut')
+        this.setState({paymentState:true, activeStep:2})
+    };
+
+    paymentClick = () => {
+        console.log('payment success')
+        this.setState({successPurchaseState:true, activeStep:3})
+    }
 
     // ---------------------------------------------------- Check Selected ------------------------------------
 
     handleSelectedProduct (item, index) {
-        console.log('item', item)
         if (this.state.selectedProductDetailList.length > 0) {
             let found = false
             this.state.selectedProductDetailList.map((x, i) => {
@@ -309,10 +320,14 @@ class ShoppingCart extends Component {
               data={this.state.data} 
               handleQuantityChange={this.handleQuantityChange} 
               handleSelectedProduct={this.handleSelectedProduct} 
-              handlePlaceOrder={this.CheckOutOnClick}
+              handlePlaceOrder={this.PlaceOrderClick}
               selected={this.state.selectedProductDetailList}
               checkOutState = {this.state.checkOutState}
-              />;
+              paymentState={this.state.paymentState}
+              handleCheckOut={this.CheckOutClick}
+              handlePayment={this.paymentClick}
+              purchaseSuccessState= {this.state.successPurchaseState}
+              />
             } else {
               content = continueshopping;
             }
@@ -343,7 +358,11 @@ class ShoppingCart extends Component {
                     </Grid>
                 </Grid>
             </Box>
-            {content}
+            {this.state.successPurchaseState === false ?
+            content
+            :
+            <PaymentComplete/>
+            }
           </React.Fragment>
         );
       }

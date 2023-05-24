@@ -29,8 +29,6 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-// import HandleAddress from './HandleAddress'
-
 
 class ShopPageCheckOut extends Component {
     constructor(props) {
