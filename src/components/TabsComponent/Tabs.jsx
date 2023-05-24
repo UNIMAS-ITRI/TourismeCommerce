@@ -73,10 +73,11 @@ export default function FullWidthTabs(props) {
           variant="fullWidth"
           aria-label="full width tabs example"
           centered
+          style={{color:"#4b5e1a", background:"white"}}
         >
           {
             isArrayNotEmpty(Headers) && Headers.map((el, index) => {
-              return <Tab key={index} label={el} {...a11yProps(index)} />
+              return <Tab key={index} label={<Typography variant='body1' fontWeight="bold">{el}</Typography>} {...a11yProps(index)} />
             })
           }
         </Tabs>

@@ -5,6 +5,7 @@ import { browserHistory } from "react-router";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Button from "@mui/material/Button";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
+import FullWidthTabs from "../../components/TabsComponent/Tabs";
 
 // Core modules imports are same as usual
 import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper';
@@ -20,6 +21,8 @@ import { style } from "@mui/system";
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
+import ProductCard from "./ProductCard";
 
 function mapStateToProps(state) {
     return {
@@ -100,7 +103,32 @@ const INITIAL_STATE = {
         { image: "https://www.sarawak2discover.com/TourismApi/images/place/180/180_slider1.jpg", heritageName: "TUA PEK KONG TEMPLE", url: "/" },
     ],
     isCollapse: true,
-    // panel1a-header: true
+    // panel1a-header: true,
+    headerDetail: [
+        {index: 0, headerName: "Accomodation"},
+        {index: 1, headerName: "Restaurants"},
+        {index: 2, headerName: "Tour Package"},
+        {index: 3, headerName: "Ticketing"},
+        {index: 4, headerName: "Product"},
+        {index: 5, headerName: "Transportation"},
+    ],
+    value: 0,
+    // bodyDetail: [
+    //     {index: 0, children: <ProductCard props="Accomodation"/>, value: 0,},
+    //     {index: 1, children: "Restaurants", value: 1,},
+    //     {index: 2, children: "Package", value: 2,},
+    //     {index: 3, children: "Ticketing", value: 3,},
+    //     {index: 4, children: "Product", value: 4,},
+    //     {index: 5, children: "Transportation", value: 5,},
+    // ],
+    bodyDetail: [
+        {index: 0, children: <ProductCard props="Accomodation"/>, value: 0,},
+        {index: 1, children: <ProductCard props="Restaurants"/>, value: 1,},
+        {index: 2, children: <ProductCard props="Tourpackage"/>, value: 2,},
+        {index: 3, children: <ProductCard props="Ticketing"/>, value: 3,},
+        {index: 4, children: <ProductCard props="Product"/>, value: 4,},
+        {index: 5, children: <ProductCard props="Transportation"/>, value: 5,},
+    ],
 }
 
 class Dashboard extends Component {
@@ -237,6 +265,10 @@ class Dashboard extends Component {
 
     render() {
         const { playing, controls, light, volume, muted, loop, playbackRate, pip, } = this.state;
+        
+        const headerDetails = this.state.headerDetail.map((x) => x.headerName)
+        const bodyDetails = this.state.bodyDetail.map((x) => x.children)
+
         return (
             <div >
                 <Swiper
@@ -360,6 +392,9 @@ class Dashboard extends Component {
                         )} */}
                     </div>
                 </div >
+                <div className="row" style={{ margin: "2.5vw " }}>
+                    <FullWidthTabs settings={{ Headers: headerDetails, Body: bodyDetails }} id="FullWidthTab" />
+                </div>
                 <div className="row" style={{ margin: "2.5vw " }}>
                     <Swiper
                         // {...param}
@@ -614,7 +649,7 @@ class Dashboard extends Component {
                             </div>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <div className="row" style={{ textAlign: "center", marginTop:"1.5vw" }}>
+                            <div className="row" style={{ textAlign: "center", marginTop: "1.5vw" }}>
                                 {/* {
                                     this.state.CNAFF !== null && this.state.CNAFF.map((data) => {
                                         return ( */}
