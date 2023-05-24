@@ -81,7 +81,7 @@ const [bankCode, setBankCode] = useState('');
                     onChange={() => handleChange(y.value)}
                 />
                   {y.icons.map((icon) => (
-                    <img src={icon} alt="logo card" style={{ width: '5%', height:'5%'}} />
+                    <img src={icon} alt="logo card" style={{ width: '8%', height:'8%'}} />
                 ))}
               </Stack>
             </Grid>
