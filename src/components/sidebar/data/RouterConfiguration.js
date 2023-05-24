@@ -50,6 +50,7 @@ import LocalFoodDetail from "../../../pages/LocalFood/LocalFoodDetail";
 // import Statements from "../../../pages/Statements/Statements";
 // import UserDetail from "../../../pages/UserManagement/UserDetail"
 // import AddUser from "../../../pages/UserManagement/AddUser";
+import PlaceDetailsForTour from "../../../pages/Place/PlaceDetailsForTour";
 
 const routes = [
     {
@@ -87,6 +88,11 @@ const routes = [
         path: "/FoodDetail/:id",
         exact: true,
         element: <LocalFoodDetail />,
+    },
+    {
+        path: "/PlaceDetailsForTour",
+        exact: true,
+        element: <PlaceDetailsForTour />,
     }
     // {
     //     path: "/UserManagement",

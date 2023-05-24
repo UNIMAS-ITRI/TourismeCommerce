@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { GitAction } from "../../store/action/gitAction";
-import { browserHistory } from "react-router";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import Button from "@mui/material/Button";
+import { withRouter } from "react-router-dom";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import FullWidthTabs from "../../components/TabsComponent/Tabs";
 
@@ -14,7 +13,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import './swiperstyle.css';
 import ReactPlayer from "react-player";
 import { Fade } from "react-awesome-reveal";
-import { Card, CardActionArea, Typography, Grid, Accordion, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
+import { Card, CardActionArea, Typography, Grid, Accordion, AccordionSummary, AccordionDetails, IconButton, Button } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { style } from "@mui/system";
 
@@ -263,6 +262,22 @@ class Dashboard extends Component {
         console.log(this.state.expanded)
     }
 
+    handleNavigateToPlaceDetail = (data) => {
+        // navigate("/PlaceDetail", { state: { data: data } });
+        console.log(data)
+        if (data.heritageName === "FORT MARGERITA") {
+            this.props.history.push({
+                pathname: "/PlaceDetailsForTour",
+                state: { data: data }
+            })
+        } else {
+            this.props.history.push({
+                pathname: "/PlaceDetail",
+                state: { data: data }
+            })
+        }
+    }
+
     render() {
         const { playing, controls, light, volume, muted, loop, playbackRate, pip, } = this.state;
         
@@ -429,9 +444,13 @@ class Dashboard extends Component {
                                                                     {el.heritageName}
                                                                 </p>
                                                                 <hr className="mt-0 d-inline-block mx-auto" style={{ borderColor: "#ffffff", width: "95px" }} />
-                                                                <p className="hovertxt">
+                                                                <Button
+                                                                    className="hovertxt"
+                                                                    variant="outlined"
+                                                                    onClick={() => this.handleNavigateToPlaceDetail(el)}
+                                                                >
                                                                     View Details
-                                                                </p>
+                                                                </Button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -478,153 +497,6 @@ class Dashboard extends Component {
                 </div>
 
                 <div class="imgbgMap">
-                    {/* <div className="imgbgMap1">
-                    </div> */}
-                    {/* <article class="dooreffects">
-                        <div class="ctrl-box">
-                            <h2 style="color: #000000;">Travel Highlights</h2>
-                            <div class="viewpoint">
-                                <div class="bg-box">
-                                    <div class="title" style="color: #000000;">Cities/Towns</div>
-                                    <div class="btn-open"><a href="javascript: void(0);" title="City/Town"></a></div>
-                                    <div class="btn-into"><a href="CityList.aspx" title="City/Town"></a></div>
-                                    <ul class="list-box">
-                                        <li class="item-n">
-                                            <figure>
-                                                <div class="graphic"><img src="images/web/btn/Miri.png" alt="Miri" /></div>
-                                                <figcaption>Miri</figcaption>
-                                                <a href="CityInfo.aspx?did=4" title="Miri">Miri</a>
-                                            </figure>
-                                        </li>
-                                        <li class="item-g">
-                                            <figure>
-                                                <div class="graphic2"><img src="images/web/btn/Limbang.png" alt="Limbang" /></div>
-                                                <figcaption>Limbang</figcaption>
-                                                <a href="CityInfo.aspx?did=5" title="Limbang">Limbang</a>
-                                            </figure>
-                                        </li>
-
-                                        <li class="item-c">
-                                            <figure>
-                                                <div class="graphic2"><img src="images/web/btn/Samarahan.png" alt="Samarahan" /></div>
-                                                <figcaption>Samarahan</figcaption>
-                                                <a href="CityInfo.aspx?did=9" title="Samarahan">Samarahan</a>
-                                            </figure>
-                                        </li>
-                                        <li class="item-s">
-                                            <figure>
-                                                <div class="graphic2"><img src="images/web/btn/Betong.png" alt="Betong" /></div>
-                                                <figcaption>Betong</figcaption>
-                                                <a href="CityInfo.aspx?did=11" title="Betong">Betong</a>
-                                            </figure>
-                                        </li>
-                                        <li class="item-b">
-                                            <figure>
-                                                <div class="graphic"><img src="images/web/btn/Sibu.png" alt="Sibu" /></div>
-                                                <figcaption>Sibu</figcaption>
-                                                <a href="CityInfo.aspx?did=3" title="Sibu">Sibu</a>
-                                            </figure>
-                                        </li>
-                                        <li class="item-d">
-                                            <figure>
-                                                <div class="graphic2"><img src="images/web/btn/Sarikei.png" alt="Sarikei" /></div>
-                                                <figcaption>Sarikei</figcaption>
-                                                <a href="CityInfo.aspx?did=6" title="Sarikei">Sarikei</a>
-                                            </figure>
-                                        </li>
-                                        <li class="item-f">
-                                            <figure>
-                                                <div class="graphic2"><img src="images/web/btn/Kapit.png" alt="Kapit" /></div>
-                                                <figcaption>Kapit</figcaption>
-                                                <a href="CityInfo.aspx?did=7" title="Kapit">Kapit</a>
-                                            </figure>
-                                        </li>
-                                        <li class="item-e">
-                                            <figure>
-                                                <div class="graphic"><img src="images/web/btn/Bintulu.png" alt="Bintulu" /></div>
-                                                <figcaption>Bintulu</figcaption>
-                                                <a href="CityInfo.aspx?did=8" title="Bintulu">Bintulu</a>
-                                            </figure>
-                                        </li>
-                                        <li class="item-a">
-                                            <figure>
-                                                <div class="graphic2"><img src="images/web/btn/Mukah.png" alt="Mukah" /></div>
-                                                <figcaption>Mukah</figcaption>
-                                                <a href="CityInfo.aspx?did=10" title="Mukah">Mukah</a>
-                                            </figure>
-                                        </li>
-                                        <li class="item-m">
-                                            <figure>
-                                                <div class="graphic2"><img src="images/web/btn/SriAman.png" alt="Sri Aman" /></div>
-                                                <figcaption>Sri Aman</figcaption>
-                                                <a href="CityInfo.aspx?did=2" title="Sri Aman">Sri Aman</a>
-                                            </figure>
-                                        </li>
-                                        <li class="item-p">
-                                            <figure>
-                                                <div class="graphic2"><img src="images/web/btn/Serian.png" alt="Serian" /></div>
-                                                <figcaption>Serian</figcaption>
-                                                <a href="CityInfo.aspx?did=12" title="Serian">Serian</a>
-                                            </figure>
-                                        </li>
-                                        <li class="item-k">
-                                            <figure>
-                                                <div class="graphic"><img src="images/web/btn/Kuching.png" alt="Kuching" /></div>
-                                                <figcaption>Kuching</figcaption>
-                                                <a href="CityInfo.aspx?did=1" title="Kuching">Kuching</a>
-                                            </figure>
-                                        </li>
-                                    </ul>
-                                    <div class="btn-back"><a href="javascript: void(0);" title="Back">Back</a></div>
-                                </div>
-                            </div>
-                            <div class="festival">
-                                <div class="bg-box">
-                                    <div class="title" style="color: #000000;">Top Attractions</div>
-                                    <div class="btn-open"><a href="javascript: void(0);" title="Top Attraction"></a></div>
-                                    <div class="btn-into"><a href="MainPlaceOfInterest.aspx"></a></div>
-                                    <ul class="list-box">
-
-                                        <li class="item-attraction-c">
-                                            <figure>
-                                                <div class="graphic_a"><img src="images/web/btn/Bako.png" alt="Bako National Park" height="150" /></div>
-                                                <figcaption>Bako National Park</figcaption>
-                                                <a href="PlaceDetail.aspx?pid=188&plat=1.716720000000000&plng=110.466688000000000" title="Bako National Park">Bako National Park</a>
-                                            </figure>
-                                        </li>
-                                        <li class="item-attraction-g">
-                                            <figure>
-                                                <div class="graphic_a"><img src="images/web/btn/Pinnacle.png" alt="The Pinnacles Trail" height="120" /></div>
-                                                <figcaption>The Pinnacles Trail</figcaption>
-                                                <a href="PlaceDetail.aspx?pid=446&plat=4.092000000000000&plng=114.895773000000000" title="The Pinnacles Trail">The Pinnacles Trail</a>
-                                            </figure>
-                                        </li>
-                                        <li class="item-attraction-e">
-                                            <figure>
-                                                <div class="graphic_a"><img src="images/web/btn/Mulu.png" alt="Mulu National Park" height="130" /></div>
-                                                <figcaption>Mulu National Park</figcaption>
-                                                <a href="PlaceDetail.aspx?pid=425&plat=4.041940000000000&plng=114.812922000000000" title="Mulu National Park">Mulu National Park</a>
-                                            </figure>
-                                        </li>
-                                        <li class="item-attraction-b">
-                                            <figure>
-                                                <div class="graphic_a"><img src="images/web/btn/Semenggoh.png" alt="Semenggoh Wildlife Centre" height="150" /></div>
-                                                <figcaption>Semenggoh Wildlife Centre</figcaption>
-                                                <a href="PlaceDetail.aspx?pid=423&plat=1.399899000000000&plng=110.324480000000000" title="Semenggoh Wildlife Centre">Semenggoh Wildlife Centre</a>
-                                            </figure>
-                                        </li>
-                                        <li class="item-attraction-n">
-                                            <figure>
-                                                <div class="graphic_a"><img src="images/web/btn/Niah.png" alt="Niah National Park" height="120" /></div>
-                                                <a href="PlaceDetail.aspx?pid=147&plat=3.801544000000000&plng=113.784189000000000" title="Niah National Park">Niah National Park</a>
-                                            </figure>
-                                        </li>
-                                    </ul>
-                                    <div class="btn-back"><a href="javascript: void(0);" title="Back">Back</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </article> */}
                 </div>
 
                 <div className="row" style={{ margin: "3vw 0 3vw 0" }}>
@@ -781,45 +653,9 @@ class Dashboard extends Component {
                         Consequat interdum varius sit amet. Turpis massa tincidunt dui ut ornare. Cras fermentum odio eu feugiat. Lacinia quis vel eros donec. Feugiat in ante metus dictum at tempor commodo ullamcorper a. Vel facilisis volutpat est velit egestas dui id ornare. Elementum nisi quis eleifend quam adipiscing vitae proin. Nisi porta lorem mollis aliquam ut. Sagittis vitae et leo duis ut diam quam. Laoreet suspendisse interdum consectetur libero id faucibus nisl. Fringilla est ullamcorper eget nulla. Volutpat diam ut venenatis tellus in metus vulputate. Consectetur a erat nam at lectus urna. Leo duis ut diam quam nulla porttitor massa id neque. Donec adipiscing tristique risus nec feugiat. Egestas maecenas pharetra convallis posuere morbi leo. Morbi tristique senectus et netus et malesuada. Dui faucibus in ornare quam viverra orci sagittis eu volutpat. Erat velit scelerisque in dictum non consectetur a.
                     </div>
                 </ModalComponent>
-
-                {/* <ModalComponent
-                    open={this.state.openFullScreenModal}
-                    fullScreen={true}
-                    maxWidth={"sm"}
-                    title={"Modal Title"}
-                    draggable={true}
-                    handleOnClose={() => this.setState({ openFullScreenModal: false })}
-                    DialogActionsButton={
-                        <div className="d-flex">
-                            <Button onClick={() => this.setState({ openFullScreenModal: false })} className="ml-auto">Something</Button>
-                        </div>
-                    }
-                >
-                    <div>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus vestibulum sed arcu non odio euismod lacinia at quis. Aliquam vestibulum morbi blandit cursus risus at ultrices. Morbi tristique senectus et netus. Nec dui nunc mattis enim ut tellus elementum sagittis. Donec enim diam vulputate ut pharetra sit amet. Sit amet consectetur adipiscing elit pellentesque habitant morbi tristique. Ut tristique et egestas quis ipsum. Fermentum leo vel orci porta non pulvinar neque laoreet. Ultrices in iaculis nunc sed. Purus non enim praesent elementum facilisis. Orci a scelerisque purus semper eget. Dignissim sodales ut eu sem. Adipiscing commodo elit at imperdiet dui accumsan sit amet nulla. Tempus egestas sed sed risus pretium quam vulputate. Tristique senectus et netus et malesuada fames ac. Libero nunc consequat interdum varius. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida.
-
-                        Urna condimentum mattis pellentesque id nibh tortor id. Facilisis sed odio morbi quis commodo odio aenean sed. Dapibus ultrices in iaculis nunc sed augue. Massa placerat duis ultricies lacus sed turpis tincidunt id aliquet. Dolor sit amet consectetur adipiscing elit pellentesque. Lectus proin nibh nisl condimentum id venenatis a. Convallis a cras semper auctor neque vitae. Libero nunc consequat interdum varius sit amet mattis. Feugiat pretium nibh ipsum consequat nisl. Non consectetur a erat nam at lectus urna. Vel turpis nunc eget lorem dolor. Hac habitasse platea dictumst quisque sagittis purus. Porta non pulvinar neque laoreet suspendisse. Tincidunt augue interdum velit euismod in pellentesque massa placerat duis. Pellentesque massa placerat duis ultricies lacus sed. Enim ut sem viverra aliquet eget sit amet tellus. Ultricies leo integer malesuada nunc.
-
-                        Sit amet venenatis urna cursus eget nunc scelerisque viverra. Amet consectetur adipiscing elit duis tristique. Ut consequat semper viverra nam libero justo laoreet. Nunc vel risus commodo viverra maecenas accumsan. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa eget. Sem nulla pharetra diam sit amet. Integer enim neque volutpat ac tincidunt vitae semper quis. A erat nam at lectus urna duis convallis convallis tellus. Libero nunc consequat interdum varius sit amet mattis. Faucibus interdum posuere lorem ipsum dolor sit. Sed risus ultricies tristique nulla. Purus in mollis nunc sed id semper risus in hendrerit. Ultrices tincidunt arcu non sodales neque sodales ut etiam. Elementum eu facilisis sed odio morbi quis commodo. Nam aliquam sem et tortor consequat id porta nibh venenatis. Eu mi bibendum neque egestas congue quisque egestas diam.
-
-                        Pharetra diam sit amet nisl suscipit adipiscing bibendum est ultricies. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis. Nibh tellus molestie nunc non blandit. In iaculis nunc sed augue lacus viverra. Vel orci porta non pulvinar. Est sit amet facilisis magna etiam tempor orci eu. Mattis aliquam faucibus purus in. Dignissim cras tincidunt lobortis feugiat vivamus. Morbi tincidunt ornare massa eget egestas purus viverra. Vitae sapien pellentesque habitant morbi tristique senectus et netus et. Sed euismod nisi porta lorem mollis aliquam.
-
-                        Tellus orci ac auctor augue. Feugiat sed lectus vestibulum mattis ullamcorper. Urna neque viverra justo nec ultrices dui sapien. Semper auctor neque vitae tempus quam. Mattis aliquam faucibus purus in. Posuere lorem ipsum dolor sit amet consectetur. Sit amet nisl suscipit adipiscing bibendum est ultricies integer quis. Neque sodales ut etiam sit amet nisl purus in. Volutpat ac tincidunt vitae semper quis lectus nulla at. Lacus sed viverra tellus in. Id consectetur purus ut faucibus pulvinar elementum integer enim. Dui ut ornare lectus sit amet. Euismod lacinia at quis risus sed vulputate odio ut enim. Molestie a iaculis at erat pellentesque adipiscing commodo. Sed sed risus pretium quam.
-
-                        Neque viverra justo nec ultrices dui sapien eget mi proin. Non tellus orci ac auctor augue. Ultrices mi tempus imperdiet nulla malesuada pellentesque. Et tortor at risus viverra adipiscing at. Dictum non consectetur a erat nam. Mattis pellentesque id nibh tortor. Feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam. Sagittis vitae et leo duis ut diam quam. Augue neque gravida in fermentum et. Penatibus et magnis dis parturient montes nascetur ridiculus mus mauris. Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Donec ultrices tincidunt arcu non sodales.
-
-                        Fames ac turpis egestas integer eget. Euismod nisi porta lorem mollis. Velit ut tortor pretium viverra suspendisse potenti. Tempus egestas sed sed risus pretium quam vulputate dignissim. Pretium fusce id velit ut. Ultricies mi eget mauris pharetra et ultrices neque ornare. At consectetur lorem donec massa sapien faucibus et. At erat pellentesque adipiscing commodo. Nisl vel pretium lectus quam id leo in vitae turpis. Vivamus arcu felis bibendum ut tristique et egestas. Fames ac turpis egestas maecenas. Euismod nisi porta lorem mollis. Sed libero enim sed faucibus turpis in eu mi bibendum. Quisque non tellus orci ac auctor augue. Dui ut ornare lectus sit amet. In nisl nisi scelerisque eu ultrices vitae auctor eu.
-
-                        Tempor commodo ullamcorper a lacus. Nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet. Nam at lectus urna duis. Blandit turpis cursus in hac habitasse platea. Suspendisse ultrices gravida dictum fusce ut. Phasellus vestibulum lorem sed risus. Morbi tempus iaculis urna id. Velit laoreet id donec ultrices tincidunt. Consequat ac felis donec et odio pellentesque. Mattis aliquam faucibus purus in massa tempor nec feugiat. Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Elementum pulvinar etiam non quam lacus suspendisse faucibus interdum posuere.
-
-                        Maecenas sed enim ut sem viverra aliquet eget sit amet. Penatibus et magnis dis parturient. Malesuada nunc vel risus commodo viverra maecenas. Ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Ut eu sem integer vitae justo eget magna fermentum iaculis. Enim eu turpis egestas pretium aenean pharetra magna ac placerat. Bibendum est ultricies integer quis auctor elit. Urna duis convallis convallis tellus id interdum velit laoreet. Sed elementum tempus egestas sed sed risus pretium. Gravida neque convallis a cras semper auctor. Maecenas accumsan lacus vel facilisis volutpat est velit egestas. Nunc faucibus a pellentesque sit. Donec et odio pellentesque diam. Consectetur adipiscing elit duis tristique sollicitudin nibh. Et malesuada fames ac turpis egestas maecenas. Pellentesque pulvinar pellentesque habitant morbi tristique senectus et netus et.
-
-                        Consequat interdum varius sit amet. Turpis massa tincidunt dui ut ornare. Cras fermentum odio eu feugiat. Lacinia quis vel eros donec. Feugiat in ante metus dictum at tempor commodo ullamcorper a. Vel facilisis volutpat est velit egestas dui id ornare. Elementum nisi quis eleifend quam adipiscing vitae proin. Nisi porta lorem mollis aliquam ut. Sagittis vitae et leo duis ut diam quam. Laoreet suspendisse interdum consectetur libero id faucibus nisl. Fringilla est ullamcorper eget nulla. Volutpat diam ut venenatis tellus in metus vulputate. Consectetur a erat nam at lectus urna. Leo duis ut diam quam nulla porttitor massa id neque. Donec adipiscing tristique risus nec feugiat. Egestas maecenas pharetra convallis posuere morbi leo. Morbi tristique senectus et netus et malesuada. Dui faucibus in ornare quam viverra orci sagittis eu volutpat. Erat velit scelerisque in dictum non consectetur a.
-                    </div>
-                </ModalComponent> */}
             </div >
         )
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Dashboard));
