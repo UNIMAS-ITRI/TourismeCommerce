@@ -105,33 +105,26 @@ export class GitEpic {
 
 
   ///////////////////////////////////////////////////  sidebar configurations ///////////////////////////////////////////////////
-  User_ViewPage = action$ =>
-    action$.ofType(GitAction.FetchSidebar).switchMap(async ({ payload }) => {
-      // console.log(url + 
-      //   double_click_and_paste_url_here
-      // )
+  User_ViewPage  = action$ =>
+  action$.pipe(filter(action => action.type === GitAction.FetchSidebar), map(action => {
+    return dispatch => {
       try {
-        const response = await fetch(url +
-          "User_ViewPage?" +
-          "ROLEGROUPID=" + payload.ROLEGROUPID +
-          "&USERID=" + payload.USERID
-        );
-
-        let json = await response.json();
-        json = JSON.parse(json)
-        return {
-          type: GitAction.SidebarFetched,
-          payload: json,
-        };
+        return fetch(url + "User_ViewPage?" +
+        "ROLEGROUPID=" + action.payload.ROLEGROUPID +
+        "&USERID=" + action.payload.USERID
+          )
+          .then(response => response.json())
+          .then(json => {
+            json = JSON.parse(json)
+            return dispatch({ type: GitAction.SidebarFetched, payload: json });
+          });
+      } catch (error) {
+        toast.error("Error Code: SidebarFetch")
+        return dispatch({ type: GitAction.SidebarFetched, payload: [] });
       }
-      catch (error) {
-        toast.error("Error Code: FetchSidebar")
-        return {
-          type: GitAction.SidebarFetched,
-          payload: [],
-        };
-      }
-    });
+    }
+  }));
+  
 
   ///////////////////////////////////////////////////  sidebar configurations ///////////////////////////////////////////////////
 

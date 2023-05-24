@@ -64,6 +64,9 @@ const routes = [
         path: "/ShoppingCart",
         exact: true,
         element: <ShoppingCart />,
+  
+    },
+    {
         path: "/FoodCategory",
         exact: true,
         element: <LocalFoodCategories />,
