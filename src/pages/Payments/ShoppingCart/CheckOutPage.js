@@ -24,7 +24,7 @@ export default function CheckOutPage({makePayment}) {
         value: 2,
         title: 'Credit / Debit Card',
         description: 'We support Mastercard, Visa, Discover and Stripe.',
-        icons: ['https://purepng.com/public/uploads/large/purepng.com-mastercard-logologobrand-logoiconslogos-251519938372dnf77.png', 'https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/visa-512.png'],
+        icons: ['https://icon-library.com/images/visa-mastercard-icon/visa-mastercard-icon-8.jpg'],
     },
 
     {
@@ -51,7 +51,7 @@ const [bankCode, setBankCode] = useState('');
                     value={y.value}
                     control={<Radio checked={selectedValue === y.value} checkedIcon={<CheckCircleIcon />} />}
                     label={
-                        <Box sx={{ ml: 1 }}>
+                        <Box sx={{ ml: 1, display:'flex', flexDirection:"column", justifyContent:"center" }}>
                             <Typography variant="subtitle2">{y.title}</Typography>
                             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                                 {y.description}
@@ -81,7 +81,7 @@ const [bankCode, setBankCode] = useState('');
                     onChange={() => handleChange(y.value)}
                 />
                   {y.icons.map((icon) => (
-                    <img src={icon} alt="logo card" style={{ width: '80px', height:'52px' }} />
+                    <img src={icon} alt="logo card" style={{ width: '5%', height:'5%'}} />
                 ))}
               </Stack>
             </Grid>
