@@ -67,6 +67,21 @@ function mapDispatchToProps(dispatch) {
 
 const INITIAL_STATE = {
   swiperImg: [
+    
+    {
+      image: "https://cf.bstatic.com/images/hotel/max1024x768/366/36635705.jpg",
+    },
+    
+    {
+      image: "https://cf.bstatic.com/images/hotel/max1024x768/374/37425110.jpg",
+    },
+    {
+      image: "https://cf.bstatic.com/images/hotel/max1024x768/374/37427954.jpg",
+    },
+    {
+      image:
+        "https://pix8.agoda.net/hotelImages/615/615521/615521_15052808220027881002.jpg?ca=4&ce=1&s=1024x768",
+    },
     {
       image:
         "https://www.greatsmallhotels.com/photos/66156_the-ranee-boutique-suites_.jpg",
@@ -75,26 +90,14 @@ const INITIAL_STATE = {
       image:
         "https://www.imperialhotelkuching.com.my/images/picture1/event.jpg",
     },
-    {
-      image: "https://cf.bstatic.com/images/hotel/max1024x768/366/36635705.jpg",
-    },
-    {
-      image: "https://cf.bstatic.com/images/hotel/max1024x768/374/37425110.jpg",
-    },
-    {
-      image: "https://cf.bstatic.com/images/hotel/max1024x768/374/37427954.jpg",
-    },
-    // {
-    //   image:
-    //     "https://cf.bstatic.com/images/hotel/max1024x768/374/37427954.jpg",
-    // },
+   
   ],
 
   breadcrumb: [
     { title: "Home", url: "./" },
     {
       title: "Hotel",
-      url: "",
+      url: "/Hotelsearch",
     },
     // {
     //   title: "Old Kuching Heritage Building and Monuments",
@@ -263,18 +266,18 @@ class HotelDetails extends Component {
         Rating: 5,
         Review: [
           {
-            Name: "UAT Tester",
+            Name: "Charles",
             Rating: 5,
-            Review: "Nice Place",
-            Date: "22/03/2022",
+            Review: "The room really big and comfortable. Really love to stay. the swimming pool has indoor & outdoor, has playground for kids, there are restaurant as well. Really nice & beautiful hotel.",
+            Date: "22/04/2022",
           },
           {
-            Name: "riantysaimon19",
+            Name: "Stanley",
             Rating: 5,
-            Review: "Beautiful",
-            Date: "01/01/2022",
+            Review: "This my 2nd stay while travel to kch. Staff are very friendly, environment very clean and nice! Room are big.",
+            Date: "01/05/2022",
           },
-          { Name: "Cccddd83", Rating: 5, Review: "wow", Date: "15/02/2022" },
+          { Name: "Kendy", Rating: 5, Review: "Love this hotel so much! Huge building with nice interior, facilities & service. My room was very spacious & super clean. I highly recommend this hotel for a good stay 👍🏼", Date: "15/05/2022" },
         ],
         latitude: 1.51317,
         longitude: 110.3357,
@@ -289,58 +292,35 @@ class HotelDetails extends Component {
           "http://tourism.denoo.my/visitSarawak/images/web/icon_gallery.png",
         value: "Gallery",
         data: [
-          {
-            url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery1.jpg",
+             {
+            url: "https://pix8.agoda.net/hotelImages/615/615521/615521_15052808220027881002.jpg?ca=4&ce=1&s=1024x768",
             description:
-              "First page of the monument showing the endorsement towards Rajah Charles Brooke.",
-            name: "Brooke Memorial",
+            "Imperial Hotel Kuching",
+            name: "Imperial Hotel Kuching",
           },
           {
-            url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery2.jpg",
-            description: "Brooke Memorial with the Old Kuching Courthouse.",
-            name: "Brooke Memorial",
-          },
-          {
-            url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery3.jpg",
+            url: "https://pix8.agoda.net/hotelImages/615/615521/615521_15052808220027881034.jpg?ca=4&ce=1&s=1024x768",
             description:
-              "Brooke Memorial with the other famous attractions, such as The Square Tower and Darul Hana Bridge.",
-            name: "Brooke Memorial",
+            "Imperial Hotel Kuching",
+            name: "Imperial Hotel Kuching",
           },
           {
-            url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery4.jpg",
-            description: "Brooke Memorial during daytime.",
-            name: "Brooke Memorial",
-          },
-          {
-            url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery5.jpg",
-            description: "Brooke Memorial during nightime.",
-            name: "Brooke Memorial",
-          },
-          {
-            url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery6.jpg",
-            description: "Kenyah Tribe’s hero.",
-            name: "Brooke Memorial",
-          },
-          {
-            url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery7.jpg",
-            description: "Chinese Tribe’s hero.",
-            name: "Brooke Memorial",
-          },
-          {
-            url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery8.jpg",
-            description: "Penan Tribe’s hero",
-            name: "Brooke Memorial",
-          },
-          {
-            url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery9.jpg",
-            description: "Malay Tribe’s hero.",
-            name: "Brooke Memorial",
-          },
-          {
-            url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery10.jpg",
+            url: "https://pix8.agoda.net/hotelImages/615/615521/615521_15052808220027880988.jpg?ca=4&ce=1&s=1024x768",
             description:
-              "Portrait sculpture of Charles Brooke – Rajah Sarawak.",
-            name: "Brooke Memorial",
+            "Imperial Hotel Kuching",
+            name: "Imperial Hotel Kuching",
+          },
+          {
+            url: "https://pix8.agoda.net/hotelImages/615/615521/615521_15052808220027881080.jpg?ca=4&ce=1&s=1024x768",
+            description:
+            "Imperial Hotel Kuching",
+            name: "Imperial Hotel Kuching",
+          },
+          {
+            url: "https://q-xx.bstatic.com/xdata/images/hotel/840x460/144242652.jpg?k=7ca1a4dd62991689d0238a892f821065a69effcb45cd885d4b3ee13ff0fc5d54&o=",
+            description:
+            "Imperial Hotel Kuching",
+            name: "Imperial Hotel Kuching",
           },
         ],
       },
@@ -1042,7 +1022,7 @@ class HotelDetails extends Component {
             </span>
           </div>
 
-          <div
+          {/* <div
             className="row justify-content-center"
             style={{ paddingTop: "50px" }}
           >
@@ -1094,7 +1074,9 @@ class HotelDetails extends Component {
             </table>
             {this.state.mediaClick !== "" &&
               this.showMedia(this.state.mediaClick, this.state.mediaList)}
-          </div>
+          </div> */}
+
+          
           <div style={{ paddingTop: "50px" }}>
             <span style={{ verticalAlign: "middle", display: "inline-flex" }}>
               <Marker style={{ fill: "#596a2a", fontSize: "2.8vw" }} />{" "}
@@ -1530,6 +1512,41 @@ class HotelDetails extends Component {
                             Breakfast for Two
                           </span>
                         </Stack> */}
+                        {/* <Stack direction="row" spacing={1}>
+                          <span style={{ color: "#A4A2A2", fontSize: "1.2vw" }}>
+                            <img
+                              width="30"
+                              height="30"
+                              src="https://img.icons8.com/sf-black/64/40C057/checkmark.png"
+                              alt="checkmark"
+                            />{" "}
+                            Free Wi-Fi
+                          </span>
+                        </Stack>
+
+                        <Stack direction="row" spacing={1}>
+                          <span style={{ color: "#A4A2A2", fontSize: "1.2vw" }}>
+                            <img
+                              width="30"
+                              height="30"
+                              src="https://img.icons8.com/sf-black/64/40C057/checkmark.png"
+                              alt="checkmark"
+                            />{" "}
+                            Free Cancellation
+                          </span>
+                        </Stack>
+
+                        <Stack direction="row" spacing={1}>
+                          <span style={{ color: "#A4A2A2", fontSize: "1.2vw" }}>
+                            <img
+                              width="30"
+                              height="30"
+                              src="https://img.icons8.com/sf-black/64/40C057/checkmark.png"
+                              alt="checkmark"
+                            />{" "}
+                            Breakfast for Two
+                          </span>
+                        </Stack> */}
                       </Grid>
 
                       <Grid item xs={6} sm={3} sx={{ textAlign: "RIGHT" }}>
@@ -1633,7 +1650,7 @@ class HotelDetails extends Component {
         </div>
         {/* ---------------------------------------------------------------------------------------------- Rating Review ---------------------------------------------------------------------------------------------- */}
 
-        {/* <div
+        <div
           className="row justify-content-center"
           style={{ padding: "2.5vw" }}
         >
@@ -1681,7 +1698,8 @@ class HotelDetails extends Component {
                   }}
                 >
                   {" "}
-                  {HotelDetails[0].Review.length} Rating(s)
+                  {/* {HotelDetails[0].Review.length}  */}
+                 7799 Review(s)
                 </label>
               </div>
             </div>
@@ -1776,7 +1794,7 @@ class HotelDetails extends Component {
                             </div>
                             <div id="review_rating" className=" review__rating">
                               <Rating
-                                style={{ fontSize: "1.2rem" }}
+                                style={{ fontSize: "1.5rem" }}
                                 value={x.Rating}
                               />
                             </div>
@@ -1793,7 +1811,7 @@ class HotelDetails extends Component {
                 })}
             </table>
           </div>
-        </div> */}
+        </div>
 
         <div className="row justify-content-center" style={{ padding: "3vw" }}>
           <span style={{ verticalAlign: "middle", display: "inline-flex" }}>
@@ -1847,7 +1865,6 @@ class HotelDetails extends Component {
                         >
                           {x.name}
                         </Typography>
-                        {/* <span style={{ verticalAlign: "middle", display: "inline-flex" }}> */}
                         <Rating
                           style={{ fontSize: "1.0rem" }}
                           value={x.hotelStar}
@@ -1956,28 +1973,6 @@ class HotelDetails extends Component {
                             View Hotel
                           </Button>
                         </div>
-                        {/* <label
-                            style={{
-                            fontWeight: "bold",
-                            paddingLeft: "0.5vw",
-                            fontSize: "1.0vw",
-                            }}
-                        >
-                            {HotelDetails[0].Rating} ( {x.reviewNum}{" "}
-                            Review(s))
-                        </label>
-                        </span> */}
-                        {/* <Typography
-                          color="#95b43c"
-                          style={{
-                            fontWeight: "bold",
-                            textAlign: "center",
-                            paddingTop: "20px",
-                            fontSize: "23px",
-                          }}
-                        >
-                          RM {x.price}
-                        </Typography> */}
                       </CardContent>
                     </Card>
                   </div>
