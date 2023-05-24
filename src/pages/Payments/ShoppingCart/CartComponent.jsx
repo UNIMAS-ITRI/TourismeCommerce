@@ -22,7 +22,7 @@ const CostSummary = ({total, totalIncTax}) => {
   )
 }
 
-function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSelectedProduct, selected, checkOutState, handleCheckOut, handlePayment, paymentState,purchaseSuccessState}) {
+function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSelectedProduct, selected, checkOutState, handleCheckOut, handlePayment, paymentState,purchaseSuccessState, backStep}) {
   let renderData = checkOutState === false ? data : selected;
   let totalPrice = renderData.reduce((accumulator, item) => accumulator + item.Price, 0);
   let totalIncTax = (totalPrice * 0.05) + totalPrice
