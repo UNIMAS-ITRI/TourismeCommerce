@@ -19,6 +19,7 @@ import PanoramaViewer from "../../tools/PanoramaViewer";
 import PanoramaPhoto from "../../tools/Panorama/PanoramaPhoto";
 import ThreeSixty from "react-360-view";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
+import FullWidthTabs from "../../components/TabsComponent/Tabs";
 import {
   LinearProgress,
   CardContent,
@@ -33,29 +34,20 @@ import {
   Stack,
 } from '@mui/material';
 import "./PlaceDetails.css";
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(theme => ({
-  customTab: {
-    // color: 'white',  // Customize the text color
-    // backgroundColor: 'lightblue',  // Customize the background color
-    // '&:hover': {
-    //   backgroundColor: 'lightgreen',  // Customize the background color on hover
-    // },
-  },
-}));
+import ProductCard from "../Dashboard/ProductCard";
+import TourGuideCard from "./TourGuideCard";
+import { tourGuides, headerDetail } from "./_mock";
 
 export default function PlaceDetailsForTour() {
-  const classes = useStyles();
 
   const PlaceDetails = [
     {
-      name: "Brooke Memorial",
+      name: "Fort Margherita",
       State: "Kuching",
       Email: "-",
       Website: "Website",
-      Contact: "-",
-      OperateTime: "Open 24-hours",
+      Contact: "+6016-3101880",
+      OperateTime: "9.00 a.m. - 4.45 p.m. (Monday - Friday); 10.00 a.m. - 4.00 p.m. (Saturday, Sunday and Public Holidays)",
       Rating: 5,
       Review: [
         { Name: "UAT Tester", Rating: 5, Review: "Nice Place", Date: "22/03/2022" },
@@ -63,8 +55,8 @@ export default function PlaceDetailsForTour() {
         { Name: "Cccddd83", Rating: 5, Review: "wow", Date: "15/02/2022" },
       ],
       latitude: 1.559935000000000,
-      longitude: 110.345102000000000,
-      PlaceDesc: "As its name suggests, the Brooke Memorial was put up in honour of Rajah Charles Brooke, the second White Rajah of Sarawak for his services and dedication to the state. Commissioned in 1924, this memorial monument consists of a 6 metre granite obelisk with a bas relief of the Rajah in marble. There are also bronze panels on the four corners of the memorial, representing the Sarawakian community: Dayak, Kayan, Malay and Chinese."
+      longitude: 110.34948691277962,
+      PlaceDesc: "Fort Margherita was built in 1879 to guard Kuchings river approaches from pirates. In the old days, a canon shot was fired from here every evening to mark the end of the government work day. Named after Charles Brookes wife, Ranee Margaret, it is a unmistakable landmark along Sarawak River. As the Fort is situated within the police training barracks, visitors may be asked for some form of ID."
     }
   ]
 
@@ -72,35 +64,34 @@ export default function PlaceDetailsForTour() {
     {
       image: "http://tourism.denoo.my/images/web/icon_gallery.png", value: "Gallery", data:
         [
-          { url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery1.jpg", description: "First page of the monument showing the endorsement towards Rajah Charles Brooke.", name: "Brooke Memorial" },
-          { url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery2.jpg", description: "Brooke Memorial with the Old Kuching Courthouse.", name: "Brooke Memorial" },
-          { url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery3.jpg", description: "Brooke Memorial with the other famous attractions, such as The Square Tower and Darul Hana Bridge.", name: "Brooke Memorial" },
-          { url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery4.jpg", description: "Brooke Memorial during daytime.", name: "Brooke Memorial" },
-          { url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery5.jpg", description: "Brooke Memorial during nightime.", name: "Brooke Memorial" },
-          { url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery6.jpg", description: "Kenyah Tribe’s hero.", name: "Brooke Memorial" },
-          { url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery7.jpg", description: "Chinese Tribe’s hero.", name: "Brooke Memorial" },
-          { url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery8.jpg", description: "Penan Tribe’s hero", name: "Brooke Memorial" },
-          { url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery9.jpg", description: "Malay Tribe’s hero.", name: "Brooke Memorial" },
-          { url: "http://tourism.denoo.my/TourismApi/images/place/487/media/gallery10.jpg", description: "Portrait sculpture of Charles Brooke – Rajah Sarawak.", name: "Brooke Memorial" }
+          { url: "http://tourism.denoo.my/TourismApi/images/place/186/media/gallery1.jpg", description: "First page of the monument showing the endorsement towards Rajah Charles Brooke.", name: "Brooke Memorial" },
+          { url: "http://tourism.denoo.my/TourismApi/images/place/186/media/gallery2.jpg", description: "Brooke Memorial with the Old Kuching Courthouse.", name: "Brooke Memorial" },
+          { url: "http://tourism.denoo.my/TourismApi/images/place/186/media/gallery3.jpg", description: "Brooke Memorial with the other famous attractions, such as The Square Tower and Darul Hana Bridge.", name: "Brooke Memorial" },
+          { url: "http://tourism.denoo.my/TourismApi/images/place/186/media/gallery4.jpg", description: "Brooke Memorial during daytime.", name: "Brooke Memorial" },
+          { url: "http://tourism.denoo.my/TourismApi/images/place/186/media/gallery5.jpg", description: "Brooke Memorial during nightime.", name: "Brooke Memorial" },
+          { url: "http://tourism.denoo.my/TourismApi/images/place/186/media/gallery6.jpg", description: "Kenyah Tribe’s hero.", name: "Brooke Memorial" },
+          { url: "http://tourism.denoo.my/TourismApi/images/place/186/media/gallery7.jpg", description: "Chinese Tribe’s hero.", name: "Brooke Memorial" },
+          { url: "http://tourism.denoo.my/TourismApi/images/place/186/media/gallery8.jpg", description: "Penan Tribe’s hero", name: "Brooke Memorial" },
+          { url: "http://tourism.denoo.my/TourismApi/images/place/186/media/gallery9.jpg", description: "Malay Tribe’s hero.", name: "Brooke Memorial" },
+          { url: "http://tourism.denoo.my/TourismApi/images/place/186/media/gallery10.jpg", description: "Portrait sculpture of Charles Brooke – Rajah Sarawak.", name: "Brooke Memorial" }
         ]
-
     },
     {
       image: "http://tourism.denoo.my/images/web/icon_video.png", value: "Video", data:
         [
-          { id: 1, url: "http://tourism.denoo.my/TourismApi/images/place/487/media/Brooke_Memorial.mp4", name: "Brooke Memorial" },
-          { id: 2, url: "http://tourism.denoo.my/TourismApi/images/place/487/media/Brooke_Memorial.mp4", name: "Brooke Memorial" },
-          { id: 3, url: "http://tourism.denoo.my/TourismApi/images/place/487/media/Brooke_Memorial.mp4", name: "Brooke Memorial" },
-          { id: 4, url: "http://tourism.denoo.my/TourismApi/images/place/487/media/Brooke_Memorial.mp4", name: "Brooke Memorial" }
+          { id: 1, url: "http://tourism.denoo.my/TourismApi/images/place/186/media/Brooke_Memorial.mp4", name: "Brooke Memorial" },
+          { id: 2, url: "http://tourism.denoo.my/TourismApi/images/place/186/media/Brooke_Memorial.mp4", name: "Brooke Memorial" },
+          { id: 3, url: "http://tourism.denoo.my/TourismApi/images/place/186/media/Brooke_Memorial.mp4", name: "Brooke Memorial" },
+          { id: 4, url: "http://tourism.denoo.my/TourismApi/images/place/186/media/Brooke_Memorial.mp4", name: "Brooke Memorial" }
         ]
     },
     {
       image: "https://tourism.denoo.my/images/web/icon_vr.png", value: "Panorama/360° VR", data:
         [
-          { url: "http://tourism.denoo.my/TourismAPI/images/place/487/360/487_360_photo01.jpg", name: "Brooke Memorial" },
-          { url: "http://tourism.denoo.my/TourismAPI/images/place/487/360/487_360_photo02.jpg", name: "Brooke Memorial" },
-          { url: "http://tourism.denoo.my/TourismAPI/images/place/487/360/487_360_photo03.jpg", name: "Brooke Memorial" },
-          { url: "http://tourism.denoo.my/TourismAPI/images/place/487/360/487_360_photo04.jpg", name: "Brooke Memorial" }
+          { url: "http://tourism.denoo.my/TourismAPI/images/place/186/360/186_360_photo01.jpg", name: "Brooke Memorial" },
+          { url: "http://tourism.denoo.my/TourismAPI/images/place/186/360/186_360_photo02.jpg", name: "Brooke Memorial" },
+          { url: "http://tourism.denoo.my/TourismAPI/images/place/186/360/186_360_photo03.jpg", name: "Brooke Memorial" },
+          { url: "http://tourism.denoo.my/TourismAPI/images/place/186/360/186_360_photo04.jpg", name: "Brooke Memorial" }
         ]
     },
     {
@@ -110,8 +101,8 @@ export default function PlaceDetailsForTour() {
     },
     {
       image: "http://tourism.denoo.my/images/web/icon_3d.png", value: "3D Model", data: [
-        { url: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider1.jpg", name: "Rajah Charles Brooke Memorial 3D Model" },
-        { url: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider1.jpg", name: "Rajah Charles Brooke Memorial 3D Model" }
+        { url: "http://tourism.denoo.my/TourismApi/images/place/186/186_slider1.jpg", name: "Rajah Charles Brooke Memorial 3D Model" },
+        { url: "http://tourism.denoo.my/TourismApi/images/place/186/186_slider1.jpg", name: "Rajah Charles Brooke Memorial 3D Model" }
       ]
     }
   ]
@@ -130,65 +121,14 @@ export default function PlaceDetailsForTour() {
 
   const RatingList = [{ id: 5, value: 5 }, { id: 4, value: 4 }, { id: 3, value: 3 }, { id: 2, value: 2 }, { id: 1, value: 1 }]
 
-  const tourGuides = [
-    {
-      id: 1,
-      name: "Stephanie",
-      image: "https://www.amazingborneo.com/img/stephanie.jpg",
-      rating: 5,
-      review: 53,
-      price: 80,
-    },
-    {
-      id: 2,
-      name: "Calvin",
-      image: "https://www.amazingborneo.com/img/Calvin.jpg",
-      rating: 5,
-      review: 32,
-      price: 100,
-    },
-    {
-      id: 3,
-      name: "Tan",
-      image: "https://www.amazingborneo.com/img/tan.jpg",
-      rating: 5,
-      review: 41,
-      price: 90,
-    },
-    {
-      id: 4,
-      name: "Stephanie",
-      image: "https://www.amazingborneo.com/img/stephanie.jpg",
-      rating: 5,
-      review: 53,
-      price: 80,
-    },
-    {
-      id: 5,
-      name: "Calvin",
-      image: "https://www.amazingborneo.com/img/Calvin.jpg",
-      rating: 5,
-      review: 32,
-      price: 100,
-    },
-    {
-      id: 6,
-      name: "Tan",
-      image: "https://www.amazingborneo.com/img/tan.jpg",
-      rating: 5,
-      review: 41,
-      price: 90,
-    },
-  ]
-
   const INITIAL_STATE = {
     swiperImg: [
-      { image: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider4.jpg" },
-      { image: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider1.jpg" },
-      { image: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider2.jpg" },
-      { image: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider3.jpg" },
-      { image: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider4.jpg" },
-      { image: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider1.jpg" },
+      { image: "http://tourism.denoo.my/TourismApi/images/place/186/186_slider4.jpg" },
+      { image: "http://tourism.denoo.my/TourismApi/images/place/186/186_slider1.jpg" },
+      { image: "http://tourism.denoo.my/TourismApi/images/place/186/186_slider2.jpg" },
+      { image: "http://tourism.denoo.my/TourismApi/images/place/186/186_slider3.jpg" },
+      { image: "http://tourism.denoo.my/TourismApi/images/place/186/186_slider4.jpg" },
+      { image: "http://tourism.denoo.my/TourismApi/images/place/186/186_slider1.jpg" },
     ],
     breadcrumb: [
       { title: "Home", url: "./" },
@@ -210,9 +150,14 @@ export default function PlaceDetailsForTour() {
 
   const [value, setValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const bodyDetail = [
+    { index: 0, children: <ProductCard props="Accomodation" />, value: 0, },
+    { index: 1, children: <ProductCard props="Restaurants" />, value: 1, },
+    { index: 2, children: <ProductCard props="Tourpackage" />, value: 2, },
+    { index: 3, children: <ProductCard props="Ticketing" />, value: 3, },
+    { index: 4, children: <ProductCard props="Product" />, value: 4, },
+    { index: 5, children: <ProductCard props="Transportation" />, value: 5, },
+  ]
 
   const showMedia = (name, data) => {
     let modalClick = (list) => {
@@ -462,30 +407,7 @@ export default function PlaceDetailsForTour() {
 
         <Grid container spacing={2} style={{ paddingTop: "2.5vw" }}>
           <Grid item xs={12} display='flex' justifyContent='space-between' direction='row' alignItems='center'>
-            <Box sx={{ width: '100%' }}>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs
-                  value={value}
-                  onChange={handleChange}
-                  aria-label="basic tabs example"
-                  variant="fullWidth"
-                  indicatorColor="primary"
-                >
-                  <Tab className={classes.customTab} label="Item One" {...a11yProps(0)} />
-                  <Tab className={classes.customTab} label="Item Two" {...a11yProps(1)} />
-                  <Tab className={classes.customTab} label="Item Three" {...a11yProps(2)} />
-                </Tabs>
-              </Box>
-              <TabPanel value={value} index={0}>
-                Item One
-              </TabPanel>
-              <TabPanel value={value} index={1}>
-                Item Two
-              </TabPanel>
-              <TabPanel value={value} index={2}>
-                Item Three
-              </TabPanel>
-            </Box>
+            <FullWidthTabs settings={{ Headers: headerDetail.map(x => x.headerName), Body: bodyDetail.map(x => x.children) }} id="FullWidthTab" />
           </Grid>
         </Grid>
 
@@ -617,26 +539,7 @@ export default function PlaceDetailsForTour() {
               <Grid container spacing={2}>
                 {tourGuides.map((x) => (
                   <Grid item xs={2}>
-                    <Card>
-                      <img src={x.image} width='100%' height='auto' />
-                      <CardContent sx={{ textAlign: 'center' }}>
-                        <Stack direction='column' spacing={2}>
-                          <Typography fontWeight='bold' variant="caption" fontSize={18}>
-                            {x.name}
-                          </Typography>
-                          <Grid container justifyContent='center' alignItems='center' display='flex'>
-                            <Rating value={x.rating} readOnly />
-                            &nbsp;
-                            <Typography variant="caption" fontSize={18}>
-                              ({x.review} Reviews)
-                            </Typography>
-                          </Grid>
-                          <Typography variant="caption" fontSize={18}>
-                            <b>RM{x.price}</b>/day
-                          </Typography>
-                        </Stack>
-                      </CardContent>
-                    </Card>
+                    <TourGuideCard x={x} />
                   </Grid>
                 ))}
               </Grid>
