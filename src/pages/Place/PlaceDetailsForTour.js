@@ -148,15 +148,13 @@ export default function PlaceDetailsForTour() {
 
   const [state, setState] = useState(INITIAL_STATE)
 
-  const [value, setValue] = useState(0);
-
   const bodyDetail = [
-    { index: 0, children: <ProductCard props="Accomodation" />, value: 0, },
-    { index: 1, children: <ProductCard props="Restaurants" />, value: 1, },
-    { index: 2, children: <ProductCard props="Tourpackage" />, value: 2, },
-    { index: 3, children: <ProductCard props="Ticketing" />, value: 3, },
-    { index: 4, children: <ProductCard props="Product" />, value: 4, },
-    { index: 5, children: <ProductCard props="Transportation" />, value: 5, },
+    { index: 0, children: <ProductCard type="Accommodation" />, value: 0, },
+    { index: 1, children: <ProductCard type="Restaurants" />, value: 1, },
+    { index: 2, children: <ProductCard type="Tourpackage" />, value: 2, },
+    { index: 3, children: <ProductCard type="Ticketing" />, value: 3, },
+    { index: 4, children: <ProductCard type="Product" />, value: 4, },
+    { index: 5, children: <ProductCard type="Transportation" />, value: 5, },
   ]
 
   const showMedia = (name, data) => {
@@ -404,10 +402,9 @@ export default function PlaceDetailsForTour() {
         </div>
 
         {/* ---------------------------------------------------------------------------------------------- Category ---------------------------------------------------------------------------------------------- */}
-
         <Grid container spacing={2} style={{ paddingTop: "2.5vw" }}>
           <Grid item xs={12} display='flex' justifyContent='space-between' direction='row' alignItems='center'>
-            <FullWidthTabs settings={{ Headers: headerDetail.map(x => x.headerName), Body: bodyDetail.map(x => x.children) }} id="FullWidthTab" />
+            <FullWidthTabs settings={{ Headers: headerDetail.map((x) => x.headerName), Body: bodyDetail.map((x) => x.children) }} id="FullWidthTab" />
           </Grid>
         </Grid>
 
