@@ -172,6 +172,8 @@ class ShoppingCart extends Component {
         this.setState({checkOutState:true, activeStep:1});
     };
 
+
+
     CheckOutClick = () => {  //proceed to payment page
         console.log('checkOut')
         this.setState({paymentState:true, activeStep:2})

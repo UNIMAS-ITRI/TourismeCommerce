@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Box, Paper, Grid, Typography, TableContainer, Table, TableRow, TableCell, TableBody, Checkbox, TextField, Link, Button, Stack } from '@mui/material';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import CheckOutPage from './CheckOutPage';
+import { render } from '@testing-library/react';
 
 const CostSummary = ({total, totalIncTax}) => {
   let data = [{
@@ -21,10 +22,17 @@ const CostSummary = ({total, totalIncTax}) => {
   )
 }
 
-function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSelectedProduct, selected, checkOutState, handleCheckOut, handlePayment, paymentState,purchaseSuccessState }) {
-  const renderData = checkOutState === false ? data : selected;
+function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSelectedProduct, selected, checkOutState, handleCheckOut, handlePayment, paymentState,purchaseSuccessState}) {
+  let renderData = checkOutState === false ? data : selected;
   let totalPrice = renderData.reduce((accumulator, item) => accumulator + item.Price, 0);
   let totalIncTax = (totalPrice * 0.05) + totalPrice
+
+  const [deleteData, setDeleteData] = useState([]);
+
+  const clickedRemoveID = (id) => {
+    setDeleteData([...deleteData, id]);
+  }
+
     return (
       <Box sx={{ padding: "10px", minWidth: '100vh' }}>
         <Paper style={{ padding: '15px', backgroundColor: "transparent" }} elevation={0}>
@@ -43,7 +51,7 @@ function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSel
                   </TableRow>
   
                   <TableBody>
-                    {renderData.map((row, idx) => (
+                    {renderData.filter(item => !deleteData.includes(item.id)).map((row, idx) => (
                       <TableRow key={row.name}>
                          {checkOutState === false && <TableCell style={{border:'none'}}><Checkbox onClick={()=>handleSelectedProduct(row, idx)}/></TableCell>}
                         <TableCell style={{border:'none'}}>
@@ -64,7 +72,7 @@ function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSel
                                 variant="caption"
                                 style={{ color: 'red' }}
                                 onClick={() => {
-                                  console.info("I'm a button.");
+                                  clickedRemoveID(row.id)
                                 }}
                               >
                                 Remove
