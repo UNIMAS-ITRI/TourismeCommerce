@@ -233,13 +233,14 @@ const Ewallet_Payment = () => {
 export default function CheckOutPage({makePayment}) {
   const [value, setValue] = React.useState(0);
 
-  const tabValue = ['CREDIT/DEBIT CARD', 'E-WALLET', 'FPX', 'PAYPAL'];
+  const tabValue = [{name:'CREDIT/DEBIT CARD', icon:'https://creativevip.net/resource-images/15-credit-card-icons-2.png'}, {name:'Spay', icon:'https://www.theborneopost.com/newsimages/2020/07/sarawak-pay-e1595403312278.jpg'}, {name:'FPX', icon:'https://s-plugins.com/wp-content/uploads/2020/05/fpx-gateway-icon.png'}];
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   const renderTabPage = () => {
+    console.log('value')
     switch(value){
         case 0:
             return <CardPayment/>;
@@ -247,8 +248,6 @@ export default function CheckOutPage({makePayment}) {
             return <Ewallet_Payment/>;
         case 2:
             return <FpxPaymentForm/>;
-        case 3:
-            return <Paypal_Payment/>;
         default:
             break;
     }
@@ -257,9 +256,9 @@ export default function CheckOutPage({makePayment}) {
   return (
     <Stack direction="column" spacing={2}>
     <div style={{display:'flex', flexDirection:'row', justifyContent:'center'}}>
-      <Tabs value={value} onChange={handleChange} sx={{ '& .MuiTabs-flexContainer': { gap: '200px', display:'flex'} }}>
+      <Tabs value={value} onChange={handleChange} sx={{ '& .MuiTabs-flexContainer': { gap: '150px', display:'flex'} }}>
         {tabValue.map((tab, idx) => (
-          <Tab key={idx} label={tab}/>
+          <Tab key={idx} label={tab.name} icon={<img src={tab.icon} alt={tab.name} style={{width:"20%"}} />}/>
         ))}
       </Tabs>
     </div>

@@ -65,7 +65,8 @@ function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSel
                               {row.Price !== undefined &&
                                 <div><Typography variant="subtitle1">RM {Number(row.Price).toFixed(2)}</Typography></div>
                               }
-  
+
+                            {paymentState === false && purchaseSuccessState === false &&
                               <Link
                                 component="button"
                                 underline="none"
@@ -77,8 +78,8 @@ function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSel
                               >
                                 Remove
                               </Link>
+                            }
                             </Grid>
-  
                           </Grid>
                         </TableCell>
                         <TableCell style={{border:'none'}}>
@@ -102,7 +103,6 @@ function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSel
                         }
                         </TableCell>
                         <TableCell style={{border:'none'}}><Typography variant='subtitle1'>RM {Number(row.Total).toFixed(2)}</Typography></TableCell>
-  
                       </TableRow>
                     ))}
                   </TableBody>
@@ -115,7 +115,6 @@ function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSel
           <Grid item container
             style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: '15px' }}
           >
-  
             <Grid item xs={12} sm={8} justify="right" alignItems="right" style={{ marginTop: '10px' }}>
               <div style={{ display: "flex", justifyContent: "right" }}>
 
