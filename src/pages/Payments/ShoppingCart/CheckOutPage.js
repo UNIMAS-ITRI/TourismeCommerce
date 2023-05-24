@@ -1,7 +1,7 @@
 import React, { useState }  from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { Grid,Typography, Paper, Stack, RadioGroup, Radio, FormControlLabel, Box, Button} from '@mui/material';
+import { Grid,Typography, Paper, Stack, RadioGroup, Radio, FormControlLabel, Box, Button, FormControl, InputLabel, Select, MenuItem} from '@mui/material';
 import bankList from './bankList.json';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
@@ -24,7 +24,7 @@ export default function CheckOutPage({makePayment}) {
         value: 2,
         title: 'Credit / Debit Card',
         description: 'We support Mastercard, Visa, Discover and Stripe.',
-        icons: ['https://purepng.com/public/uploads/large/purepng.com-mastercard-logologobrand-logoiconslogos-251519938372dnf77.png', 'https://cdn.icon-icons.com/icons2/1186/PNG/512/1490135017-visa_82256.png'],
+        icons: ['https://purepng.com/public/uploads/large/purepng.com-mastercard-logologobrand-logoiconslogos-251519938372dnf77.png', 'https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/visa-512.png'],
     },
 
     {
@@ -35,6 +35,7 @@ export default function CheckOutPage({makePayment}) {
     }
 ];
 
+const [bankCode, setBankCode] = useState('');
   return (
     <Grid item xs={12} sm={12}>
       <Paper style={{padding:"3%"}}>
@@ -55,13 +56,32 @@ export default function CheckOutPage({makePayment}) {
                             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                                 {y.description}
                             </Typography>
+                            {y.title === 'Online Banking' &&
+                               <FormControl fullWidth size="small" style={{marginTop:"4%"}}>
+                               <InputLabel id="demo-select-small-label">Bank</InputLabel>
+                               <Select
+                                   labelId="demo-select-small-label"
+                                   id="demo-select-small"
+                                   required
+                                   value={bankCode}
+                                   label="Bank"
+                                   onChange={(e)=>setBankCode(e.target.value)}
+                               >
+                                   {bankList.map((bnk)=>(
+                                   <MenuItem value={bnk.code}>
+                                       {bnk.name}
+                                   </MenuItem>
+                                   ))}
+                               </Select>
+                              </FormControl>
+                            }
                         </Box>
                     }
                     sx={{ py: 3, pl: 2.5, flexGrow: 1, mr: 0 }}
                     onChange={() => handleChange(y.value)}
                 />
                   {y.icons.map((icon) => (
-                    <img src={icon} alt="logo card" style={{ width: '80px', height:'55px' }} />
+                    <img src={icon} alt="logo card" style={{ width: '80px', height:'52px' }} />
                 ))}
               </Stack>
             </Grid>
