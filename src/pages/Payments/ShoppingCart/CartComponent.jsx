@@ -26,7 +26,7 @@ function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSel
   let totalPrice = renderData.reduce((accumulator, item) => accumulator + item.Price, 0);
   let totalIncTax = (totalPrice * 0.05) + totalPrice
     return (
-      <Box sx={{ padding: "10px", backgroundColor: "white", minWidth: '100vh' }}>
+      <Box sx={{ padding: "10px", minWidth: '100vh' }}>
         <Paper style={{ padding: '15px', backgroundColor: "transparent" }} elevation={0}>
           
           <Grid item container
@@ -90,7 +90,7 @@ function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSel
                               color: 'black',
                             }}
                           />
-                          : <Typography variant='subtitle1' style={{textAlign:"center"}}>{row.Quantity}</Typography>
+                          : <Typography variant='subtitle1' style={{textAlign:"left"}}>{row.Quantity}</Typography>
                         }
                         </TableCell>
                         <TableCell style={{border:'none'}}><Typography variant='subtitle1'>RM {Number(row.Total).toFixed(2)}</Typography></TableCell>

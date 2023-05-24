@@ -6,6 +6,9 @@ import { Typography } from '@mui/material';
 import { Link } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
+import Badge from '@mui/material/Badge';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { IconButton } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import PanelFooter from './PanelFooter';
 import "./PanelHeader.css";
@@ -37,6 +40,13 @@ export default function PanelHeader(props) {
                             <label style={{ fontWeight: "500", color: "white", paddingRight: "20px" }}><a href="https://www.sarawak2discover.com/ContactUs.aspx"></a>Contact Us</label>
                             <label style={{ paddingRight: "1vw" }}><PersonIcon style={{ fill: 'white' }} /></label>
                             <label style={{ paddingRight: "1vw" }}><SearchIcon style={{ fill: 'white' }} /></label>
+                            <label style={{ paddingRight: "1vw" }}>
+                                <IconButton component={Link} to='/ShoppingCart'>
+                                    <Badge color="secondary" badgeContent={3}>
+                                        <ShoppingCartIcon style={{color:"white"}} fontSize="small"/>
+                                    </Badge>
+                                </IconButton>
+                            </label>
                         </div>
                     </div>
                 </div>
