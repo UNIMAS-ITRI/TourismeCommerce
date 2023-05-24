@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { GitAction } from "../../store/action/gitAction";
 import { browserHistory } from "react-router";
 import { Link as RouterLink } from 'react-router-dom';
-import { Card, Box, Fab, Stack, CardMedia, CardContent, Typography, Rating, Divider, Button } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, Rating, Button } from '@mui/material';
+import OrangUlu from '../../assets/OrangUlu.jpg'
 
 function mapStateToProps(state) {
     return {
@@ -18,34 +19,38 @@ function mapDispatchToProps(dispatch) {
 const INITIAL_STATE = {
     indexImageHover: "",
     dummyCardData: [
-        { type: 'Accomodation', productName: 'Hilton Kuching', subtitle: '', rating: '4.5', description: "Hilton Kuching Hotel is... ", price: 179, imgURL: "" },
-        { type: 'Accomodation', productName: 'Pullman Kuching', subtitle: '', rating: '4.5', description: "Pullman Hotel is... ", price: 219, imgURL: "" },
-        { type: 'Accomodation', productName: 'Grand Margherita Hotel', subtitle: '', rating: '4.5', description: "Grand Margherita Hotel is... ", price: 169, imgURL: "" },
-        { type: 'Accomodation', productName: 'Imperial Hotel', subtitle: '', rating: '4.5', description: "Imperial Hotel is... ", price: 229, imgURL: "" },
-        { type: 'Accomodation', productName: 'Merdeka Palace Hotel', subtitle: '', rating: '4.5', description: "Merdeka Palace Hotel is... ", price: 239, imgURL: "" },
-        { type: 'Accomodation', productName: 'Roxy Hotel', subtitle: '', rating: '4.5', description: "Roxy Hotel is... ", price: 164, imgURL: "" },
-        { type: 'Restaurants', productName: 'Sarawak Laksa Special', subtitle: 'King Laksa Restaurant', rating: '4.5', description: "", price: 9, imgURL: "" },
-        { type: 'Restaurants', productName: 'Kolok Mee', subtitle: 'Haji Salleh', rating: '4.5', description: "", price: 4, imgURL: "" },
-        { type: 'Restaurants', productName: 'Mee Jawa Satay', subtitle: 'RJ Restaurant', rating: '4.5', description: "", price: 9, imgURL: "" },
-        { type: 'Restaurants', productName: 'Kek Lapis Mira', subtitle: 'Mira Kek Lapis', rating: '4.5', description: "", price: 15, imgURL: "" },
-        { type: 'Restaurants', productName: 'Fried Dabai Rice', subtitle: 'King Laksa Restaurant', rating: '4.5', description: "", price: 10, imgURL: "" },
-        { type: 'Tourpackage', productName: 'Naan Cheese', subtitle: 'Ceylonese Kuching', rating: '5', description: "", price: 16, imgURL: "" },
-        { type: 'Tourpackage', productName: 'Sarawak Sunset River Cruise', subtitle: 'Bestway Tour & Travel SDN BHD', rating: '4.5', description: "Cruise along Sarawak River...", price: 156, imgURL: "" },
-        { type: 'Tourpackage', productName: 'Ukom Longhouse', subtitle: 'CPH Travel Agencies', rating: '5', description: "Once infamously known as the Land of the Headhunters... ", price: 560, imgURL: "" },
-        { type: 'Tourpackage', productName: 'Bako National Park', subtitle: 'Cat City Hilidays SDN BHD', rating: '5', description: "Bako National Park is claimed to be the...", price: 352, imgURL: "" },
-        { type: 'Tourpackage', productName: 'Gunung Gading Raflessia Tour', subtitle: 'Cat City Hilidays SDN BHD', rating: '5', description: "The excursion will take an hour 30 minutes...", price: 133, imgURL: "" },
-        { type: 'Tourpackage', productName: '4-Day Borneo Coastal', subtitle: 'Paradesa Borneo', rating: '5', description: "Cycles along Borneo's ...", price: 159, imgURL: "" },
-        { type: 'Ticketing', productName: 'Broke Gallery', subtitle: 'Sarawak Museum', rating: '5', description: "Gallery is ....", price: 15, imgURL: "" },
-        { type: 'Ticketing', productName: 'Textile Museum', subtitle: 'SarawakTour SDN BHD', rating: '5', description: "Kuching is the capital of the Sarawak...", price: "FOC", imgURL: "" },
-        { type: 'Ticketing', productName: 'Adult (3 days Pass)', subtitle: 'Sarawak Cultural Village', rating: '5', description: "Rainforest World Music Festival...", price: 345, imgURL: "" },
-        { type: 'Ticketing', productName: 'Adult (1 days Pass)', subtitle: 'Sarawak Cultural Village', rating: '5', description: "Rainforest World Music Festival...", price: 140, imgURL: "" },
-        { type: 'Ticketing', productName: 'Family (3 days Pass)', subtitle: 'Sarawak Cultural Village', rating: '5', description: "Rainforest World Music Festival...", price: 1020, imgURL: "" },
-
-        { type: 'Product', productName: 'Orang Ulu Multi Purpose Accessory or Glass Coaster', subtitle: '', rating: '5', description: "Rainforest World Music Festival...", price: 1020, imgURL: "" },
-        { type: 'Product', productName: 'Tango Budak', subtitle: '', rating: '5', description: "Rainforest World Music Festival...", price: 1020, imgURL: "" },
-        { type: 'Product', productName: 'Ceramic Necklace (Mint)', subtitle: '', rating: '5', description: "Rainforest World Music Festival...", price: 1020, imgURL: "" },
-        { type: 'Product', productName: 'Bracelet (Unisex)', subtitle: '', rating: '5', description: "Rainforest World Music Festival...", price: 1020, imgURL: "" },
-        { type: 'Product', productName: 'Bidayuh Traditional (Full set of 7)', subtitle: '', rating: '5', description: "Rainforest World Music Festival...", price: 1020, imgURL: "" },
+        { type: 'Accommodation', productName: 'Hilton Kuching', subtitle: '', ratingStar: 4, rating: '4', description: "Hilton Hotels & Resorts is a global brand of full-service hotels and resorts and the flagship brand of American multinational hospitality company Hilton. The original company was founded by Conrad Hilton", price: 179, imgURL: "https://pix10.agoda.net/hotelImages/10435/0/e7f5cfdb5f7c89bc1ec2c2cdd5631c37.jpg?ca=7&ce=1&s=1024x768" },
+        { type: 'Accommodation', productName: 'Pullman Kuching', subtitle: '', ratingStar: 4, rating: '4', description: "Pullman Kuching is centrally located in the Kuching Golden Triangle, enjoying pride of place on Jalan Mathies hill, with panoramic city and river views.", price: 219, imgURL: "https://akdi.net/wp-content/uploads/2014/12/bExterior-night.jpg" },
+        { type: 'Accommodation', productName: 'Grand Margherita Hotel', subtitle: '', ratingStar: 4, rating: '4', description: "Grand Margherita Hotel is located in the heart of Kuching's shopping and financial district and just 20 minutes drive from the Kuching International Airport.", price: 169, imgURL: "https://pix10.agoda.net/hotelImages/44583/-1/8742bb65e5a6b3f370d3e94212bb8a76.jpg?ca=23&ce=0&s=1024x768" },
+        { type: 'Accommodation', productName: 'Imperial Hotel', subtitle: '', ratingStar: 4, rating: '4', description: "Imperial Hotel Kuching is a 4-star business class hotel which sits on top of the Boulevard Shopping Mall and adjoins the Imperial Suites.", price: 229, imgURL: "https://imperial.com.my/img/hotel-home.png" },
+        { type: 'Accommodation', productName: 'Merdeka Palace Hotel', subtitle: '', ratingStar: 4, rating: '4', description: "Merdeka Palace Hotel & Suites combines the finest comfort with great hospitality and service, offering guests affordable luxury.", price: 239, imgURL: "https://ik.imgkit.net/3vlqs5axxjf/external/http://images.ntmllc.com/v4/Hotel/R35/R35022/R35022_EXT_ZBB8E7.JPG?tr=w-1200%2Cfo-auto" },
+        { type: 'Accommodation', productName: 'Roxy Hotel', subtitle: '', ratingStar: 4, rating: '4', description: "Roxy Sematan is a relaxing modern hotel, set between Sematan peaceful town and the silence of Telok Melano village.", price: 164, imgURL: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/75/81/eb/facade.jpg?w=700&h=-1&s=1" },
+        { type: 'Restaurants', productName: 'Sarawak Laksa Special', subtitle: 'King Laksa Restaurant', ratingStar: 4, rating: '4', description: "", price: 9, imgURL: "https://www.sarawak2discover.com/TourismApi/images/food/sarawaklaksa.png" },
+        { type: 'Restaurants', productName: 'Kolok Mee', subtitle: 'Haji Salleh', ratingStar: 4, rating: '4', description: "", price: 4, imgURL: "https://www.sarawak2discover.com/TourismApi/images/food/kolomee.jpg" },
+        { type: 'Restaurants', productName: 'Mee Jawa Satay', subtitle: 'RJ Restaurant', ratingStar: 4, rating: '4', description: "", price: 9, imgURL: "https://www.sarawak2discover.com/TourismApi/images/food/Meejawa.png" },
+        { type: 'Restaurants', productName: 'Kek Lapis Mira', subtitle: 'Mira Kek Lapis', ratingStar: 4, rating: '4', description: "", price: 15, imgURL: "https://www.sarawak2discover.com/TourismApi/images/food/Keklapis.png" },
+        { type: 'Restaurants', productName: 'Fried Dabai Rice', subtitle: 'King Laksa Restaurant', ratingStar: 4, rating: '4', description: "", price: 10, imgURL: "https://i0.wp.com/dayakdaily.com/wp-content/uploads/2018/11/Kch-dd171118-wp-pinggai.p11-e1542464128530.jpg?resize=696%2C461&ssl=1" },
+        { type: 'Restaurants', productName: 'Naan Cheese', subtitle: 'Ceylonese Kuching', ratingStar: 5, rating: '5', description: "", price: 16, imgURL: "https://www.sarawak2discover.com/TourismApi/images/food/Naan.png" },
+        { type: 'Tourpackage', productName: 'Sarawak Sunset River Cruise', subtitle: 'Bestway Tour & Travel SDN BHD', ratingStar: 4, rating: '4', description: "Experience the signature sunset cruise with your family and loves one. Enjoy a breathtaking 360° panoramic view of Kuching skyline.", price: 156, imgURL: "https://images.t2u.io/upload/event/listing/0-27132-AWSS387d1b913-b3d9-4394-b422-ab03a9a2a611-Mfmb.jpg" },
+        { type: 'Tourpackage', productName: 'Ukom Longhouse', subtitle: 'CPH Travel Agencies', ratingStar: 5, rating: '5', description: "Once infamously known as the Land of the Headhunters, a trip to Borneo will be incomplete without a visit to the homes of these once fearsome tribal warriors who remain as heroes in protecting their land which they highly safeguard for ancestral rights.", price: 560, imgURL: "https://www.startravel.com.my/wp-content/uploads/2023/05/ed4d849e-03ec-4a35-a9fe-397c719f2b50-scaled.jpg" },
+        { type: 'Tourpackage', productName: 'Bako National Park', subtitle: 'Cat City Holidays SDN BHD', ratingStar: 5, rating: '5', description: "Bako National Park is a national park in Kuching District, Kuching Division, Sarawak, Malaysia. Established in 1957, it is the oldest national park in Sarawak. It covers an area of 27.27 square kilometres at the tip of the Muara Tebas peninsula at the mouth of the Bako and Kuching Rivers.", price: 352, imgURL: "https://i0.wp.com/borneoadventure.com/v3/wp-content/uploads/2012/01/STB-bako-sea-stack-01.jpg?fit=2000%2C1333&quality=60&strip=all&ssl=1" },
+        { type: 'Tourpackage', productName: 'Gunung Gading Raflessia Tour', subtitle: 'Cat City Holidays SDN BHD', ratingStar: 5, rating: '5', description: "The Gunung Gading National Park is a national park in Lundu District, Kuching Division, Sarawak, Malaysia. The park is located roughly two hours drive from Kuching, and is a popular destination for seeing the Rafflesia flower in bloom.", price: 133, imgURL: "https://www.sarawak2discover.com/TourismApi/images/place/426/426_slider1.jpg" },
+        { type: 'Tourpackage', productName: 'Mulu National Park', subtitle: 'Paradesa Borneo', ratingStar: 5, rating: '5', description: "The Gunung Mulu National Park is a national park in Miri Division, Sarawak, Malaysia. It is a UNESCO World Heritage Site that encompasses caves and karst formations in a mountainous equatorial rainforest setting", price: 159, imgURL: "https://blog.qelola.com/wp-content/uploads/2020/06/gunung-mulu-national-park.jpg" },
+        { type: 'Ticketing', productName: 'Brooke Gallery', subtitle: 'Sarawak Museum', ratingStar: 5, rating: '5', description: "Gallery is ....", price: 15, imgURL: "https://56hotel.com.my/wp-content/uploads/2017/08/Fort-Margherita.jpg" },
+        { type: 'Ticketing', productName: 'Textile Museum', subtitle: 'SarawakTour SDN BHD', ratingStar: 5, rating: '5', description: "Kuching is the capital of the Sarawak...", price: "FOC", imgURL: "https://live.staticflickr.com/8456/7903406596_b90ba0b346_b.jpg" },
+        { type: 'Ticketing', productName: 'Adult (3 days Pass)', subtitle: 'Sarawak Cultural Village', ratingStar: 5, rating: '5', description: "Rainforest World Music Festival...", price: 345, imgURL: "https://jajagotravel.com/media/catalog/product/cache/1/image/1200x/040ec09b1e35df139433887a97daa66f/s/a/sarawak-cultural-vilage-adult.png" },
+        { type: 'Ticketing', productName: 'Adult (1 days Pass)', subtitle: 'Sarawak Cultural Village', ratingStar: 5, rating: '5', description: "Rainforest World Music Festival...", price: 140, imgURL: "https://jajagotravel.com/media/catalog/product/cache/1/image/1200x/040ec09b1e35df139433887a97daa66f/s/a/sarawak-cultural-vilage-adult.png" },
+        { type: 'Ticketing', productName: 'Family (3 days Pass)', subtitle: 'Sarawak Cultural Village', ratingStar: 5, rating: '5', description: "Rainforest World Music Festival...", price: 1020, imgURL: "https://jajagotravel.com/media/catalog/product/cache/1/image/1200x/040ec09b1e35df139433887a97daa66f/s/a/sarawak-cultural-vilage-adult.png" },
+        { type: 'Product', productName: 'Orang Ulu Multi Purpose Accessory or Glass Coaster', subtitle: 'LL Handcraft', ratingStar: 5, rating: '5', description: "", price: 120, imgURL: OrangUlu },
+        { type: 'Product', productName: 'Tango Budak', subtitle: 'LNB Handcraft', ratingStar: 5, rating: '5', description: "", price: 399, imgURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKNlZchapOzvSDaSvYUAB2VHJ6q7rg6Ww9OkqnmRfkPwtBy5cJWL3Z7YZM6w-i6yT55nQ&usqp=CAU" },
+        { type: 'Product', productName: 'Ceramic Necklace (Mint)', subtitle: 'Mka Craft', ratingStar: 5, rating: '5', description: "", price: 99, imgURL: "https://sarawakhandicraft.com.my/wp-content/uploads/2019/10/IMG_20191026_0922421.jpg" },
+        { type: 'Product', productName: 'Bracelet (Unisex)', subtitle: 'Julia Jayne', ratingStar: 5, rating: '5', description: "", price: 60, imgURL: "https://ae01.alicdn.com/kf/S6e8520772ef6467fb77dfb1743f919b9c/Lucky-Charm-Tibetan-Buddhism-Bracelets-Bangles-For-Women-Men-Handmade-Knots-Rope-Budda-Thread-Braided-Bracelet.jpg_Q90.jpg_.webp" },
+        { type: 'Product', productName: 'Bidayuh Traditional Costume (Full set of 7)', subtitle: 'Paradesa Borneo', ratingStar: 5, rating: '5', description: "", price: 539, imgURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh6BSbFX8zfQWetwikZP6mf0tbPrXW1oILqRm8vFODwigu66zUGwKjSAYbae5F0lzLXGk&usqp=CAU" },
+        { type: 'Transportation', productName: 'LRT Sarawak', subtitle: 'Bestway Tour & Travel SDN BHD', ratingStar: 5, rating: '5', description: "", price: 129, imgURL: "https://sarawakvoice.com/wp-content/uploads/2019/05/download.jpeg" },
+        { type: 'Transportation', productName: 'Hydrogen Bus Kuching', subtitle: 'Minister of Transportation', ratingStar: 5, rating: '5', description: "", price: 1, imgURL: "https://www.intelligenttransport.com/wp-content/uploads/Hydrogen-bus-750x450-v2.jpg" },
+        { type: 'Transportation', productName: 'Taxi Kuching Meter', subtitle: 'Bindass Taxi Kuching Meter', ratingStar: 5, rating: '5', description: "", price: 12, imgURL: "https://kuchingtaxi.com/flashimage/j.jpg" },
+        { type: 'Transportation', productName: 'Airasia (KL- KCH)', subtitle: 'Bestway Tour & Travel SDN BHD', ratingStar: 5, rating: '5', description: "", price: 129, imgURL: "https://i0.wp.com/airinsight.com/wp-content/uploads/2021/03/A321neo-AirAsia-scaled.jpg?fit=2560%2C1920&ssl=1" },
+        { type: 'Transportation', productName: 'Malaysia Airline (KL- KCH)', subtitle: 'CPH Travel Agencies', ratingStar: 5, rating: '5', description: "", price: 299, imgURL: "https://theaureview.com/wp-content/uploads/2020/01/D-A350Generic-200718-e1553060211680.jpg" },
     ]
 }
 
@@ -65,169 +70,65 @@ class ProductCard extends Component {
     }
 
     render() {
-        console.log(this.props)
-        const { id, name, cover, price, colors, available, sizes, priceSale } = this.props;
-        const handleAddCart = async () => {
-            const newProduct = {
-                id,
-                name,
-                cover,
-                available,
-                price,
-                colors: [colors[0]],
-                size: sizes[0],
-                quantity: 1,
-            };
-            try {
-                // dispatch(addToCart(newProduct));
-            } catch (error) {
-                console.error(error);
-            }
-        };
+        const { dummyCardData } = this.state;
 
         return (
-            // <Card
-            //     sx={{
-            //         '&:hover .add-cart-btn': {
-            //             opacity: 1,
-            //         },
-            //     }}
-            // >
-            //     <Box sx={{ position: 'relative', p: 1 }}>
-            //         <Fab
-            //             color="warning"
-            //             size="medium"
-            //             className="add-cart-btn"
-            //             onClick={handleAddCart}
-            //             sx={{
-            //                 right: 16,
-            //                 bottom: 16,
-            //                 zIndex: 9,
-            //                 opacity: 0,
-            //                 position: 'absolute',
-            //                 transition: (theme) =>
-            //                     theme.transitions.create('all', {
-            //                         easing: theme.transitions.easing.easeInOut,
-            //                         duration: theme.transitions.duration.shorter,
-            //                     }),
-            //             }}
-            //         >
-            //             {/* <Iconify icon="ic:round-add-shopping-cart" /> */}
-            //         </Fab>
-
-            //         {/* <Image alt={name} src={cover} ratio="1/1" sx={{ borderRadius: 1.5 }} /> */}
-            //     </Box>
-
-            //     <Stack spacing={2.5} sx={{ p: 3 }}>
-            //         {/* <Link component={RouterLink} to={linkTo} color="inherit" variant="subtitle2" noWrap> */}
-            //             {name}
-            //         {/* </Link> */}
-
-            //         <Stack direction="row" alignItems="center" justifyContent="space-between">
-            //             <Stack direction="row" spacing={0.5} sx={{ typography: 'subtitle1' }}>
-            //                 {priceSale && (
-            //                     <Box component="span" sx={{ color: 'text.disabled', textDecoration: 'line-through' }}>
-            //                         {priceSale}
-            //                     </Box>
-            //                 )}
-
-            //                 <Box component="span">{price}</Box>
-            //             </Stack>
-            //         </Stack>
-            //     </Stack>
-            // </Card>
-            <div class="CardView" className="col">
-                <Card
-                    // onClick={() => window.open(x.url, "_blank")}
-                    sx={{ minHeight: 300, maxHeight: 450 }}
-                    style={{ boxShadow: "0.2vw 0.3vw 0.5vw #888888" }}
-                >
-                    <CardMedia
-                        component="img"
-                        height="194"
-                        // image={x.img}
-                        // alt={x.name}
-                        // style={{
-                        //     opacity:
-                        //         this.state.indexImageHover === index
-                        //             ? "50%"
-                        //             : "100%",
-                        // }}
-                        // onMouseOver={() =>
-                        //     this.setState({ indexImageHover: index })
-                        // }
-                        onMouseOut={() =>
-                            this.setState({ indexImageHover: "" })
-                        }
-                    />
-                    <CardContent>
-                        <Typography
-                            color="text"
-                            style={{
-                                fontWeight: "bold",
-                                textAlign: "left",
-                            }}
-                        >
-                            {/* {x.name} */}
-                            Testing
-                        </Typography>
-                        <Rating
-                            style={{ fontSize: "1.0rem" }}
-                            // value={x.hotelStar}
-                        />{" "}
-                        <Divider />
-                        <div className="row" style={{ paddingTop: "10px" }}>
-                            <div className="col-3">
-                                <div
-                                    style={{
-                                        backgroundColor: "#95b43c",
-                                        borderRadius: "50%",
-                                        width: "38px",
-                                        height: " 38px",
-                                        color: "white",
-                                        textAlign: "center",
-                                        display: "grid",
-                                        alignItems: "center",
-                                        fontWeight: "bold",
-                                        fontSize: "18px",
-                                    }}
+            <div className="row">
+                {
+                    dummyCardData.filter((y) => y.type === this.props.type).map((x, index) => {
+                        return (
+                            <div class="CardView" className="col">
+                                <Card sx={{ minHeight: 350, maxHeight: 450, boxShadow: "0.2vw 0.3vw 0.5vw #888888", }}
+                                // onClick={() => window.open(x.url, "_blank")}  
                                 >
-                                    {/* {x.rating} */}
-                                    4
-                                </div>
+                                    <CardMedia
+                                        component="img"
+                                        height="194"
+                                        image={x.imgURL}
+                                        alt={x.productName}
+                                        style={{ opacity: this.state.indexImageHover === index ? "50%" : "100%", }}
+                                        onMouseOver={() => this.setState({ indexImageHover: index })}
+                                        onMouseOut={() => this.setState({ indexImageHover: "" })}
+                                    />
+                                    <CardContent>
+                                        <Typography color="text" style={{ fontWeight: "bold", textAlign: "left", }} >
+                                            {x.productName}
+                                        </Typography>
+                                        <Typography color="text" variant="body2" fontWeight="700" >
+                                            {x.subtitle}
+                                        </Typography>
+                                        <div className="row">
+                                            <div className="col-4">
+                                                <Rating
+                                                    style={{ fontSize: "1.0rem" }}
+                                                    value={x.ratingStar}
+                                                />{" "}
+                                            </div>
+                                            <div className="col-8">
+                                                <Typography variant="body2">{x.rating} ratings</Typography>
+                                            </div>
+                                        </div>
+                                        <div className="col-12" style={{ height: "5.5vw", lineHeight: 1, overflowY: "auto" }}>
+                                            <Typography variant="caption">{x.description} </Typography>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-6">
+                                                <Typography style={{ color: "#8fb136", fontWeight: "bold", fontSize: "20px", }} >
+                                                    RM {x.price}
+                                                </Typography>
+                                            </div>
+                                            <div className="col-6" style={{ display: "flex", justifyContent: "end" }}>
+                                                <Button size="small" style={{ backgroundColor: "#8fb136", color: "white", width: "5.5vw" }} >
+                                                    Add To Cart
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
                             </div>
-                        </div>
-                        <Divider />
-                        <div
-                            className="row"
-                            style={{ paddingTop: "10px", textAlign: "right" }}
-                        >
-                            <div className="col-6">
-                                <Typography
-                                    style={{
-                                        color: "red",
-                                        fontWeight: "bold",
-                                        fontSize: "20px",
-                                    }}
-                                >
-                                    {/* RM {x.price} */}
-                                    RM 300
-                                </Typography>
-                            </div>
-                        </div>
-                        <div className="row" style={{ padding: "10px" }}>
-                            <Button
-                                variant="container"
-                                style={{
-                                    backgroundColor: "#596a2a",
-                                    color: "white",
-                                }}
-                            >
-                                View Hotel
-                            </Button>
-                        </div>
-                    </CardContent>
-                </Card>
+                        )
+                    })
+                }
             </div>
         )
     }
