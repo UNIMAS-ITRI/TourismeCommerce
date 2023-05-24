@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Paper, Grid, Typography, TableContainer, Table, TableRow, TableCell, TableBody, Checkbox, TextField, Link, Button, Stack } from '@mui/material';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import CheckOutPage from './CheckOutPage';
-import PaymentComplete from './PaymentComplete';
 
 const CostSummary = ({total, totalIncTax}) => {
   let data = [{
@@ -112,7 +111,7 @@ function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSel
             <Grid item xs={12} sm={8} justify="right" alignItems="right" style={{ marginTop: '10px' }}>
               <div style={{ display: "flex", justifyContent: "right" }}>
 
-              {checkOutState === false ?
+              {checkOutState === false  ?
                 <Button variant='contained' onClick={() => handlePlaceOrder()} style={{ borderRadius: '30px', backgroundColor: selected.length === 0 ? '#D1D1D1' : '#8fb136',
                 color: selected.length === 0 ? 'white' : 'white', textTransform: 'none' }}
                 disabled={selected.length === 0 }
@@ -123,6 +122,7 @@ function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSel
                   </Stack>
                 </Button>
                 : 
+                purchaseSuccessState === false && paymentState === false &&
                 <Grid item xs={12} sm={8}>
                   <Grid item container
                   style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', }}>
@@ -150,9 +150,6 @@ function CartComponent({ data, handleQuantityChange, handlePlaceOrder, handleSel
                 </Grid>
                
                 }
-
-                 
-
               </div>
             </Grid>
         {paymentState === true &&
