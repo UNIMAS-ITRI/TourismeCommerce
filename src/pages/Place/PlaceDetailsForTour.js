@@ -309,7 +309,14 @@ export default function PlaceDetailsForTour() {
           </Typography>
           <Button
             variant="contained"
-            style={{ backgroundColor: "#596a2a" }}
+            style={{ 
+              backgroundColor: "#596a2a",
+              padding: '0.5vw 1vw',
+              color: 'white',
+              fontWeight: 'bold',
+              borderRadius: '0.5vw',
+              boxShadow: '2px 3px 5px #888888',
+             }}
             onClick={() =>
               setState(prevState => ({
                 ...prevState,

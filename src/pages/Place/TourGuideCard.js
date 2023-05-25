@@ -38,7 +38,15 @@ export default function TourGuideCard({ x }) {
         <Button
           size="small"
           variant="contained"
-          style={{ backgroundColor: "#596a2a", marginTop: "1vw" }}
+          style={{
+            backgroundColor: "#596a2a",
+            marginTop: "1vw",
+            padding: '0.5vw 1vw',
+            color: 'white',
+            fontWeight: 'bold',
+            borderRadius: '0.5vw',
+            boxShadow: '2px 3px 5px #888888',
+          }}
           onClick={() => window.open("https://wa.me/60168888422", "_blank")}
         >
           <Typography variant="body">
