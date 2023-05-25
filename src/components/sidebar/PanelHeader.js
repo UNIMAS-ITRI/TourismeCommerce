@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import "./PanelHeader.css";
 // @mui/material
 import {
@@ -35,7 +36,7 @@ export default function PanelHeader(props) {
 
   return (
     <header>
-      <Box sx={{ backgroundColor: "#353736", padding: 2 }}>
+      <Box sx={{ backgroundColor: "#353736", padding: 1.5 }}>
         <Grid container>
           <Grid item xs={12} justifyContent='flex-end' alignItems='center' display='flex'>
             <Typography style={{ fontWeight: "500", color: "white", paddingRight: "20px" }}><a href="https://www.sarawak2discover.com/ContactUs.aspx"></a>Contact Us</Typography>
@@ -44,16 +45,17 @@ export default function PanelHeader(props) {
           </Grid>
         </Grid>
       </Box>
-      <Box sx={{ backgroundColor: "#8fb136" }} py={2} px={4}>
+      <Box sx={{ backgroundColor: "#8fb136" }} py={1} px={4}>
         <Grid container display='flex' direction='row' alignItems='center' justifyContent='space-between'>
           <Grid item>
             <a href='/'>
               <img src='https://www.sarawaktourism.com/images/logo_w.png' alt="Sarawak tourism" />
             </a>
           </Grid>
-          <Grid item display='flex' direction='column'>
+          {/* <Grid item display='flex' direction='column'> */}
+          <div>
             <SearchBar onSearch={handleOnSearch} />
-            <Stack direction='row' spacing={1} mt={0.5}>
+            <Stack direction='row' spacing={1}>
               {headerDetail.map((item) => (
                 <Button
                   key={item.index}
@@ -71,24 +73,19 @@ export default function PanelHeader(props) {
                   component={Link}
                 // to={item.url}
                 >
-                  {item.headerName}
+                  <Typography variant='subtitle2' color="white">{item.headerName}</Typography>
                 </Button>
               ))}
             </Stack>
-          </Grid>
+          </div>
+
+          {/* </Grid> */}
           <Grid item>
-            <Badge
-              badgeContent={4}
-              color="error"
-            >
-              <IconButton
-                // onClick={() => console.log('cart')}
-                component={Link}
-                to='/ShoppingCart'
-              >
-                <ShoppingCartRoundedIcon sx={{ color: 'white' }} />
-              </IconButton>
-            </Badge>
+            <IconButton component={Link} to='/ShoppingCart'>
+              <Badge color="secondary" badgeContent={3}>
+                <ShoppingCartIcon style={{ color: "white" }} fontSize="small" />
+              </Badge>
+            </IconButton>
           </Grid>
         </Grid>
       </Box>

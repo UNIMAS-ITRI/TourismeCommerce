@@ -30,6 +30,7 @@ function SearchBar({ onSearch }) {
             borderRadius: '5px',
             paddingLeft: '10px',
             width: '50vw',
+            height: '40px'
           },
           endAdornment: (
             <IconButton type="submit">
