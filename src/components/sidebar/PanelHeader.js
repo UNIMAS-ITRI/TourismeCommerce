@@ -47,7 +47,9 @@ export default function PanelHeader(props) {
       <Box sx={{ backgroundColor: "#8fb136" }} py={2} px={4}>
         <Grid container display='flex' direction='row' alignItems='center' justifyContent='space-between'>
           <Grid item>
-            <img src='https://www.sarawaktourism.com/images/logo_w.png' alt="Sarawak tourism" />
+            <a href='/'>
+              <img src='https://www.sarawaktourism.com/images/logo_w.png' alt="Sarawak tourism" />
+            </a>
           </Grid>
           <Grid item display='flex' direction='column'>
             <SearchBar onSearch={handleOnSearch} />
