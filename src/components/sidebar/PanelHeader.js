@@ -80,7 +80,9 @@ export default function PanelHeader(props) {
               color="error"
             >
               <IconButton
-                onClick={() => console.log('cart')}
+                // onClick={() => console.log('cart')}
+                component={Link}
+                to='/ShoppingCart'
               >
                 <ShoppingCartRoundedIcon sx={{ color: 'white' }} />
               </IconButton>
