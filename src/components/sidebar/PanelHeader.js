@@ -71,7 +71,7 @@ export default function PanelHeader(props) {
                     },
                   }}
                   component={Link}
-                // to={item.url}
+                to={item.url}
                 >
                   <Typography variant='subtitle2' color="white">{item.headerName}</Typography>
                 </Button>

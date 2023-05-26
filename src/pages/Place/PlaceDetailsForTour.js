@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { GitAction } from "../../store/action/gitAction";
-import { useNavigate } from "react-router/dist";
+// import { useNavigate } from "react-router/dist";
 import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Rating from "@material-ui/lab/Rating";

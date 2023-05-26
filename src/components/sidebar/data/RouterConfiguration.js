@@ -38,6 +38,9 @@ import AddUser from "../../../pages/UserManagement/AddUser";
 import ShoppingCart from "../../../pages/Payments/ShoppingCart/ShoppingCart";
 import LocalFoodCategories from "../../../pages/LocalFood/LocalFoodCategories";
 import LocalFoodDetail from "../../../pages/LocalFood/LocalFoodDetail";
+import TicketingFilter from "../../../pages/Ticketing/TicketingFilter";
+import ProductsFilter from "../../../pages/Products/ProductsFilter";
+import TicketDetail from "../../../pages/Ticketing/TicketDetail";
 // import UserManagement from '../../../pages/UserManagement/UserManagement';
 // import OverallStock from "../../../pages/Stock/OverallStock/OverallStock";
 // import StockGoods from "../../../pages/Stock/StockGoods/StockGoods";
@@ -82,7 +85,7 @@ const routes = [
     {
         path: "/FoodCategory",
         exact: true,
-        element: <LocalFoodCategories />,
+        element: <LocalFoodCategories />
     },
     {
         path: "/FoodDetail/:id",
@@ -93,7 +96,22 @@ const routes = [
         path: "/PlaceDetailsForTour",
         exact: true,
         element: <PlaceDetailsForTour />,
-    }
+    },
+    {
+        path: "/Ticket",
+        exact: true,
+        element: <TicketingFilter />,
+    },
+    {
+        path: "/Products",
+        exact: true,
+        element: <ProductsFilter />,
+    },
+    {
+        path: "/TicketDetail",
+        exact: true,
+        element: <TicketDetail />,
+    },
     // {
     //     path: "/UserManagement",
     //     exact: true,

@@ -304,7 +304,7 @@ class Dashboard extends Component {
                 >
                     {
                         this.state.swiperImg.map((el) => {
-                            return <SwiperSlide><img src={el.image} /></SwiperSlide>
+                            return <SwiperSlide><img alt ='' src={el.image} /></SwiperSlide>
                         })
                     }
                 </Swiper>
