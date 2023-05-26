@@ -96,10 +96,7 @@ class PlaceDetails extends Component {
 
 
     showMedia = (name, data) => {
-
-
         let modalClick = (list) => {
-
             if (name === "3D Model")
                 this.setState({ selectedMediaDetails: list, openModal: true })
             else
@@ -293,7 +290,7 @@ class PlaceDetails extends Component {
                 >
                     {
                         this.state.swiperImg.map((el) => {
-                            return <SwiperSlide zIndex={0}><img src={el.image} /></SwiperSlide>
+                            return <SwiperSlide zIndex={0}><img alt="" src={el.image} /></SwiperSlide>
                         })
                     }
                 </Swiper>

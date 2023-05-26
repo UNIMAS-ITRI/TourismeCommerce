@@ -9,10 +9,37 @@ export const recommend = [
         rating: 8.5,
         Breakfast_Available: true,
         hotelStar: 5,
+        soldNum:297,
         locationWise: 8.5,
         Neighborhood: "Kuching",
         reviewNum: 4557,
         review: "Excellent",
+        // name: "Imperial Hotel Kuching",
+        State: "Kuching",
+        Email: "-",
+        Website: "Website",
+        Contact: "+60 - 82588999",
+        OperateTime: "Open 24-hours",
+        Rating: 5,
+        Review: [
+            {
+                Name: "Charles",
+                Rating: 5,
+                Review: "The room really big and comfortable. Really love to stay. the swimming pool has indoor & outdoor, has playground for kids, there are restaurant as well. Really nice & beautiful hotel.",
+                Date: "22/04/2022",
+            },
+            {
+                Name: "Stanley",
+                Rating: 5,
+                Review: "This my 2nd stay while travel to kch. Staff are very friendly, environment very clean and nice! Room are big.",
+                Date: "01/05/2022",
+            },
+            { Name: "Kendy", Rating: 5, Review: "Love this hotel so much! Huge building with nice interior, facilities & service. My room was very spacious & super clean. I highly recommend this hotel for a good stay 👍🏼", Date: "15/05/2022" },
+        ],
+        latitude: 1.51317,
+        longitude: 110.3357,
+        PlaceDesc:
+            "Imperial Hotel Kuching, the latest addition to the fast expanding Imperial Group Hotels is a 4-star business class hotel, strategicallt located in the heart of Kuching, just 5 minutes drive from the Kuching International Airport and 10 minutes to the city's central business district. It sits on top of the Boulevard Shoppping Mall and is adjacent to the Imperial Suites",
     },
     {
         image: "https://s3-ap-southeast-1.amazonaws.com/av-s3/image/large/2bba8f9c50616dc7cbec",
@@ -120,7 +147,13 @@ export const Division = [
     "Betong",
     "Serian",
 ];
-
+export const RatingList = [
+    { id: 5, value: 5 },
+    { id: 4, value: 4 },
+    { id: 3, value: 3 },
+    { id: 2, value: 2 },
+    { id: 1, value: 1 },
+];
 export const rating = [
     { rate: 5, value: " " },
     { rate: 4, value: " & above" },
@@ -137,22 +170,6 @@ export const sortingOption = [
     { value: 'high-to-low', label: 'Price High to Low' }
 ]
 
-// export const     swiperImg= [
-//     {
-//         image:
-//             "https://www.greatsmallhotels.com/photos/66156_the-ranee-boutique-suites_.jpg",
-//     },
-//     {
-//         image:
-//             "https://www.imperialhotelkuching.com.my/images/picture1/event.jpg",
-//     },
-//     {
-//         image: "https://cf.bstatic.com/images/hotel/max1024x768/366/36635705.jpg",
-//     },
-//     {
-//         image: "https://cf.bstatic.com/images/hotel/max1024x768/374/37425110.jpg",
-//     },
-//     {
-//         image: "https://cf.bstatic.com/images/hotel/max1024x768/374/37427954.jpg",
-//     },
-// ]
+export const swiperImg = [
+    { image: "https://s3-ap-southeast-1.amazonaws.com/av-s3/image/large/bcb89fcbc788dfebe44d" },
+]

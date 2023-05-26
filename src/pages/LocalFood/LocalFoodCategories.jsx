@@ -45,7 +45,7 @@ export default function LocalFoodCategories() {
                 <Grid item xs={10}>
                     <Grid container spacing={2}>
                         <Grid item xs={10}>
-                            <Typography variant='title' style={{ fontWeight: 'bold', fontSize: '2rem' }} color='#596a2a'>Foodie paradise</Typography>
+                            <Typography variant='title' style={{ fontWeight: 'bold', fontSize: '2rem' }} color='#596a2a'>Foodie Paradise</Typography>
                         </Grid>
                         <Grid item xs={2}>
                             <FormControl

@@ -6,7 +6,7 @@ import Divider from "@mui/material/Divider";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import {FilterBar} from '../../components/FilterBar/FilterBar';
+import { FilterBar } from '../../components/FilterBar/FilterBar';
 
 import {
     Typography,
@@ -92,6 +92,9 @@ class TicketingFilter extends Component {
                     >
                         {x.name}
                     </Typography>
+                    <Typography variant='subtitle2' style={{ textAlign: 'left', fontSize: "0.7rem", color: "dimgrey" }}>
+                        {x.place}
+                    </Typography>
                     <Rating
                         style={{ fontSize: "1.0rem" }}
                         value={x.hotelStar}
@@ -156,21 +159,21 @@ class TicketingFilter extends Component {
                             </Typography>
                         </div>
                     </div>
-                   
-                        <Button
-                            variant="container"
-                            style={{
-                                backgroundColor: "#596a2a",
-                                color: "white",
-                                marginTop:"10px"
-                            }}
-                            fullWidth
-                            onClick={() =>
-                                (window.location.href = "/TicketDetail")
-                            }
-                        >
-                           Add to cart
-                        </Button> 
+
+                    <Button
+                        variant="container"
+                        style={{
+                            backgroundColor: "#596a2a",
+                            color: "white",
+                            marginTop: "10px"
+                        }}
+                        fullWidth
+                        onClick={() =>
+                            (window.location.href = "/PlaceDetailsForTour")
+                        }
+                    >
+                        Add to cart
+                    </Button>
                 </CardContent>
             </Card>
         </div>
@@ -187,7 +190,7 @@ class TicketingFilter extends Component {
                     <div className="col-lg-9 col-md-9 ">
                         <div className="d-flex sorting-options-panel align-middle px-3 mb-2 ">
                             <div className="flex-grow-1 d-flex my-auto">
-                                <h4 style={{ color: "#596a2a" }}> Ticket</h4>
+                                <Typography variant='title' style={{ fontWeight: 'bold', fontSize: '2rem' }} color='#596a2a'>Ticket</Typography>
                             </div>
                             <div>
                                 <FormControl

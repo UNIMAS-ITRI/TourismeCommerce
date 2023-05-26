@@ -89,7 +89,7 @@ class ProductsFilter extends Component {
                     >
                         {x.name}
                     </Typography>
-                    <Typography color="text" style={{ textAlign: 'left',fontSize:"0.7rem" }}> {x.shopName}</Typography>
+                    <Typography variant='subtitle2' style={{ textAlign: 'left',fontSize:"0.7rem",color:"dimgrey" }}> {x.shopName}</Typography>
                     <Rating
                         style={{ fontSize: "1.0rem" }}
                         value={x.hotelStar}
@@ -163,7 +163,7 @@ class ProductsFilter extends Component {
                             }}
                             fullWidth
                             onClick={() =>
-                                (window.location.href = "/HotelDetail")
+                                (window.location.href = "/ProductsDetail")
                             }
                         >
                             Add to cart
@@ -184,9 +184,13 @@ class ProductsFilter extends Component {
 
                     <div className="col-lg-9 col-md-9 ">
                         <div className="d-flex sorting-options-panel align-middle px-3 mb-2 ">
+                            {/* <div className="flex-grow-1 d-flex my-auto">
+                                <h4 style={{ color: "#596a2a" }}>Sarawak Exclusive</h4>
+                            </div> */}
                             <div className="flex-grow-1 d-flex my-auto">
-                                <h4 style={{ color: "#596a2a" }}> Ticket</h4>
-                            </div>
+                               <Typography variant='title' style={{ fontWeight: 'bold', fontSize: '2rem' }} color='#596a2a'>Sarawak Exclusive</Typography>
+                               </div>
+
                             <div>
                                 <FormControl
                                     variant="outlined"

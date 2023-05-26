@@ -2,7 +2,8 @@ export const recommend = [
     {
         image:
             "https://sarawaktourism.com/TourismApi/images/place/186/186_slider1.jpg",
-        name: "Fort Margherita (Adult)",
+        name: "One Day Pass (Adult)",
+        place: "Fort Margherita",
         price: "20",
         discountedPrice: "10",
         rating: 8.5,
@@ -16,7 +17,8 @@ export const recommend = [
     {
         image:
             "https://sarawaktourism.com/TourismApi/images/place/186/186_slider1.jpg",
-        name: "Fort Margherita (Kid)",
+        name: "One Day Pass (Kid)",
+        place: "Fort Margherita",
         price: "10",
         discountedPrice: "5",
         rating: 8.5,
@@ -29,7 +31,8 @@ export const recommend = [
     },
     {
         image: "https://sarawaktourism.com/TourismApi/images/place/496/media/gallery1.jpg",
-        name: "The Pavilion (Textile Museum)",
+        name: "One Day Pass",
+        place: "The Pavilion (Textile Museum)",
         price: "10",
         discountedPrice: "5",
         rating: 8.5,
@@ -43,7 +46,8 @@ export const recommend = [
     {
         image:
             "https://sarawaktourism.com/TourismApi/images/place/162/162_slider1.jpg",
-        name: "Borneo Cultures Museum",
+        name: "One Day Pass",
+        place: "Borneo Cultures Museum",
         price: "30",
         discountedPrice: "10",
         rating: 8.8,
@@ -56,7 +60,8 @@ export const recommend = [
     },
     {
         image: "https://sarawaktourism.com/TourismApi/images/place/166/166_slider1.jpg",
-        name: "Sarawak Museum",
+        name: "One Day Pass",
+        place: "Sarawak Museum",
         discountedPrice: "10",
         price: "30",
         rating: 7.8,
@@ -69,7 +74,8 @@ export const recommend = [
     },
     {
         image: "https://sarawaktourism.com/TourismApi/images/place/426/426_slider1.jpg",
-        name: "Gunung Gading National Park",
+        name: "One Day Pass",
+        place: "Gunung Gading National Park",
         price: "10",
         discountedPrice: "10",
         rating: 8.5,
@@ -83,7 +89,8 @@ export const recommend = [
 
     {
         image: "https://sarawaktourism.com/TourismApi/images/place/185/185_slider1.jpg",
-        name: "Mulu National Park",
+        name: "One Day Pass",
+        place: "Mulu National Park",
         price: "10",
         discountedPrice: "10",
         rating: 8.2,

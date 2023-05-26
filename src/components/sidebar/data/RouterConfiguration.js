@@ -40,7 +40,7 @@ import LocalFoodCategories from "../../../pages/LocalFood/LocalFoodCategories";
 import LocalFoodDetail from "../../../pages/LocalFood/LocalFoodDetail";
 import TicketingFilter from "../../../pages/Ticketing/TicketingFilter";
 import ProductsFilter from "../../../pages/Products/ProductsFilter";
-import TicketDetail from "../../../pages/Ticketing/TicketDetail";
+import ProductsDetail from "../../../pages/Products/ProductsDetail";
 // import UserManagement from '../../../pages/UserManagement/UserManagement';
 // import OverallStock from "../../../pages/Stock/OverallStock/OverallStock";
 // import StockGoods from "../../../pages/Stock/StockGoods/StockGoods";
@@ -108,9 +108,9 @@ const routes = [
         element: <ProductsFilter />,
     },
     {
-        path: "/TicketDetail",
+        path: "/ProductsDetail",
         exact: true,
-        element: <TicketDetail />,
+        element: <ProductsDetail />,
     },
     // {
     //     path: "/UserManagement",

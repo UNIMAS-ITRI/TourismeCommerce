@@ -43,13 +43,16 @@ const LocalFoodDetail = () => {
         { value: 'option4', label: 'Heavy Spicy' },
     ]);
     const [selectedOption, setSelectedOption] = useState('option1');
-    const [priceData, setPriceData] = useState([
-        { label: 'Subtotal', value: 'RM 20' },
-        { label: 'Delivery fee', value: 'RM 20' },
-        { label: '+ Container/Processing fee', value: 'RM 20' },
-        { label: 'including Service Tax', value: 'RM 20' },
-        { label: 'Total (Incl. Service Tax)', value: 'RM 20', fontWeight: 'bold' },
-    ]);
+
+    const initialPriceData = {
+        'Subtotal': 20,
+        'Delivery fee': 10,
+        'Container/Processing fee': 1,
+        'including Service Tax': 6,
+        'Total (Incl. Service Tax)': 37,
+    };
+
+    const [priceData, setPriceData] = useState(initialPriceData);
     const [swiperImg] = useState([
         { image: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider4.jpg" },
         { image: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider1.jpg" },
@@ -146,6 +149,7 @@ const LocalFoodDetail = () => {
                     setSelectedItem={setSelectedItem}
                     setOpenModal={setOpenModal}
                     cards={typeData.length > 0 ? typeData : typeData}
+                    page="restaurant"
                 />
 
             </div>
@@ -267,7 +271,7 @@ const LocalFoodDetail = () => {
 
                         <div className="row justify-content-center" style={{ paddingTop: "1vw" }}>
                             <table style={{ width: "-webkit-fill-available" }}>
-                                
+
                                 {
                                     restaurant.allCommentsInRestaurant.length > 0 && restaurant.allCommentsInRestaurant.flat().slice(0, numToShow).map((x, ind) => {
                                         return (
@@ -312,17 +316,13 @@ const LocalFoodDetail = () => {
                                         <Chip label="Fees" />
                                     </Divider>
                                     <Grid item container>
-                                        {priceData.map((item, index) => (
-                                            <React.Fragment key={index}>
-                                                <Grid item xs={6}>
-                                                    <Typography gutterBottom variant="h5" style={{ fontSize: '14px', fontWeight: item.fontWeight }}>
-                                                        {item.label}
-                                                    </Typography>
+                                        {Object.entries(priceData).map(([label, value]) => (
+                                            <React.Fragment key={label}>
+                                                <Grid item xs={6} key={label}>
+                                                    <Typography gutterBottom variant="h5" style={{ fontSize: '14px' }}>{label}</Typography>
                                                 </Grid>
-                                                <Grid item xs={6}>
-                                                    <Typography gutterBottom variant="h5" style={{ fontSize: '14px', fontWeight: item.fontWeight, textAlign: 'right' }}>
-                                                        {item.value}
-                                                    </Typography>
+                                                <Grid item xs={6} key={label}>
+                                                    <Typography gutterBottom variant="h5" style={{ fontSize: '14px', textAlign: 'right' }}>RM {value}</Typography>
                                                 </Grid>
                                             </React.Fragment>
                                         ))}
@@ -349,7 +349,13 @@ const LocalFoodDetail = () => {
                                     <Grid item container justifyContent="flex-end" direction="row" style={{ marginTop: 'auto' }} spacing={2}>
                                         <Grid item xs={4}>
                                             <InputNumber
-                                                onChange={(quantity) => { setnumberOFItem(quantity) }}
+                                                onChange={(quantity) => {
+                                                    setnumberOFItem(quantity); setPriceData((prevPriceData) => ({
+                                                        ...prevPriceData,
+                                                        'Subtotal': initialPriceData['Subtotal'] * numberOFItem,
+                                                        'Total (Incl. Service Tax)': (initialPriceData['Subtotal'] * numberOFItem) + 17
+                                                    }));
+                                                }}
                                                 value={numberOFItem}
                                                 min={1}
                                                 size="sm"

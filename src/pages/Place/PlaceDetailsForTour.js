@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { GitAction } from "../../store/action/gitAction";
-// import { useNavigate } from "react-router/dist";
-import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper';
+import { Pagination, EffectFade, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Rating from "@material-ui/lab/Rating";
 import PageHeader from "../../tools/breadcrumb/breadcrumb";
@@ -16,8 +13,6 @@ import StarIcon from '@mui/icons-material/Star';
 import USER from "../../assets/user.png";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import PanoramaViewer from "../../tools/PanoramaViewer";
-import PanoramaPhoto from "../../tools/Panorama/PanoramaPhoto";
-import ThreeSixty from "react-360-view";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import FullWidthTabs from "../../components/TabsComponent/Tabs";
 import {
@@ -28,15 +23,17 @@ import {
   Typography,
   Button,
   Box,
-  Tabs,
-  Tab,
   Grid,
   Stack,
+  Divider,Chip,FormControl,RadioGroup,FormControlLabel,Radio
 } from '@mui/material';
 import "./PlaceDetails.css";
 import ProductCard from "../Dashboard/ProductCard";
 import TourGuideCard from "./TourGuideCard";
 import { tourGuides, headerDetail } from "./_mock";
+import { VerticalCardListing } from '../../components/verticalCardListing/verticalCardListing';
+import InputNumber from "../../components/InputNumber/InputNumber";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 export default function PlaceDetailsForTour() {
 
@@ -107,6 +104,36 @@ export default function PlaceDetailsForTour() {
     }
   ]
 
+  const TicketListing = [
+    {
+      image: "https://sarawaktourism.com/TourismApi/images/place/186/186_slider1.jpg",
+      name: "One Day Pass (Adult)",
+      place: "Fort Margherita",
+      price: "20",
+      discountedPrice: "10",
+      rating: 8.5,
+      Breakfast_Available: true,
+      hotelStar: 5,
+      locationWise: 8.5,
+      Neighborhood: "Kuching",
+      reviewNum: 4557,
+      review: "Excellent",
+    },
+    {
+      image: "https://sarawaktourism.com/TourismApi/images/place/186/186_slider1.jpg",
+      name: "One Day Pass (Kid)",
+      place: "Fort Margherita",
+      price: "10",
+      discountedPrice: "5",
+      rating: 8.5,
+      Breakfast_Available: true,
+      hotelStar: 5,
+      locationWise: 8.5,
+      Neighborhood: "Kuching",
+      reviewNum: 4557,
+      review: "Excellent",
+    },
+  ]
   const recommend = [
     { image: "http://tourism.denoo.my/TourismApi/images/place/493/493_slider1.jpg", url: "http://tourism.denoo.my/PlaceDetail.aspx?pid=493&plat=1.560269000000000&plng=110.345553000000000", name: "Square Tower" },
     { image: "http://tourism.denoo.my/TourismApi/images/place/488/488_slider1.jpg", url: "http://tourism.denoo.my/PlaceDetail.aspx?pid=488&plat=1.559240000000000&plng=110.344550000000000", name: "The Japanese Building" },
@@ -134,7 +161,7 @@ export default function PlaceDetailsForTour() {
       { title: "Home", url: "./" },
       { title: "Attraction", url: "http://tourism.denoo.my/MainPlaceOfInterest.aspx" },
       { title: "Old Kuching Heritage Building and Monuments", url: "http://tourism.denoo.my/Heritage.aspx?hid=15" },
-      { title: "Brooke Memorial", url: "" }
+      { title: "Fort Margherita", url: "" }
     ],
     indexImageHover: "",
     indexMediaHower: "",
@@ -147,6 +174,24 @@ export default function PlaceDetailsForTour() {
   }
 
   const [state, setState] = useState(INITIAL_STATE)
+  const [opencartModal, setOpencartModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState({});
+  const initialPriceData = {
+    'Subtotal': 20,
+    'Delivery fee': 10,
+    'Container/Processing fee': 1,
+    'including Service Tax': 6,
+    'Total (Incl. Service Tax)': 37,
+};
+const [priceData, setPriceData] = useState(initialPriceData);
+const [numberOFItem, setnumberOFItem] = useState(1);
+const [selectedOption, setSelectedOption] = useState('option1');
+const [options] = useState([
+  { value: 'option1', label: '8am-10am' },
+  { value: 'option2', label: '10am-12pm' },
+  { value: 'option3', label: '2pm-4pm' },
+  { value: 'option4', label: '4pm-6pm' },
+]);
 
   const bodyDetail = [
     { index: 0, children: <ProductCard type="Accommodation" />, value: 0, },
@@ -275,6 +320,15 @@ export default function PlaceDetailsForTour() {
     };
   }
 
+  const renderChoices = options.map((option) => (
+    <FormControlLabel
+        key={option.value}
+        value={option.value}
+        control={<Radio />}
+        label={<Typography gutterBottom variant="subtitle" style={{ fontSize: '14px' }}>{option.label}</Typography>}
+    />
+));
+
   return (
     <div style={{ backgroundColor: "white" }}>
       <div style={{ float: "left", marginTop: "0.75vw", marginLeft: "0.75vw", position: "relative" }} >
@@ -309,14 +363,14 @@ export default function PlaceDetailsForTour() {
           </Typography>
           <Button
             variant="contained"
-            style={{ 
+            style={{
               backgroundColor: "#596a2a",
               padding: '0.5vw 1vw',
               color: 'white',
               fontWeight: 'bold',
               borderRadius: '0.5vw',
               boxShadow: '2px 3px 5px #888888',
-             }}
+            }}
             onClick={() =>
               setState(prevState => ({
                 ...prevState,
@@ -408,6 +462,19 @@ export default function PlaceDetailsForTour() {
           {state.mediaClick !== "" && showMedia(state.mediaClick, state.mediaList)}
         </div>
 
+        <div style={{ marginTop: '1vw' }}>
+          <span style={{ verticalAlign: "middle", display: "inline-flex" }}>
+            <ThumbUpIcon style={{ fill: '#596a2a', fontSize: "2.5vw" }} /> <h2 style={{ color: "#596a2a", paddingTop: "0.8vw", fontWeight: "500", paddingLeft: "1vw" }}>Ticket</h2>
+          </span>
+          <div className="row" style={{ paddingTop: "1vw" }}>
+            <VerticalCardListing
+              setSelectedItem={setSelectedItem}
+              setOpenModal={setOpencartModal}
+              cards={TicketListing.length > 0 ? TicketListing : TicketListing}
+            />
+
+          </div>
+        </div>
         {/* ---------------------------------------------------------------------------------------------- Category ---------------------------------------------------------------------------------------------- */}
         <Grid container spacing={2} style={{ paddingTop: "2.5vw" }}>
           <Grid item xs={12} display='flex' justifyContent='space-between' direction='row' alignItems='center'>
@@ -551,6 +618,80 @@ export default function PlaceDetailsForTour() {
           </Grid>
         )}
       </ModalComponent>
+      <ModalComponent
+                        open={opencartModal}
+                        maxWidth={"sm"}
+                        title={selectedItem.name}
+                        draggable={false}
+                        className="modalLanding"
+                        handleOnClose={() => setOpencartModal(!opencartModal)}
+                    >
+                        <div>
+                            <Grid container spacing={2}>
+                                <Grid item xs={6} container direction="column">
+                                    <img src={selectedItem.image} style={{ width: "100%", maxWidth: 400 }} borderWidth="0px" alt={selectedItem.value} />
+                                    <Divider style={{ margin: "1vw 0vw 1vw 0vw" }} variant="middle" >
+                                        <Chip label="Fees" />
+                                    </Divider>
+                                    <Grid item container>
+                                        {Object.entries(priceData).map(([label, value]) => (
+                                            <React.Fragment key={label}>
+                                                <Grid item xs={6} key={label}>
+                                                    <Typography gutterBottom variant="h5" style={{ fontSize: '14px' }}>{label}</Typography>
+                                                </Grid>
+                                                <Grid item xs={6} key={label}>
+                                                    <Typography gutterBottom variant="h5" style={{ fontSize: '14px', textAlign: 'right' }}>RM {value}</Typography>
+                                                </Grid>
+                                            </React.Fragment>
+                                        ))}
+                                    </Grid>
+                                </Grid>
+                                <Grid item xs={6} container direction="column" flex={true}>
+                                    <Grid item container>
+                                        <Typography gutterBottom variant="title" style={{ fontSize: '14px' }}>
+                                           Select your Session
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item container>
+                                        <Typography gutterBottom variant="subtitle" style={{ fontSize: '14px' }}>
+                                            Select up to 1 (optional)
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item container>
+                                        <FormControl component="fieldset">
+                                            <RadioGroup name="myRadioGroup" value={selectedOption} onChange={e => setSelectedOption(e.target.value)}>
+                                                {renderChoices}
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </Grid>
+                                    <Grid item container justifyContent="flex-end" direction="row" style={{ marginTop: 'auto' }} spacing={2}>
+                                        <Grid item xs={4}>
+                                            <InputNumber
+                                                onChange={(quantity) => {
+                                                    setnumberOFItem(quantity); setPriceData((prevPriceData) => ({
+                                                        ...prevPriceData,
+                                                        'Subtotal': initialPriceData['Subtotal'] * quantity,
+                                                        'Total (Incl. Service Tax)': (initialPriceData['Subtotal'] * quantity) + 17
+                                                    }));
+                                                }}
+                                                value={numberOFItem}
+                                                min={1}
+                                                size="sm"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={8}>
+                                            <Button
+                                                size="large"
+                                                fullWidth
+                                                style={{ backgroundColor: '#8fb03d', color: 'white' }}
+                                                onClick={() => { setOpencartModal(false) }}
+                                            ><ShoppingCartIcon />Add to cart</Button>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </div>
+                    </ModalComponent>
     </div>
   )
 }

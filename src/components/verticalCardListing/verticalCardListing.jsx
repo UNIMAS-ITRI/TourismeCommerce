@@ -6,8 +6,9 @@ import { Typography, Card, CardMedia, CardContent, Button, CardActions, Grid, Di
 import StarRateIcon from '@mui/icons-material/StarRate';
 import Rating from "@material-ui/lab/Rating";
 
-export const VerticalCardListing = ({ cards, setSelectedItem, setOpenModal }) => {
+export const VerticalCardListing = ({ cards, setSelectedItem, setOpenModal, page }) => {
     const [indexImageHover, setindexImageHover] = useState(false);
+    console.log("cardscardscards", cards)
     return (
         <Swiper
             modules={[Navigation]}
@@ -17,12 +18,17 @@ export const VerticalCardListing = ({ cards, setSelectedItem, setOpenModal }) =>
         >
             {
                 cards.map((card, index) => {
-                    const ratings = card.comments.map((item) => item.rating);
-                    card["averageRating"] = ratings.reduce((total, rating) => total + rating, 0) / ratings.length;
-                    card['numRatings'] = ratings.length;
+                    if (page === "restaurant") {
+                        const ratings = card.comments.map((item) => item.rating);
+                        card["averageRating"] = ratings.reduce((total, rating) => total + rating, 0) / ratings.length;
+                        card['numRatings'] = ratings.length;
+                    }else{
+                        card["averageRating"] = card.hotelStar
+                        card['numRatings'] = card.reviewNum;
+                    }
                     return (
                         <SwiperSlide key={card.id}>
-                            <Card sx={{ minHeight: 300, maxHeight: 450 }} style={{ boxShadow: "0.2vw 0.3vw 0.5vw #888888", marginBottom:"20px" }} >
+                            <Card sx={{ minHeight: 300, maxHeight: 450 }} style={{ boxShadow: "0.2vw 0.3vw 0.5vw #888888", marginBottom: "20px" }} >
                                 <CardMedia
                                     sx={{ height: 194 }}
                                     image={card.image}
@@ -46,10 +52,10 @@ export const VerticalCardListing = ({ cards, setSelectedItem, setOpenModal }) =>
                                             />{" "}
                                         </div>
                                         <div className="col-8">
-                                            <Typography variant="body2">{card.averageRating} ratings</Typography>
+                                            <Typography variant="body2">{card.numRatings} ratings</Typography>
                                         </div>
                                     </div>
-                               
+
                                     <Grid container>
                                         <Grid item xs={6}>
                                             <Typography style={{ color: "#8fb136", fontWeight: "bold", fontSize: "20px", }} >
