@@ -33,15 +33,15 @@ export default function PanelFooter(props) {
     ]
 
     const DiscoverSarawak = [
-        { url: "https://www.sarawak2discover.com/About.aspx", value: "About Sarawak" },
-        { url: "https://www.sarawak2discover.com/About.aspx?#history", value: "History" },
-        { url: "https://www.sarawak2discover.com/NewsList.aspx", value: "News" },
-        { url: "https://www.sarawak2discover.com/Download.aspx", value: "Brochure" },
-        { url: "https://www.sarawak2discover.com/SiaSitok.aspx", value: "Discover Sia Sitok" }
+        { url: "https://www.sarawaktourism.com/About.aspx", value: "About Sarawak" },
+        { url: "https://www.sarawaktourism.com/About.aspx?#history", value: "History" },
+        { url: "https://www.sarawaktourism.com/NewsList.aspx", value: "News" },
+        { url: "https://www.sarawaktourism.com/Download.aspx", value: "Brochure" },
+        { url: "https://www.sarawaktourism.com/SiaSitok.aspx", value: "Discover Sia Sitok" }
     ]
 
     const travelItinerary = [
-        { url: "https://www.sarawak2discover.com/TourPackage.aspx", value: "Tour Packages" },
+        { url: "https://www.sarawaktourism.com/TourPackage.aspx", value: "Tour Packages" },
         { url: "./", value: "My Planner" },
     ]
 
@@ -58,10 +58,10 @@ export default function PanelFooter(props) {
     ]
 
     const footerLogo = [
-        { image: "https://www.sarawak2discover.com/images/swak.png", url: "https://mtcp.sarawak.gov.my/", alt: "swak" },
-        { image: "https://www.sarawak2discover.com/images/sma.png", url: "https://www.sma.gov.my/", alt: "sma" },
-        { image: "https://www.sarawak2discover.com/images/stb.png", url: "https://stb.sarawak.gov.my/", alt: "stb" },
-        { image: "https://www.sarawak2discover.com/images/unimaslogo.png", url: "https://www.unimas.my/", alt: "unimas" },
+        { image: "https://www.sarawaktourism.com/images/swak.png", url: "https://mtcp.sarawak.gov.my/", alt: "swak" },
+        { image: "https://www.sarawaktourism.com/images/sma.png", url: "https://www.sma.gov.my/", alt: "sma" },
+        { image: "https://www.sarawaktourism.com/images/stb.png", url: "https://stb.sarawak.gov.my/", alt: "stb" },
+        { image: "https://www.sarawaktourism.com/images/unimaslogo.png", url: "https://www.unimas.my/", alt: "unimas" },
     ]
 
     return (
@@ -71,7 +71,7 @@ export default function PanelFooter(props) {
                     <div className="row justify-content-center" style={{ padding: "50px" }}>
                         <div className='col-md-12 col-lg-6 col-xl-6 col-sm-12 mx-auto' >
                             <div style={{ textAlign: "left", padding: '0 20px' }}>
-                                <img src='https://www.sarawak2discover.com/images/logo_w.png' height="85px" width="280px" borderWidth="0px" alt="Logo" />
+                                <img src='https://www.sarawaktourism.com/images/logo_w.png' height="85px" width="280px" borderWidth="0px" alt="Logo" />
                                 <h5 style={{ color: "white", paddingTop: "20px", letterSpacing: "1px" }}>Sarawak Tourism Board</h5>
                             </div>
                             <div style={{ padding: '0 20px' }}>

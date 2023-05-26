@@ -49,12 +49,12 @@ const INITIAL_STATE = {
     openModal: false,
     openFullScreenModal: false,
     swiperImg: [
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb1.jpg" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb4.jpg" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb5.jpg" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb6.jpg" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb7.jpg" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/slides/web/slideWeb2.jpg" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/slides/web/slideWeb1.jpg" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/slides/web/slideWeb4.jpg" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/slides/web/slideWeb5.jpg" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/slides/web/slideWeb6.jpg" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/slides/web/slideWeb7.jpg" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/slides/web/slideWeb2.jpg" },
     ],
     player: "",
     url: null,
@@ -70,36 +70,36 @@ const INITIAL_STATE = {
     playbackRate: 1.0,
     loop: false,
     CNAFF: [
-        { icon: "https://www.sarawak2discover.com/images/culture.png", alt: "Culture", iconName: "Culture" },
-        { icon: "https://www.sarawak2discover.com/images/adventure.png", alt: "Adventure", iconName: "Adventure" },
-        { icon: "https://www.sarawak2discover.com/images/nature.png", alt: "Nature", iconName: "Nature" },
-        { icon: "https://www.sarawak2discover.com/images/food.png", alt: "Food", iconName: "Food" },
-        { icon: "https://www.sarawak2discover.com/images/Festival.png", alt: "Festival", iconName: "Festival" },
+        { icon: "https://www.sarawaktourism.com/images/culture.png", alt: "Culture", iconName: "Culture" },
+        { icon: "https://www.sarawaktourism.com/images/adventure.png", alt: "Adventure", iconName: "Adventure" },
+        { icon: "https://www.sarawaktourism.com/images/nature.png", alt: "Nature", iconName: "Nature" },
+        { icon: "https://www.sarawaktourism.com/images/food.png", alt: "Food", iconName: "Food" },
+        { icon: "https://www.sarawaktourism.com/images/Festival.png", alt: "Festival", iconName: "Festival" },
     ],
     heritageImg: [
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/487/487_slider1.jpg", heritageName: "BROOKE MEMORIAL", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/538/538_slider1.jpg", heritageName: "DARUL KURNIA @ HAJI TAHA ROAD", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/186/186_slider1.jpg", heritageName: "FORT MARGERITA", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/497/497_slider1.jpg", heritageName: "GENERAL POST OFFICE", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/542/542_slider1.jpg", heritageName: "HERITAGE HOUSE OF BENTARA/DARUL MAZIAH", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/540/540_slider1.jpg", heritageName: "HERITAGE HOUSE OF DATU BANDAR HAJI MOHD KASSIM", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/541/541_slider1.jpg", heritageName: "HERITAGE HOUSE OF TAN SRI DATO SERI ABANG AHMAD URAI BIN DATU HAKIM ABANG HJ MOHIDEEN", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/532/532_slider1.jpg", heritageName: "HIANG THIAN SIANG TI TEMPLE", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/536/536_slider1.jpg", heritageName: "INDIAN MOSQUE", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/533/533_slider1.jpg", heritageName: "KUEH SENG ONN TEMPLE", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/537/537_slider1.jpg", heritageName: "MASJID BANDARAYA KUCHING", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/490/490_slider1.jpg", heritageName: "OLD CHINESE COURT (CHINESE HISTORY MUSEUM)", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/495/495_slider1.jpg", heritageName: "OLD GOVERNMENT PRINTING OFFICE", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/486/486_slider1.jpg", heritageName: "OLD KUCHING COURTHOUSE", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/492/492_slider1.jpg", heritageName: "OLD SARAWAK STEAMSHIP BUILDING", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/539/539_slider1.jpg", heritageName: "PERSAUDARAAN KAMPONG MASJID, BINTANGOR AND JALAN HAJI TAHA, KUCHING (MBHT)", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/494/494_slider1.jpg", heritageName: "SARAWAK CULTURAL VILLAGE", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/535/535_slider1.jpg", heritageName: "SIKH TEMPLE", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/493/493_slider1.jpg", heritageName: "SQUARE TOWER", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/488/488_slider1.jpg", heritageName: "THE JAPANESE BUILDING", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/496/496_slider1.jpg", heritageName: "THE PAVILION (TEXTILE MUSEUM)", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/489/489_slider1.jpg", heritageName: "THE ROUND TOWER", url: "/" },
-        { image: "https://www.sarawak2discover.com/TourismApi/images/place/180/180_slider1.jpg", heritageName: "TUA PEK KONG TEMPLE", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/487/487_slider1.jpg", heritageName: "BROOKE MEMORIAL", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/538/538_slider1.jpg", heritageName: "DARUL KURNIA @ HAJI TAHA ROAD", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/186/186_slider1.jpg", heritageName: "FORT MARGERITA", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/497/497_slider1.jpg", heritageName: "GENERAL POST OFFICE", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/542/542_slider1.jpg", heritageName: "HERITAGE HOUSE OF BENTARA/DARUL MAZIAH", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/540/540_slider1.jpg", heritageName: "HERITAGE HOUSE OF DATU BANDAR HAJI MOHD KASSIM", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/541/541_slider1.jpg", heritageName: "HERITAGE HOUSE OF TAN SRI DATO SERI ABANG AHMAD URAI BIN DATU HAKIM ABANG HJ MOHIDEEN", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/532/532_slider1.jpg", heritageName: "HIANG THIAN SIANG TI TEMPLE", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/536/536_slider1.jpg", heritageName: "INDIAN MOSQUE", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/533/533_slider1.jpg", heritageName: "KUEH SENG ONN TEMPLE", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/537/537_slider1.jpg", heritageName: "MASJID BANDARAYA KUCHING", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/490/490_slider1.jpg", heritageName: "OLD CHINESE COURT (CHINESE HISTORY MUSEUM)", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/495/495_slider1.jpg", heritageName: "OLD GOVERNMENT PRINTING OFFICE", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/486/486_slider1.jpg", heritageName: "OLD KUCHING COURTHOUSE", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/492/492_slider1.jpg", heritageName: "OLD SARAWAK STEAMSHIP BUILDING", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/539/539_slider1.jpg", heritageName: "PERSAUDARAAN KAMPONG MASJID, BINTANGOR AND JALAN HAJI TAHA, KUCHING (MBHT)", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/494/494_slider1.jpg", heritageName: "SARAWAK CULTURAL VILLAGE", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/535/535_slider1.jpg", heritageName: "SIKH TEMPLE", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/493/493_slider1.jpg", heritageName: "SQUARE TOWER", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/488/488_slider1.jpg", heritageName: "THE JAPANESE BUILDING", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/496/496_slider1.jpg", heritageName: "THE PAVILION (TEXTILE MUSEUM)", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/489/489_slider1.jpg", heritageName: "THE ROUND TOWER", url: "/" },
+        { image: "https://www.sarawaktourism.com/TourismApi/images/place/180/180_slider1.jpg", heritageName: "TUA PEK KONG TEMPLE", url: "/" },
     ],
     isCollapse: true,
     // panel1a-header: true,
@@ -331,31 +331,31 @@ class Dashboard extends Component {
                                         return ( */}
                                 <div style={{ width: "20%", cursor: "pointer" }}>
                                     <Fade direction="left" delay={1000}>
-                                        <img src="https://www.sarawak2discover.com/images/culture.png" width="80%" alt="Culture" />
+                                        <img src="https://www.sarawaktourism.com/images/culture.png" width="80%" alt="Culture" />
                                         <p style={{ fontSize: "1.185vw" }}>Culture</p>
                                     </Fade>
                                 </div>
                                 <div style={{ width: "20%", cursor: "pointer" }}>
                                     <Fade direction="left" delay={2000}>
-                                        <img src="https://www.sarawak2discover.com/images/adventure.png" width="80%" alt="Adventure" />
+                                        <img src="https://www.sarawaktourism.com/images/adventure.png" width="80%" alt="Adventure" />
                                         <p style={{ fontSize: "1.185vw" }}>Adventure</p>
                                     </Fade>
                                 </div>
                                 <div style={{ width: "20%", cursor: "pointer" }}>
                                     <Fade direction="left" delay={2800}>
-                                        <img src="https://www.sarawak2discover.com/images/nature.png" width="80%" alt="Nature" />
+                                        <img src="https://www.sarawaktourism.com/images/nature.png" width="80%" alt="Nature" />
                                         <p style={{ fontSize: "1.185vw" }}>Nature</p>
                                     </Fade>
                                 </div>
                                 <div style={{ width: "20%", cursor: "pointer" }}>
                                     <Fade direction="left" delay={3600}>
-                                        <img src="https://www.sarawak2discover.com/images/food.png" width="80%" alt="Food" />
+                                        <img src="https://www.sarawaktourism.com/images/food.png" width="80%" alt="Food" />
                                         <p style={{ fontSize: "1.185vw" }}>Food</p>
                                     </Fade>
                                 </div>
                                 <div style={{ width: "20%", cursor: "pointer" }}>
                                     <Fade direction="left" delay={4200}>
-                                        <img src="https://www.sarawak2discover.com/images/Festival.png" width="80%" alt="Festival" />
+                                        <img src="https://www.sarawaktourism.com/images/Festival.png" width="80%" alt="Festival" />
                                         <p style={{ fontSize: "1.185vw" }}>Festival</p>
                                     </Fade>
                                 </div>
@@ -373,7 +373,7 @@ class Dashboard extends Component {
                             className="react-player"
                             width="98%"
                             height="100%"
-                            url="https://www.sarawak2discover.com/TourismApi/images/overall_okshe.mp4"
+                            url="https://www.sarawaktourism.com/TourismApi/images/overall_okshe.mp4"
                             // {
                             //     JSON.parse(
                             //         this.props.coursedetail[0].CourseMedia
@@ -476,7 +476,7 @@ class Dashboard extends Component {
                             >
                                 <img
                                     alt="/"
-                                    src="https://www.sarawak2discover.com/TourismApi/images/event/event.png"
+                                    src="https://www.sarawaktourism.com/TourismApi/images/event/event.png"
                                     // onError={e => (e.target.src = defaultImageUrl())}
                                     height="385"
                                 />
@@ -527,31 +527,31 @@ class Dashboard extends Component {
                                         return ( */}
                                 <div style={{ width: "20%", cursor: "pointer" }}>
                                     <Fade direction="left" delay={1000}>
-                                        <img src="	https://www.sarawak2discover.com/TourismApi/images/category/ATM.png" width="40%" alt="Culture" />
+                                        <img src="	https://www.sarawaktourism.com/TourismApi/images/category/ATM.png" width="40%" alt="Culture" />
                                         <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>ATM</p>
                                     </Fade>
                                 </div>
                                 <div style={{ width: "20%", cursor: "pointer" }}>
                                     <Fade direction="left" delay={2000}>
-                                        <img src="https://www.sarawak2discover.com/TourismApi/images/category/Emergency.png" width="40%" alt="Adventure" />
+                                        <img src="https://www.sarawaktourism.com/TourismApi/images/category/Emergency.png" width="40%" alt="Adventure" />
                                         <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Emergency Contact</p>
                                     </Fade>
                                 </div>
                                 <div style={{ width: "20%", cursor: "pointer" }}>
                                     <Fade direction="left" delay={2800}>
-                                        <img src="https://www.sarawak2discover.com/TourismApi/images/category/Hospital.png" width="40%" alt="Nature" />
+                                        <img src="https://www.sarawaktourism.com/TourismApi/images/category/Hospital.png" width="40%" alt="Nature" />
                                         <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Hospital</p>
                                     </Fade>
                                 </div>
                                 <div style={{ width: "20%", cursor: "pointer" }}>
                                     <Fade direction="left" delay={3600}>
-                                        <img src="https://www.sarawak2discover.com/TourismApi/images/category/Library.png" width="40%" alt="Food" />
+                                        <img src="https://www.sarawaktourism.com/TourismApi/images/category/Library.png" width="40%" alt="Food" />
                                         <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Library</p>
                                     </Fade>
                                 </div>
                                 <div style={{ width: "20%", cursor: "pointer" }}>
                                     <Fade direction="left" delay={4200}>
-                                        <img src="	https://www.sarawak2discover.com/TourismApi/images/category/MoneyChanger.png" width="40%" alt="Festival" />
+                                        <img src="	https://www.sarawaktourism.com/TourismApi/images/category/MoneyChanger.png" width="40%" alt="Festival" />
                                         <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Money Changer</p>
                                     </Fade>
                                 </div>
@@ -565,25 +565,25 @@ class Dashboard extends Component {
                                         return ( */}
                                 <div style={{ width: "20%", cursor: "pointer" }}>
                                     <Fade direction="left" delay={5000}>
-                                        <img src="https://www.sarawak2discover.com/TourismApi/images/category/PetroStation.png" width="40%" alt="Culture" />
+                                        <img src="https://www.sarawaktourism.com/TourismApi/images/category/PetroStation.png" width="40%" alt="Culture" />
                                         <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Petrol Station</p>
                                     </Fade>
                                 </div>
                                 <div style={{ width: "20%", cursor: "pointer" }}>
                                     <Fade direction="left" delay={6000}>
-                                        <img src="https://www.sarawak2discover.com/TourismApi/images/category/PoliceStation.png" width="40%" alt="Adventure" />
+                                        <img src="https://www.sarawaktourism.com/TourismApi/images/category/PoliceStation.png" width="40%" alt="Adventure" />
                                         <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Police Station</p>
                                     </Fade>
                                 </div>
                                 <div style={{ width: "20%", cursor: "pointer" }}>
                                     <Fade direction="left" delay={6800}>
-                                        <img src="	https://www.sarawak2discover.com/TourismApi/images/category/Telecommunication.png" width="40%" alt="Nature" />
+                                        <img src="	https://www.sarawaktourism.com/TourismApi/images/category/Telecommunication.png" width="40%" alt="Nature" />
                                         <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Telecommunication</p>
                                     </Fade>
                                 </div>
                                 <div style={{ width: "20%", cursor: "pointer" }}>
                                     <Fade direction="left" delay={7600}>
-                                        <img src="https://www.sarawak2discover.com/TourismApi/images/category/Transportation.png" width="40%" alt="Food" />
+                                        <img src="https://www.sarawaktourism.com/TourismApi/images/category/Transportation.png" width="40%" alt="Food" />
                                         <p style={{ fontSize: "1.185vw", color: "#5A6A2F", fontWeight: "600" }}>Transport</p>
                                     </Fade>
                                 </div>

@@ -22,13 +22,13 @@ import { headerDetail } from '../../pages/Place/_mock';
 export default function PanelHeader(props) {
   const Page = [
     { name: "Home", url: "./", submenu: [] },
-    { name: "Cities", url: "https://www.sarawak2discover.com/CityList.aspx", submenu: [] },
-    { name: "Attractions", url: "https://www.sarawak2discover.com/MainPlaceOfInterest.aspx", submenu: [] },
+    { name: "Cities", url: "https://www.sarawaktourism.com/CityList.aspx", submenu: [] },
+    { name: "Attractions", url: "https://www.sarawaktourism.com/MainPlaceOfInterest.aspx", submenu: [] },
     { name: "Local Food", url: "/FoodCategory", submenu: [] },
-    { name: "Bioscape", url: "./", submenu: [{ name: "Biodiversity", url: "https://www.sarawak2discover.com/Biodiversity.aspx?bid=1" }, { name: "Landscape", url: "https://www.sarawak2discover.com/BiodiversityList.aspx?species=Landscape" }] },
-    { name: "Heritage", url: "./", submenu: [{ name: "Old Kuching Smart Heritage", url: "https://www.sarawak2discover.com/Heritage.aspx?hid=-1" }, { name: "Old Kuching Heritage Buildings and Monuments", url: "https://www.sarawak2discover.com/Heritage.aspx?hid=15" }, { name: "Kampung Heritage", url: "https://www.sarawak2discover.com/Heritage.aspx?hid=16" }] },
-    { name: "Event & Festivals", url: "https://www.sarawak2discover.com/EventList.aspx", submenu: [] },
-    { name: "Useful Facts", url: "./", submenu: [{ name: "Custom & Immigration", url: "https://sarawaktourism.com/travelling-to-sarawak/" }, { name: "Regulations", url: "https://www.sarawak2discover.com/TouristInfo.aspx?factid=2" }, { name: "Telecommunications", url: "https://www.sarawak2discover.com/TouristInfo.aspx?factid=3" }, { name: "COVID-19 Guideline", url: "https://www.sarawak2discover.com/PandemicGuideline.aspx" }, { name: "Others", url: "https://www.sarawak2discover.com/TouristInfo.aspx?factid=0" }] }]
+    { name: "Bioscape", url: "./", submenu: [{ name: "Biodiversity", url: "https://www.sarawaktourism.com/Biodiversity.aspx?bid=1" }, { name: "Landscape", url: "https://www.sarawaktourism.com/BiodiversityList.aspx?species=Landscape" }] },
+    { name: "Heritage", url: "./", submenu: [{ name: "Old Kuching Smart Heritage", url: "https://www.sarawaktourism.com/Heritage.aspx?hid=-1" }, { name: "Old Kuching Heritage Buildings and Monuments", url: "https://www.sarawaktourism.com/Heritage.aspx?hid=15" }, { name: "Kampung Heritage", url: "https://www.sarawaktourism.com/Heritage.aspx?hid=16" }] },
+    { name: "Event & Festivals", url: "https://www.sarawaktourism.com/EventList.aspx", submenu: [] },
+    { name: "Useful Facts", url: "./", submenu: [{ name: "Custom & Immigration", url: "https://sarawaktourism.com/travelling-to-sarawak/" }, { name: "Regulations", url: "https://www.sarawaktourism.com/TouristInfo.aspx?factid=2" }, { name: "Telecommunications", url: "https://www.sarawaktourism.com/TouristInfo.aspx?factid=3" }, { name: "COVID-19 Guideline", url: "https://www.sarawaktourism.com/PandemicGuideline.aspx" }, { name: "Others", url: "https://www.sarawaktourism.com/TouristInfo.aspx?factid=0" }] }]
 
   const handleOnSearch = (searchTerm) => {
     console.log(searchTerm);
@@ -39,7 +39,7 @@ export default function PanelHeader(props) {
       <Box sx={{ backgroundColor: "#353736", padding: 1.5 }}>
         <Grid container>
           <Grid item xs={12} justifyContent='flex-end' alignItems='center' display='flex'>
-            <Typography style={{ fontWeight: "500", color: "white", paddingRight: "20px" }}><a href="https://www.sarawak2discover.com/ContactUs.aspx"></a>Contact Us</Typography>
+            <Typography style={{ fontWeight: "500", color: "white", paddingRight: "20px" }}><a href="https://www.sarawaktourism.com/ContactUs.aspx"></a>Contact Us</Typography>
             <Typography style={{ paddingRight: "1vw" }}><PersonIcon style={{ fill: 'white' }} /></Typography>
             <Typography style={{ paddingRight: "1vw" }}><SearchIcon style={{ fill: 'white' }} /></Typography>
           </Grid>
