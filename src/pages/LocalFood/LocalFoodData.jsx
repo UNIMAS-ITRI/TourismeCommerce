@@ -47,24 +47,24 @@ export const restaurantsDummy = {
     "restaurants": [
         {
             "id": 1,
-            "name": "Italian Delight",
-            "location": "123 Main St, City",
-            "latitude": 1.02,
-            "longitude": 1.02,
+            "name": "Borneo Delight",
+            "location": "13 Wayang Street, Kuching Malaysia",
+            "latitude":1.557633,
+            "longitude": 110.3431056,
             "distance": 2.2,
             "time": 30,
             "State": "Kuching",
-            "OperateTime": "6am-4pm",
-            "Email": "Italian@gmail.com",
-            "Contact": "0111-070617",
-            "Website": "www.Italian.com",
-            "PlaceDesc": "Good",
+            "OperateTime": "-",
+            "Email": "-",
+            "Contact": "+60 17-504 8094",
+            "Website": "https://www.facebook.com/borneodelightkuching/",
+            "PlaceDesc": "The restaurant specializes in Asian and Malaysian cuisines, offering a delightful selection of dishes from these culinary traditions. They cater to various dietary preferences and provide options for vegetarian-friendly meals. Whether you have a preference for Asian flavors or are seeking traditional Malaysian delicacies, this restaurant has something to satisfy your taste buds. With their focus on quality and variety, they ensure that vegetarian customers can also enjoy a satisfying dining experience.",
             "menu": [
                 {
-                    "name": "Margherita Pizza",
-                    "image": "https://www.sarawak2discover.com/TourismApi/images/food/terungdayaksoup.jpg",
+                    "name": "Laksa Sarawak",
+                    "image": "https://media-cdn.tripadvisor.com/media/photo-m/1280/18/5d/a7/ed/photo0jpg.jpg",
                     "price": 10.99,
-                    "category": "noodle",
+                    "category": "noodles",
                     "rating": 4,
                     "comments": [{
                         "commentID": 1,
@@ -91,9 +91,9 @@ export const restaurantsDummy = {
 
                 },
                 {
-                    "name": "Lasagna",
-                    "image": "https://www.sarawak2discover.com/TourismApi/images/food/terungdayaksoup.jpg",
-                    "price": 12.99,
+                    "name": "Nasi Goreng",
+                    "image": "https://media-cdn.tripadvisor.com/media/photo-o/10/f9/8b/5f/comimos-6-personas-eligiendo.jpg",
+                    "price": 8.99,
                     "category": "rice",
                     "rating": 4,
                     "comments": [{
@@ -121,9 +121,9 @@ export const restaurantsDummy = {
 
                 },
                 {
-                    "name": "Lasagna",
-                    "image": "https://www.sarawak2discover.com/TourismApi/images/food/terungdayaksoup.jpg",
-                    "price": 12.99,
+                    "name": "Fried Chicken with rice",
+                    "image": "https://media-cdn.tripadvisor.com/media/photo-o/1b/3d/90/02/fried-chicken-with-rice.jpg",
+                    "price": 8.99,
                     "category": "rice",
                     "rating": 4,
                     "comments": [{
@@ -151,69 +151,9 @@ export const restaurantsDummy = {
 
                 },
                 {
-                    "name": "Lasagna",
-                    "image": "https://www.sarawak2discover.com/TourismApi/images/food/terungdayaksoup.jpg",
-                    "price": 12.99,
-                    "category": "rice",
-                    "rating": 4,
-                    "comments": [{
-                        "commentID": 1,
-                        "userID": 1,
-                        "name": "User 1",
-                        "text": "good",
-                        "rating": 4,
-                        "Date": "22/03/2022"
-                    }, {
-                        "commentID": 1,
-                        "userID": 1,
-                        "name": "User 1",
-                        "text": "good",
-                        "rating": 4,
-                        "Date": "22/03/2022"
-                    }, {
-                        "commentID": 1,
-                        "userID": 1,
-                        "name": "User 1",
-                        "text": "good",
-                        "rating": 4,
-                        "Date": "22/03/2022"
-                    },],
-
-                },
-                {
-                    "name": "Lasagna",
-                    "image": "https://www.sarawak2discover.com/TourismApi/images/food/terungdayaksoup.jpg",
-                    "price": 12.99,
-                    "category": "rice",
-                    "rating": 4,
-                    "comments": [{
-                        "commentID": 1,
-                        "userID": 1,
-                        "name": "User 1",
-                        "text": "good",
-                        "rating": 4,
-                        "Date": "22/03/2022"
-                    }, {
-                        "commentID": 1,
-                        "userID": 1,
-                        "name": "User 1",
-                        "text": "good",
-                        "rating": 4,
-                        "Date": "22/03/2022"
-                    }, {
-                        "commentID": 1,
-                        "userID": 1,
-                        "name": "User 1",
-                        "text": "good",
-                        "rating": 4,
-                        "Date": "22/03/2022"
-                    },],
-
-                },
-                {
-                    "name": "Lasagna",
-                    "image": "https://www.sarawak2discover.com/TourismApi/images/food/terungdayaksoup.jpg",
-                    "price": 12.99,
+                    "name": "3 layer milk tea",
+                    "image": "https://media-cdn.tripadvisor.com/media/photo-p/0b/a2/11/1e/borneo-delight.jpg",
+                    "price": 5.00,
                     "category": "drink",
                     "rating": 4,
                     "comments": [{
@@ -244,24 +184,22 @@ export const restaurantsDummy = {
         },
         {
             "id": 2,
-            "name": "Mexican Fiesta",
-            "location": "456 Elm St, City",
-            // "rating": 4,
-            "latitude": 1.02,
-
-            "longitude": 1.02,
+            "name": "Tribal Stove @ Tribal Taste",
+            "location": "Taman sri sarawak, ground floor, Kuching 93100 Malaysia",
+            "latitude":1.5572058,
+            "longitude": 110.3486586,
             "distance": 2.2,
             "time": 30,
             "State": "Kuching",
-            "OperateTime": "6am-4pm",
-            "Email": "Mexican@gmail.com",
-            "Contact": "0111-070617",
-            "Website": "www.Mexican.com",
+            "OperateTime": "-",
+            "Email": "noresa@positivemind.my <noresa@positivemind.my>;",
+            "Contact": "+60 19-783 1516",
+            "Website": "-",
             "PlaceDesc": "Good",
             "menu": [
                 {
-                    "name": "Tacos",
-                    "image": "https://www.sarawak2discover.com/TourismApi/images/food/terungdayaksoup.jpg",
+                    "name": "Ayam Pansuh",
+                    "image": "https://media-cdn.tripadvisor.com/media/photo-o/0d/b3/ae/1c/photo3jpg.jpg",
                     "price": 7.5,
                     "category": "rice",
                     "rating": 4,
@@ -290,39 +228,9 @@ export const restaurantsDummy = {
 
                 },
                 {
-                    "name": "Enchiladas",
-                    "image": "https://www.sarawak2discover.com/TourismApi/images/food/terungdayaksoup.jpg",
-                    "price": 9.99,
-                    "category": "seafood",
-                    "rating": 4,
-                    "comments": [{
-                        "commentID": 1,
-                        "userID": 1,
-                        "name": "User 1",
-                        "text": "good",
-                        "rating": 4,
-                        "Date": "22/03/2022"
-                    }, {
-                        "commentID": 1,
-                        "userID": 1,
-                        "name": "User 1",
-                        "text": "good",
-                        "rating": 4,
-                        "Date": "22/03/2022"
-                    }, {
-                        "commentID": 1,
-                        "userID": 1,
-                        "name": "User 1",
-                        "text": "good",
-                        "rating": 4,
-                        "Date": "22/03/2022"
-                    },],
-
-                },
-                {
-                    "name": "Lasagna",
-                    "image": "https://www.sarawak2discover.com/TourismApi/images/food/terungdayaksoup.jpg",
-                    "price": 12.99,
+                    "name": "Cinnamon Lemon Tea",
+                    "image": "https://media-cdn.tripadvisor.com/media/photo-o/06/23/1e/67/cinnamon-lemon-tea-absolutely.jpg",
+                    "price": 3.99,
                     "category": "drink",
                     "rating": 4,
                     "comments": [{
@@ -348,7 +256,7 @@ export const restaurantsDummy = {
                         "Date": "22/03/2022"
                     },],
 
-                }
+                },
             ]
         }
     ]

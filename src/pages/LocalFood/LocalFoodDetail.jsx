@@ -54,12 +54,10 @@ const LocalFoodDetail = () => {
 
     const [priceData, setPriceData] = useState(initialPriceData);
     const [swiperImg] = useState([
-        { image: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider4.jpg" },
-        { image: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider1.jpg" },
-        { image: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider2.jpg" },
-        { image: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider3.jpg" },
-        { image: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider4.jpg" },
-        { image: "http://tourism.denoo.my/TourismApi/images/place/487/487_slider1.jpg" },
+        { image: "https://media-cdn.tripadvisor.com/media/photo-m/1280/18/5d/a7/ed/photo0jpg.jpg" },
+        { image: "https://media-cdn.tripadvisor.com/media/photo-o/10/f9/8b/5f/comimos-6-personas-eligiendo.jpg" },
+        { image: "https://media-cdn.tripadvisor.com/media/photo-o/1b/3d/90/02/fried-chicken-with-rice.jpg" },
+        { image: "https://media-cdn.tripadvisor.com/media/photo-p/0b/a2/11/1e/borneo-delight.jpg" },
     ]);
     const [breadcrumb, setBreadcrumb] = useState([
         { title: "Home", url: "/" },
