@@ -42,6 +42,7 @@ import TicketingFilter from "../../../pages/Ticketing/TicketingFilter";
 import ProductsFilter from "../../../pages/Products/ProductsFilter";
 import ProductsDetail from "../../../pages/Products/ProductsDetail";
 import TransportationFilter from "../../../pages/Transportation/TransportationFilter";
+import TourPackagesFilter from "../../../pages/TourPackages/TourPackagesFilter";
 // import UserManagement from '../../../pages/UserManagement/UserManagement';
 // import OverallStock from "../../../pages/Stock/OverallStock/OverallStock";
 // import StockGoods from "../../../pages/Stock/StockGoods/StockGoods";
@@ -117,6 +118,11 @@ const routes = [
         path: "/Transportation",
         exact: true,
         element: <TransportationFilter />,
+    },
+    {
+        path: "/TourPackages",
+        exact: true,
+        element: <TourPackagesFilter />,
     },
     // {
     //     path: "/UserManagement",
