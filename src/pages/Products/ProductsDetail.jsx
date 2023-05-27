@@ -5,33 +5,27 @@ import { Pagination, EffectFade, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Rating from "@material-ui/lab/Rating";
 import PageHeader from "../../tools/breadcrumb/breadcrumb";
-
-import OperateHour from "@mui/icons-material/AccessTime";
-import EmailIcon from "@mui/icons-material/Email";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import Website from "@mui/icons-material/Language";
-import Marker from "@mui/icons-material/Room";
-import MapModule from "../../utils/Map/MapModule";
-import StarIcon from "@mui/icons-material/Star";
-import USER from "../../assets/user.png";
-import PanoramaViewer from "../../tools/PanoramaViewer";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 
 import Recommend from "../../components/Recomend";
 import HotelModal from "../Hotel/HotelModal";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import { CardContent, Stack, Divider } from "@mui/material";
-
 import {
     Grid,
     Typography,
+    Stack,
+    Divider,
+    Button,
+    Container,
+    LinearProgress
 } from "@mui/material";
-import { LinearProgress } from "@mui/material";
 import "../Hotel/HotelDetails";
-import { RatingList, swiperImg, recommend } from './ProductsData';
+import { swiperImg, recommend ,RatingList} from './ProductsData';
+import InputNumber from '../../components/InputNumber/InputNumber';
+import './product.scss';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { VerticalCardListing } from '../../components/verticalCardListing/verticalCardListing';
+import StarIcon from '@mui/icons-material/Star';
+import USER from "../../assets/user.png";
 
 function mapStateToProps(state) {
     return {
@@ -60,7 +54,9 @@ const INITIAL_STATE = {
     openModal: false,
     openHotelModal: false,
     selectedRoom: [],
-    variation: { "Shipping": "Free Shipping" }
+    variation: { "Shipping": "Free Shipping" },
+    numberOFItem: 1,
+    isExpand: false
 };
 
 class ProductsDetail extends Component {
@@ -73,147 +69,24 @@ class ProductsDetail extends Component {
 
     componentDidUpdate(prevProps, prevState) { }
 
-    showMedia = (name, data) => {
-        let modalClick = (list) => {
-            if (name === "3D Model")
-                this.setState({ selectedMediaDetails: list, openModal: true });
-            else this.setState({ selectedMedia: list.url });
-        };
-
-        let mediaList = (list, index) => {
-            if (name === "Video") {
-                return (
-                    <Card
-                        onClick={() => ""}
-                        style={{ boxShadow: "2px 3px 5px #888888", width: "fit-content" }}
-                    >
-                        <video key={index} width="500vw" controls>
-                            <source src={list.url} type="video/mp4" />
-                        </video>
-                        <CardContent>
-                            <Typography
-                                color="text"
-                                style={{ fontWeight: "bold", fontSize: "1vw" }}
-                            >
-                                {list.name}
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                );
-            } else {
-                return (
-                    <>
-                        <Card
-                            onClick={() => modalClick(list)}
-                            style={{
-                                boxShadow:
-                                    this.state.indexMediaHower === index
-                                        ? "5px 6px 7px #888888"
-                                        : "2px 3px 5px #888888",
-                                width: "15vw",
-                                position: "relative",
-                            }}
-                        >
-                            <CardMedia
-                                component="img"
-                                height="250vw"
-                                width="100%"
-                                src={list.url}
-                                alt={list.description}
-                                onMouseOver={() => this.setState({ indexMediaHower: index })}
-                                onMouseOut={() => this.setState({ indexMediaHower: "" })}
-                            />
-                            <div class="overlay">
-                                <div class="CardViewLabel">{list.name}</div>
-                            </div>
-                        </Card>
-                    </>
-                );
-            }
-        };
-
-        if (name === "Street View" && this.state.openModal === false)
-            this.setState({ selectedMediaDetails: data[0], openModal: true });
-
-        let columns = [];
-        data.length > 0 &&
-            data.map((x, index) => {
-                // push column
-                columns.push(
-                    <>
-                        <div className="col" key={index}>
-                            {mediaList(x, index)}
-                        </div>
-                    </>
-                );
-
-                // force wrap to next row every specific columns
-                if (name === "Video" ? (index + 1) % 3 === 0 : (index + 1) % 5 === 0) {
-                    columns.push(
-                        <div className="row" style={{ paddingTop: "1.5vw" }}>
-                            {" "}
-                        </div>
-                    );
-                }
-            });
-
-        return (
-            <div
-                className="row"
-                style={{ paddingTop: "1.5vw", justifyContent: "center" }}
-            >
-                {name === "Panorama/360° VR" && this.state.selectedMedia !== "" && (
-                    <div
-                        className="row  justify-content-center"
-                        style={{ padding: "1.5vw", width: "65vw" }}
-                    >
-                        <PanoramaViewer src={this.state.selectedMedia} />
-                    </div>
-                )}
-                <div className="row  justify-content-center">
-                    {name !== "Street View" && columns}
-                </div>
-            </div>
-        );
-    };
-
     render() {
         return (
             <div style={{ backgroundColor: "white" }}>
 
                 <div
                     style={{
-                        float: "left",
+                        // float: "left",
                         marginTop: "0.75vw",
                         marginLeft: "0.75vw",
-                        position: "relative",
+                        // position: "relative",
+                        width: "100vw"
                     }}
                 >
-                    <PageHeader breadcrumb={this.state.breadcrumb} />
+                    <PageHeader breadcrumb={this.state.breadcrumb} style={{ marginLeft: 0 }} />
                 </div>
-                <Swiper
-                    modules={[EffectFade, Pagination, Autoplay]}
-                    effect="fade"
-                    onSlideChange={() => console.log("slide change")}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    // height={250}
-                    // width={300}
-                    autoplay={{ delay: 5000 }}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    loop={true}
-                >
-                    {swiperImg.map((el) => {
-                        return (
-                            <SwiperSlide zIndex={0}>
-                                <img src={el.image} alt='' />
-                            </SwiperSlide>
-                        );
-                    })}
-                </Swiper>
-                {/* <Grid container spacing={2}>
-                    <Grid item xs={6}>
+
+                <div className="product__content row ">
+                    <div className="col-8 ms-5">
                         <Swiper
                             style={{ width: "45vw" }}
                             modules={[EffectFade, Pagination, Autoplay]}
@@ -236,435 +109,219 @@ class ProductsDetail extends Component {
                                 );
                             })}
                         </Swiper>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Stack direction="column" spacing={1}>
-                            <Typography
-                                variant='title'
-                                style={{ fontWeight: "bold", textAlign: "left", fontSize: "2rem" }} > {recommend[0].name} </Typography>
-                            <Stack direction="row" spacing={1} divider={<Divider orientation="vertical" flexItem style={{ color: '596a2a' }} />}>
-                                <Typography variant='subtitle2'>{recommend[0].hotelStar} <Rating
-                                    style={{ fontSize: "1.0rem" }}
-                                    value={recommend[0].hotelStar}
-                                /></Typography>
-                                <Typography variant='subtitle2'>{recommend[0].reviewNum} reviews</Typography>
-                                <Typography variant='subtitle2'>{recommend[0].soldNum} sold</Typography>
-                            </Stack>
-                            <Grid item container>
-                                <Grid item xs={2}>
-                                    <Typography gutterBottom variant="h5" style={{ fontSize: '14px' }}>Shipping</Typography>
-                                </Grid>
-                                <Grid item xs>
-                                    <Stack direction="column" spacing={1}>
-                                        <Typography gutterBottom variant="h5" style={{ fontSize: '14px' }}><LocalShippingIcon /> Free Shipping</Typography>
-                                        <Typography gutterBottom variant="h5" style={{ fontSize: '14px' }}><LocalShippingIcon /> Shipping To</Typography>
+                    </div>
+                    <div className="col-7">
+                        <div className="product__info">
+                            <div className="row" >
+                                <Typography
+                                    variant='title'
+                                    style={{ fontWeight: "bold", textAlign: "left", fontSize: "2rem" }} > {recommend[0].name} </Typography>
+                                <Typography className="col-12" >
+                                    Merchant Shop: {recommend[0].shopName}
+                                </Typography>
+                            </div>
+                            <Grid item style={{ marginTop: "10px" }} >
+                                <Stack direction="column" spacing={1}>
+
+                                    <Stack direction="row" spacing={1} divider={<Divider orientation="vertical" flexItem style={{ color: '596a2a' }} />}>
+                                        <Typography variant='subtitle2'>{recommend[0].hotelStar} <Rating
+                                            style={{ fontSize: "1.0rem" }}
+                                            value={recommend[0].hotelStar}
+                                        /></Typography>
+                                        <Typography variant='subtitle2'>{recommend[0].reviewNum} reviews</Typography>
+                                        <Typography variant='subtitle2'>{recommend[0].soldNum} sold</Typography>
                                     </Stack>
-                                </Grid>
+                                    {/* <Grid item container> */}
+                                    {/* <Grid item xs={2}>
+                                            <Typography gutterBottom variant="h5" style={{ fontSize: '14px' }}>Shipping</Typography>
+                                        </Grid> */}
+                                    {/* <Grid item xs> */}
+                                    {/* <Stack direction="column" spacing={1}>
+                                                <Typography gutterBottom variant="h5" style={{ fontSize: '14px' }}><LocalShippingIcon /> Free Shipping</Typography>
+                                                <Typography gutterBottom variant="h5" style={{ fontSize: '14px' }}><LocalShippingIcon /> Shipping To</Typography>
+                                            </Stack> */}
+                                    {/* </Grid> */}
+                                    {/* </Grid> */}
+                                </Stack>
                             </Grid>
-                        </Stack>
-                    </Grid>
-                </Grid > */}
-                <div
-                    className="row justify-content-center"
-                    style={{ padding: "2.5vw" }}
-                >
-                    <div
-                        style={{
-                            fontsize: "1.185vw",
-                            textAlign: "justify",
-                            fontFamily: "Future Md BT",
-                        }}
-                    >
-                        <h1 style={{ fontSize: "2vw" }}>
-                            <span style={{ fontWeight: "bold" }}>{recommend[0].name}</span>
-                        </h1>
-                        <span style={{ color: "#A4A2A2", fontSize: "1.2vw" }}>
-                            {recommend[0].State}
-                        </span>
-                        <br />
-                        <span style={{ verticalAlign: "middle", display: "inline-flex" }}>
-                            <Rating
-                                style={{ fontSize: "1.8rem" }}
-                                value={recommend[0].Rating}
-                            />{" "}
-                            <label
-                                style={{
-                                    fontWeight: "bold",
-                                    paddingLeft: "0.5vw",
-                                    fontSize: "1.0vw",
-                                }}
+                        </div>
+                        <div className="product__sidebar">
+                            <Typography variant='title'
+                                style={{ fontWeight: "bold", textAlign: "left", fontSize: "2rem" }}
                             >
-                                {recommend[0].Rating} ( 7799
-                                {/* {recommend[0].Review.length} */} Review(s))
-                            </label>
-                        </span>
-                    </div>
-                    <div
-                        className="row justify-content-center"
-                        style={{ paddingTop: "1vw" }}
-                    >
-                        <div
-                            className="col-md-6 col-lg-6 col-xl-6 col-sm-12 mx-auto"
-                            style={{ borderRight: "1px solid #596a2a" }}
-                        >
-                            <ul class="list-unstyled" style={{ float: "none" }}>
-                                <li>
-                                    <p
-                                        style={{
-                                            color: "#596a2a",
-                                            letterSpacing: "0.1vw",
-                                            display: "block",
-                                        }}
-                                    >
-                                        <OperateHour
-                                            style={{ fill: "#596a2a", fontSize: "1.5vw" }}
+                                RM {this.state.numberOFItem === 0 ? recommend[0].price : recommend[0].price * this.state.numberOFItem}
+                            </Typography>
+                            <div className="product__option">
+                                <label className="product__option-label">
+                                    Variation:
+                                </label>
+                                <div className="product__variation">
+                                    {
+                                        recommend[0].variation.map((variation, index) => {
+                                            return (
+                                                <button
+                                                    key={index}
+                                                    type="button"
+                                                    className={
+                                                        variation.ProductVariationDetailID === this.state.productVariationDetailID ?
+                                                            'btn product__variation-button--selected'
+                                                            : 'btn product__variation-button'
+                                                    }
+                                                    onClick={() => this.setState({
+                                                        productVariation: variation.ProductVariationValue,
+                                                        productQuantity: variation.ProductStockAmount,
+                                                        productPrice: variation.ProductVariationPrice,
+                                                        productVariationDetailID: variation.ProductVariationDetailID,
+                                                        selectedVariation: variation,
+                                                        isVariationSet: true
+                                                    })}
+                                                >
+                                                    {variation.ProductVariationValue}
+                                                </button>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+
+                            <div className="product__option">
+                                <div className="row form-group product__option d-flex align-items-center">
+                                    <div className="col-12 col-lg-3 col-xl-3">
+                                        <label
+                                            htmlFor="recommend-quantity"
+                                            className="product__option-label"
+                                        >
+                                            Quantity
+                                        </label>
+                                    </div>
+                                    <div className="col-12 col-lg-5 col-xl-5 product__actions-item">
+                                        <InputNumber
+                                            aria-label="Quantity"
+                                            size="lg"
+                                            min={1}
+                                            value={this.state.numberOFItem}
+                                            onChange={(numberOFItem) => this.setState({ numberOFItem })}
                                         />
-                                        <label
-                                            style={{
-                                                paddingLeft: "1vw",
-                                                fontWeight: "400",
-                                                fontFamily: "Futura Md BT",
-                                                fontSize: "1.12vw",
-                                                color: "black",
-                                            }}
-                                        >
-                                            {recommend[0].OperateTime}
-                                        </label>{" "}
-                                    </p>
-                                </li>
-                                <li>
-                                    <p
-                                        style={{
-                                            color: "#596a2a",
-                                            letterSpacing: "0.1vw",
-                                            display: "block",
-                                        }}
-                                    >
-                                        <EmailIcon style={{ fill: "#596a2a", fontSize: "1.5vw" }} />
-                                        <label
-                                            style={{
-                                                paddingLeft: "1vw",
-                                                fontWeight: "400",
-                                                fontFamily: "Futura Md BT",
-                                                fontSize: "1.12vw",
-                                                color: "black",
-                                            }}
-                                        >
-                                            {" "}
-                                            {recommend[0].Email}
-                                        </label>
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="col-md-6 col-lg-6 col-xl-6 col-sm-12 mx-auto">
-                            <ul class="list-unstyled" style={{ float: "none" }}>
-                                <li>
-                                    <p
-                                        style={{
-                                            color: "#596a2a",
-                                            letterSpacing: "0.1vw",
-                                            display: "block",
-                                        }}
-                                    >
-                                        <LocalPhoneIcon
-                                            style={{ fill: "#596a2a", fontSize: "1.5vw" }}
-                                        />{" "}
-                                        <label
-                                            style={{
-                                                paddingLeft: "1vw",
-                                                fontFamily: "Futura Md BT",
-                                                fontSize: "1.12vw",
-                                                fontWeight: "400",
-                                                color: "black",
-                                            }}
-                                        >
-                                            {recommend[0].Contact}
-                                        </label>
-                                    </p>
-                                </li>
-                                <li>
-                                    <p
-                                        style={{
-                                            color: "#596a2a",
-                                            letterSpacing: "0.1vw",
-                                            display: "block",
-                                        }}
-                                    >
-                                        <Website style={{ fill: "#596a2a", fontSize: "1.5vw" }} />{" "}
-                                        <label
-                                            style={{
-                                                paddingLeft: "1vw",
-                                                fontWeight: "400",
-                                                fontFamily: "Futura Md BT",
-                                                fontSize: "1.12vw",
-                                                color: "black",
-                                            }}
-                                        >
-                                            {recommend[0].Website}
-                                        </label>
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div style={{ paddingTop: "2.5vw" }}>
-                        <span
-                            style={{
-                                fontWeight: "500",
-                                fontSize: "1.185vw",
-                                fontFamily: "Futura Md BT",
-                                textAlign: "justify",
-                                color: "black",
-                            }}
-                        >
-                            {recommend[0].PlaceDesc}
-                        </span>
-                    </div>
+                                    </div>
+                                </div>
+                                <div className="form-group product__option product__add-to-cart" >
+                                    <div className="product__actions">
+                                        <div className="product__actions-item product__actions-item--addtocart mx-1">
+                                            <button
+                                                type="button"
+                                                onClick={() => { }}
+                                                className="btn  product__variation-button--selected "
+                                                style={{ borderRadius: "5px" }}
+                                            >
+                                                Add To Cart
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
 
-                    <div style={{ marginTop: '1vw' }}>
-                        <span style={{ verticalAlign: "middle", display: "inline-flex" }}>
-                            <ThumbUpIcon style={{ fill: '#596a2a', fontSize: "2.5vw" }} /> <h2 style={{ color: "#596a2a", paddingTop: "0.8vw", fontWeight: "500", paddingLeft: "1vw" }}>In this shop</h2>
-                        </span>
-                        <div className="row" style={{ paddingTop: "1vw" }}>
-                            {/* <VerticalCardListing
-                    // setSelectedItem={setSelectedItem}
-                    // setOpenModal={setOpenModal}
-                    cards={recommend.length > 0 ? recommend : recommend}
-                /> */}
 
-                        </div>
-                    </div>
-
-                    <div style={{ paddingTop: "50px" }}>
-                        <span style={{ verticalAlign: "middle", display: "inline-flex" }}>
-                            <Marker style={{ fill: "#596a2a", fontSize: "2.8vw" }} />{" "}
-                            <h2
-                                style={{
-                                    color: "#596a2a",
-                                    paddingTop: "0.5vw",
-                                    paddingLeft: "1vw",
-                                }}
-                            >
-                                Location Map
-                            </h2>
-                        </span>
-                        <div style={{ paddingTop: "20px" }}>
-                            <MapModule
-                                coordinate={{
-                                    address: recommend[0].name,
-                                    lat: recommend[0].latitude,
-                                    lng: recommend[0].longitude,
-                                }}
-                                showMarker={true}
-                                height={500}
-                            />
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                {/* ---------------------------------------------------------------------------------------------- Rating Review ---------------------------------------------------------------------------------------------- */}
-
-                <div
-                    className="row justify-content-center"
-                    style={{ padding: "2.5vw" }}
-                >
+                <div className="row justify-content-center" style={{ padding: "3vw" }}>
                     <span style={{ verticalAlign: "middle", display: "inline-flex" }}>
-                        <StarIcon style={{ fill: "#596a2a", fontSize: "2.5vw" }} />{" "}
                         <h2
                             style={{
                                 color: "#596a2a",
-                                paddingTop: "0.5vw",
+                                paddingTop: "0.8vw",
                                 fontWeight: "500",
-                                paddingLeft: "1vw",
                             }}
                         >
-                            Review (s)
+                            Product Description:
                         </h2>
                     </span>
-                    <div
-                        className="row justify-content-center"
-                        style={{ paddingTop: "1vw" }}
-                    >
-                        <div
-                            className="col-md-3 col-lg-3 col-xl-3 col-sm-12 mx-auto"
-                            style={{ textAlign: "center" }}
-                        >
-                            <div>
-                                {" "}
-                                <label style={{ fontWeight: "bold", fontSize: "2vw" }}>
-                                    {recommend[0].Rating}
-                                </label>
-                            </div>
-                            <div>
-                                {" "}
-                                <Rating
-                                    style={{ fontSize: "1.8vw" }}
-                                    value={recommend[0].Rating}
-                                />
-                            </div>
-                            <div>
-                                {" "}
-                                <label
-                                    style={{
-                                        fontWeight: "500",
-                                        fontSize: "1.4vw",
-                                        color: "#808080",
-                                    }}
-                                >
-                                    {" "}
-                                    {/* {recommend[0].Review.length}  */}
-                                    7799 Review(s)
-                                </label>
-                            </div>
+                    <div style={{ paddingTop: "10px" }}>
+                        <p>
+                            The Sarawak bead necklace is a traditional jewelry piece originating from Sarawak, a state in Malaysia. It is known for its intricate beadwork and cultural significance.</p>
+                        <p>
+                            The necklace is typically handcrafted using small, colorful beads made from various materials such as glass, seed, or gemstones. Skilled artisans meticulously string these beads together, creating beautiful patterns and designs that reflect the rich cultural heritage of Sarawak.
+
+                            Each Sarawak bead necklace is unique, featuring a combination of vibrant colors and patterns that hold symbolic meaning. These necklaces often incorporate traditional motifs inspired by nature, folklore, or tribal influences. They serve as adornments for both everyday wear and special occasions, representing cultural identity and personal style.
+                        </p><p>
+                            Beyond their aesthetic appeal, Sarawak bead necklaces hold cultural and historical significance. They are cherished heirlooms passed down through generations, reflecting the traditions and customs of the indigenous communities in Sarawak. These necklaces are worn with pride, as they symbolize cultural heritage, craftsmanship, and the beauty of diversity.
+
+                            Whether worn as a fashion statement or as a cultural artifact, the Sarawak bead necklace showcases the artistry and craftsmanship of the Sarawakian people. It serves as a tangible connection to the region's history, traditions, and vibrant cultural tapestry.
+                        </p>
+                    </div>
+                </div>
+
+                <div style={{ paddingLeft: "3vw", paddingRight: "3vw" }}>
+                    <span style={{ verticalAlign: "middle", display: "inline-flex" }}>
+                        <h2 style={{ color: "#596a2a", paddingTop: "0.8vw", fontWeight: "500" }}>Products in this shop</h2>
+                    </span>
+                    <div className="row" style={{ paddingTop: "1vw" }}>
+                        <VerticalCardListing
+                            setSelectedItem={() => { }}
+                            setOpenModal={() => { }}
+                            cards={recommend.length > 0 ? recommend : recommend}
+                            page="product"
+                        />
+
+                    </div>
+                </div>
+
+                <div className="row justify-content-center" style={{ padding: "2.5vw" }}>
+                    <span style={{ verticalAlign: "middle", display: "inline-flex" }}>
+                        <StarIcon style={{ fill: '#596a2a', fontSize: "2.5vw" }} /> <h2 style={{ color: "#596a2a", paddingTop: "0.5vw", fontWeight: "500", paddingLeft: "1vw" }}>Review (s)</h2>
+                    </span>
+                    <div className="row justify-content-center" style={{ paddingTop: "1vw" }}>
+                        <div className='col-md-3 col-lg-3 col-xl-3 col-sm-12 mx-auto' style={{ textAlign: "center" }}>
+                            <div>      <Typography style={{ fontWeight: "bold", fontSize: "2vw" }}>{recommend[0].Rating}</Typography></div>
+                            <div>      <Rating style={{ fontSize: "1.8vw" }} value={recommend[0].Rating} /></div>
+                            <div> <Typography style={{ fontWeight: "500", fontSize: "1.4vw", color: "#808080" }}> {recommend[0].Review.length} Rating(s)</Typography></div>
                         </div>
-                        <div className="col-md-9 col-lg-9 col-xl-9 col-sm-12 mx-auto">
+                        <div className='col-md-9 col-lg-9 col-xl-9 col-sm-12 mx-auto' >
                             <table style={{ width: "-webkit-fill-available" }}>
-                                {RatingList.map((x) => {
-                                    return (
-                                        <tr style={{ paddingTop: "1vw" }}>
-                                            <td style={{ width: "5%" }}>
-                                                <label
-                                                    style={{ fontWeight: "bold", fontSize: "0.9vw" }}
-                                                >
-                                                    {x.value} star
-                                                </label>
-                                            </td>
-                                            <td style={{ width: "90%" }}>
-                                                {" "}
-                                                <LinearProgress
-                                                    color="success"
-                                                    style={{ color: "#596a2a", height: "1vw" }}
-                                                    variant="determinate"
-                                                    value={
-                                                        (recommend[0].Review.filter(
-                                                            (y) => y.Rating === x.value
-                                                        ).length /
-                                                            recommend[0].Review.length) *
-                                                        100
-                                                    }
-                                                />
-                                            </td>
-                                            <td style={{ width: "5%", paddingLeft: "0.5vw" }}>
-                                                <label
-                                                    style={{ fontWeight: "bold", fontSize: "0.9vw" }}
-                                                >
-                                                    {
-                                                        recommend[0].Review.filter(
-                                                            (y) => y.Rating === x.value
-                                                        ).length
-                                                    }
-                                                </label>
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
+                                {
+                                    RatingList.map((x) => {
+                                        return (
+                                            <tr style={{ paddingTop: "1vw" }}>
+                                                <td style={{ width: "5%" }}><Typography style={{ fontWeight: "bold", fontSize: "0.9vw" }}>{x.value} star</Typography></td>
+                                                <td style={{ width: "90%" }}> <LinearProgress color="success" style={{ color: "#596a2a", height: "1vw" }} variant="determinate" value={recommend[0].Review.filter((y) => y.Rating === x.value).length / recommend[0].Review.length * 100} /></td>
+                                                <td style={{ width: "5%", paddingLeft: "0.5vw" }}><Typography style={{ fontWeight: "bold", fontSize: "0.9vw" }}>{recommend[0].Review.filter((y) => y.Rating === x.value).length}</Typography></td>
+                                            </tr>
+                                        )
+                                    })
+                                }
                             </table>
                         </div>
                     </div>
 
-                    <div
-                        className="row justify-content-center"
-                        style={{ paddingTop: "1vw" }}
-                    >
+                    <div className="row justify-content-center" style={{ paddingTop: "1vw" }}>
                         <table style={{ width: "-webkit-fill-available" }}>
-                            {recommend[0].Review.length > 0 &&
-                                recommend[0].Review.map((x) => {
+                            {
+                                recommend[0].Review.length > 0 && recommend[0].Review.map((x) => {
                                     return (
                                         <tr style={{ paddingTop: "1vw" }}>
-                                            <td style={{ width: "5%", textAlign: "right" }}>
-                                                {" "}
-                                                <img
-                                                    width="50%"
-                                                    src={USER ? USER : USER}
-                                                    alt={123}
-                                                    onError={(e) => (e.target.src = USER)}
-                                                />
-                                            </td>
+                                            <td style={{ width: "5%", textAlign: "right" }}> <img width="50%" src={USER ? USER : USER} alt={123} onError={(e) => (e.target.src = USER)} /></td>
                                             <td style={{ width: "90%", padding: "20px" }}>
                                                 <div className="'col-md-10 col-lg-10 col-xl-10 col-sm-10'">
-                                                    <div
-                                                        id="review_content"
-                                                        className=" review__content"
-                                                        style={{ width: "100%", textAlign: "left" }}
-                                                    >
-                                                        <div
-                                                            id="review_author"
-                                                            className=" review__author"
-                                                            style={{
-                                                                fontWeight: "bold",
-                                                                fontSize: "1.0vw",
-                                                            }}
-                                                        >
-                                                            {x.Name}{" "}
-                                                            <label
-                                                                style={{
-                                                                    fontSize: "0.7vw",
-                                                                    color: "#c6c6c6",
-                                                                    fontWeight: "500",
-                                                                }}
-                                                            >
-                                                                ({x.Date})
-                                                            </label>
-                                                        </div>
+                                                    <div id="review_content" className=" review__content" style={{ width: "100%", textAlign: "left" }}>
+                                                        <div id="review_author" className=" review__author" style={{ fontWeight: "bold", fontSize: "1.0vw" }}>{x.Name} <Typography style={{ fontSize: "0.7vw", color: "#c6c6c6", fontWeight: "500" }}>({x.Date})</Typography></div>
                                                         <div id="review_rating" className=" review__rating">
-                                                            <Rating
-                                                                style={{ fontSize: "1.5rem" }}
-                                                                value={x.Rating}
-                                                            />
+                                                            <Rating style={{ fontSize: "1.2rem" }} value={x.Rating} />
                                                         </div>
-                                                        <div id="review_comment">
-                                                            <label style={{ fontSize: "0.9vw" }}>
-                                                                {x.Review}
-                                                            </label>
-                                                        </div>
+                                                        <div id="review_comment"><Typography style={{ fontSize: "0.9vw" }}>{x.Review}</Typography></div>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                    );
-                                })}
+                                    )
+                                })
+                            }
                         </table>
                     </div>
                 </div>
-                <Recommend type="Accommodation" />
-                <ModalComponent
-                    open={this.state.openHotelModal}
-                    maxWidth={"lg"}
-                    title={this.state.mediaClick}
-                    draggable={true}
-                    className="modalLanding"
-                    handleOnClose={() =>
-                        this.setState({ openHotelModal: false, selectedRoom: [] })
-                    }
-                >
-                    <div>
-                        <Grid item container style={{ padding: "2%" }}>
-                            {this.state.selectedRoom.length !== 0 && (
-                                <HotelModal selectedRoom={this.state.selectedRoom} />
-                            )}
-                        </Grid>
-                    </div>
-                </ModalComponent>
 
-                <ModalComponent
-                    open={this.state.openModal}
-                    fullScreen={true}
-                    maxWidth={"xl"}
-                    title={this.state.mediaClick}
-                    draggable={true}
-                    className="modalLanding"
-                    handleOnClose={() =>
-                        this.setState({ openModal: false, mediaClick: "" })
-                    }
-                >
-                    <div>
-                        <iframe
-                            src={this.state.selectedMediaDetails.url}
-                            style={{ width: "100%", height: "45vw" }}
-                        />
-                    </div>
-                </ModalComponent>
+                <Recommend type="Accommodation" />
+
             </div >
         );
     }
