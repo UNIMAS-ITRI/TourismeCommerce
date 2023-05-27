@@ -1,6 +1,7 @@
 {
   "name": "SarawakTourism",
   "version": "0.1.0",
+  "homepage": "/etourismmarketplace",
   "private": true,
   "dependencies": {
     "@date-io/date-fns": "^2.11.0",

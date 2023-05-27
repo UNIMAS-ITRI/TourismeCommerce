@@ -2,43 +2,43 @@ export const foodCategories = {
     "categories": [
         {
             "name": "Popular",
-            "image": "https://www.sarawak2discover.com/TourismApi/images/food/icon/Main_Popular.png"
+            "image": "https://www.sarawaktourism.com/TourismApi/images/food/icon/Main_Popular.png"
         },
         {
             "name": "Noodle",
-            "image": "https://www.sarawak2discover.com/TourismApi/images/food/icon/Main_Noodle.png"
+            "image": "https://www.sarawaktourism.com/TourismApi/images/food/icon/Main_Noodle.png"
         },
         {
             "name": "Rice",
-            "image": "https://www.sarawak2discover.com/TourismApi/images/food/icon/Main_Rice.png"
+            "image": "https://www.sarawaktourism.com/TourismApi/images/food/icon/Main_Rice.png"
         },
         {
             "name": "Seafood",
-            "image": "https://www.sarawak2discover.com/TourismApi/images/food/icon/Main_Seafood.png"
+            "image": "https://www.sarawaktourism.com/TourismApi/images/food/icon/Main_Seafood.png"
         },
         {
             "name": "Fruit",
-            "image": "https://www.sarawak2discover.com/TourismApi/images/food/icon/Main_Fruit.png"
+            "image": "https://www.sarawaktourism.com/TourismApi/images/food/icon/Main_Fruit.png"
         },
         {
             "name": "Vegetable",
-            "image": "https://www.sarawak2discover.com/TourismApi/images/food/icon/Main_Vegetable.png"
+            "image": "https://www.sarawaktourism.com/TourismApi/images/food/icon/Main_Vegetable.png"
         },
         {
             "name": "Snack",
-            "image": "https://www.sarawak2discover.com/TourismApi/images/food/icon/Main_Snack.png"
+            "image": "https://www.sarawaktourism.com/TourismApi/images/food/icon/Main_Snack.png"
         },
         {
             "name": "Soup",
-            "image": "https://www.sarawak2discover.com/TourismApi/images/food/icon/Main_Soup.png"
+            "image": "https://www.sarawaktourism.com/TourismApi/images/food/icon/Main_Soup.png"
         },
         {
             "name": "Desserts",
-            "image": "https://www.sarawak2discover.com/TourismApi/images/food/icon/Main_Desserts.png"
+            "image": "https://www.sarawaktourism.com/TourismApi/images/food/icon/Main_Desserts.png"
         },
         {
             "name": "Others",
-            "image": "https://www.sarawak2discover.com/TourismApi/images/food/icon/Main_Others.png"
+            "image": "https://www.sarawaktourism.com/TourismApi/images/food/icon/Main_Others.png"
         },
     ]
 }
