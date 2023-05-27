@@ -41,6 +41,7 @@ import LocalFoodDetail from "../../../pages/LocalFood/LocalFoodDetail";
 import TicketingFilter from "../../../pages/Ticketing/TicketingFilter";
 import ProductsFilter from "../../../pages/Products/ProductsFilter";
 import ProductsDetail from "../../../pages/Products/ProductsDetail";
+import TransportationFilter from "../../../pages/Transportation/TransportationFilter";
 // import UserManagement from '../../../pages/UserManagement/UserManagement';
 // import OverallStock from "../../../pages/Stock/OverallStock/OverallStock";
 // import StockGoods from "../../../pages/Stock/StockGoods/StockGoods";
@@ -111,6 +112,11 @@ const routes = [
         path: "/ProductsDetail",
         exact: true,
         element: <ProductsDetail />,
+    },
+    {
+        path: "/Transportation",
+        exact: true,
+        element: <TransportationFilter />,
     },
     // {
     //     path: "/UserManagement",
