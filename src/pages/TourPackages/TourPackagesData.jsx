@@ -97,7 +97,21 @@ export const recommend = [
         reviewNum: 9074,
         review: "Excellent",
     },
-
+    {
+        image:
+            "https://blog.qelola.com/wp-content/uploads/2020/06/gunung-mulu-national-park.jpg",
+        name: "Borneo Adventure Holidays & Activity Tours, Mulu",
+        shopName: "Mulu",
+        price: "2200",
+        discountedPrice: "1800",
+        rating: 8.8,
+        Breakfast_Available: true,
+        hotelStar: 4,
+        locationWise: 8.5,
+        Neighborhood: "Kuching",
+        reviewNum: 3577,
+        review: "Excellent",
+    },
     {
         image: "https://sarawaktourism.com/TourismApi/images/tourPackage/4.%20Annah%20Rais%20(i).jpg",
         name: "Annah-Rais Bidayuh Longhouse",

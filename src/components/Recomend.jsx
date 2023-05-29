@@ -125,7 +125,7 @@ function Recommend(props) {
     //     name: "Kuching Waterfront",
     //   },
     //   {
-    //     image: "http://tourism.denoo.my/images/main.png",
+    //     image: "http://tourism.denoo.my/visitsarawak/images/main.png",
     //     url: "http://tourism.denoo.my/PlaceDetail.aspx?pid=3000&plat=1.559484000000000&plng=110.346528000000000",
     //     name: "Sarawak Regatta",
     //   },

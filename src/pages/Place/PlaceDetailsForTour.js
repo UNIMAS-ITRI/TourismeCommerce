@@ -25,7 +25,7 @@ import {
   Box,
   Grid,
   Stack,
-  Divider,Chip,FormControl,RadioGroup,FormControlLabel,Radio
+  Divider, Chip, FormControl, RadioGroup, FormControlLabel, Radio
 } from '@mui/material';
 import "./PlaceDetails.css";
 import ProductCard from "../Dashboard/ProductCard";
@@ -39,8 +39,8 @@ export default function PlaceDetailsForTour() {
 
   const PlaceDetails = [
     {
-      name: "Fort Margherita",
-      State: "Kuching",
+      name: "Mulu National Park",
+      State: "Miri",
       Email: "-",
       Website: "Website",
       Contact: "+6016-3101880",
@@ -51,15 +51,15 @@ export default function PlaceDetailsForTour() {
         { Name: "riantysaimon19", Rating: 5, Review: "Beautiful", Date: "01/01/2022" },
         { Name: "Cccddd83", Rating: 5, Review: "wow", Date: "15/02/2022" },
       ],
-      latitude: 1.559935000000000,
-      longitude: 110.34948691277962,
-      PlaceDesc: "Fort Margherita was built in 1879 to guard Kuchings river approaches from pirates. In the old days, a canon shot was fired from here every evening to mark the end of the government work day. Named after Charles Brookes wife, Ranee Margaret, it is a unmistakable landmark along Sarawak River. As the Fort is situated within the police training barracks, visitors may be asked for some form of ID."
+      latitude: 4.0921,
+      longitude: 114.8958,
+      PlaceDesc: "The Gunung Mulu National Park is a national park in Miri Division, Sarawak, Malaysia. It is a UNESCO World Heritage Site that encompasses caves and karst formations in a mountainous equatorial rainforest settin."
     }
   ]
 
   const MediaList = [
     {
-      image: "http://tourism.denoo.my/images/web/icon_gallery.png", value: "Gallery", data:
+      image: "http://tourism.denoo.my/visitsarawak/images/web/icon_gallery.png", value: "Gallery", data:
         [
           { url: "http://tourism.denoo.my/TourismApi/images/place/186/media/gallery1.jpg", description: "First page of the monument showing the endorsement towards Rajah Charles Brooke.", name: "Brooke Memorial" },
           { url: "http://tourism.denoo.my/TourismApi/images/place/186/media/gallery2.jpg", description: "Brooke Memorial with the Old Kuching Courthouse.", name: "Brooke Memorial" },
@@ -74,7 +74,7 @@ export default function PlaceDetailsForTour() {
         ]
     },
     {
-      image: "http://tourism.denoo.my/images/web/icon_video.png", value: "Video", data:
+      image: "http://tourism.denoo.my/visitsarawak/images/web/icon_video.png", value: "Video", data:
         [
           { id: 1, url: "http://tourism.denoo.my/TourismApi/images/place/186/media/Brooke_Memorial.mp4", name: "Brooke Memorial" },
           { id: 2, url: "http://tourism.denoo.my/TourismApi/images/place/186/media/Brooke_Memorial.mp4", name: "Brooke Memorial" },
@@ -83,7 +83,7 @@ export default function PlaceDetailsForTour() {
         ]
     },
     {
-      image: "https://tourism.denoo.my/images/web/icon_vr.png", value: "Panorama/360° VR", data:
+      image: "https://tourism.denoo.my/visitsarawak/images/web/icon_vr.png", value: "Panorama/360° VR", data:
         [
           { url: "http://tourism.denoo.my/TourismAPI/images/place/186/360/186_360_photo01.jpg", name: "Brooke Memorial" },
           { url: "http://tourism.denoo.my/TourismAPI/images/place/186/360/186_360_photo02.jpg", name: "Brooke Memorial" },
@@ -92,12 +92,12 @@ export default function PlaceDetailsForTour() {
         ]
     },
     {
-      image: "https://tourism.denoo.my/images/web/icon_street.png", value: "Street View", data: [
+      image: "https://tourism.denoo.my/visitsarawak/images/web/icon_street.png", value: "Street View", data: [
         { url: "http://tourism.denoo.my/StreetView/bm.htm", name: "Street View" }
       ]
     },
     {
-      image: "http://tourism.denoo.my/images/web/icon_3d.png", value: "3D Model", data: [
+      image: "http://tourism.denoo.my/visitsarawak/images/web/icon_3d.png", value: "3D Model", data: [
         { url: "http://tourism.denoo.my/TourismApi/images/place/186/186_slider1.jpg", name: "Rajah Charles Brooke Memorial 3D Model" },
         { url: "http://tourism.denoo.my/TourismApi/images/place/186/186_slider1.jpg", name: "Rajah Charles Brooke Memorial 3D Model" }
       ]
@@ -143,7 +143,7 @@ export default function PlaceDetailsForTour() {
     { image: "http://tourism.denoo.my/TourismApi/images/place/496/496_slider1.jpg", url: "http://tourism.denoo.my/PlaceDetail.aspx?pid=496&plat=1.558591000000000&plng=110.344826000000000", name: "The Pavilion (Textile Museum)" },
     { image: "http://tourism.denoo.my/TourismApi/images/place/10/10_slider1.jpg", url: "http://tourism.denoo.my/PlaceDetail.aspx?pid=10&plat=1.558551000000000&plng=110.345679000000000", name: "Mei Xin's Laksa, Lau Ya Keng Foodcourt" },
     { image: "http://tourism.denoo.my/TourismApi/images/place/179/179_slider1.jpg", url: "http://tourism.denoo.my/PlaceDetail.aspx?pid=179&plat=1.559484000000000&plng=110.346528000000000", name: "Kuching Waterfront" },
-    { image: "http://tourism.denoo.my/images/main.png", url: "http://tourism.denoo.my/PlaceDetail.aspx?pid=3000&plat=1.559484000000000&plng=110.346528000000000", name: "Sarawak Regatta" }
+    { image: "http://tourism.denoo.my/visitsarawak/images/main.png", url: "http://tourism.denoo.my/PlaceDetail.aspx?pid=3000&plat=1.559484000000000&plng=110.346528000000000", name: "Sarawak Regatta" }
   ]
 
   const RatingList = [{ id: 5, value: 5 }, { id: 4, value: 4 }, { id: 3, value: 3 }, { id: 2, value: 2 }, { id: 1, value: 1 }]
@@ -159,9 +159,8 @@ export default function PlaceDetailsForTour() {
     ],
     breadcrumb: [
       { title: "Home", url: "./" },
-      { title: "Attraction", url: "http://tourism.denoo.my/MainPlaceOfInterest.aspx" },
-      { title: "Old Kuching Heritage Building and Monuments", url: "http://tourism.denoo.my/Heritage.aspx?hid=15" },
-      { title: "Fort Margherita", url: "" }
+      { title: "Tour Packages", url: "./Tourpackages" },
+      { title: "Mulu National Park", url: "" }
     ],
     indexImageHover: "",
     indexMediaHower: "",
@@ -182,16 +181,16 @@ export default function PlaceDetailsForTour() {
     'Container/Processing fee': 1,
     'including Service Tax': 6,
     'Total (Incl. Service Tax)': 37,
-};
-const [priceData, setPriceData] = useState(initialPriceData);
-const [numberOFItem, setnumberOFItem] = useState(1);
-const [selectedOption, setSelectedOption] = useState('option1');
-const [options] = useState([
-  { value: 'option1', label: '8am-10am' },
-  { value: 'option2', label: '10am-12pm' },
-  { value: 'option3', label: '2pm-4pm' },
-  { value: 'option4', label: '4pm-6pm' },
-]);
+  };
+  const [priceData, setPriceData] = useState(initialPriceData);
+  const [numberOFItem, setnumberOFItem] = useState(1);
+  const [selectedOption, setSelectedOption] = useState('option1');
+  const [options] = useState([
+    { value: 'option1', label: '8am-10am' },
+    { value: 'option2', label: '10am-12pm' },
+    { value: 'option3', label: '2pm-4pm' },
+    { value: 'option4', label: '4pm-6pm' },
+  ]);
 
   const bodyDetail = [
     { index: 0, children: <ProductCard type="Accommodation" />, value: 0, },
@@ -322,12 +321,12 @@ const [options] = useState([
 
   const renderChoices = options.map((option) => (
     <FormControlLabel
-        key={option.value}
-        value={option.value}
-        control={<Radio />}
-        label={<Typography gutterBottom variant="subtitle" style={{ fontSize: '14px' }}>{option.label}</Typography>}
+      key={option.value}
+      value={option.value}
+      control={<Radio />}
+      label={<Typography gutterBottom variant="subtitle" style={{ fontSize: '14px' }}>{option.label}</Typography>}
     />
-));
+  ));
 
   return (
     <div style={{ backgroundColor: "white" }}>
@@ -619,79 +618,79 @@ const [options] = useState([
         )}
       </ModalComponent>
       <ModalComponent
-                        open={opencartModal}
-                        maxWidth={"sm"}
-                        title={selectedItem.name}
-                        draggable={false}
-                        className="modalLanding"
-                        handleOnClose={() => setOpencartModal(!opencartModal)}
-                    >
-                        <div>
-                            <Grid container spacing={2}>
-                                <Grid item xs={6} container direction="column">
-                                    <img src={selectedItem.image} style={{ width: "100%", maxWidth: 400 }} borderWidth="0px" alt={selectedItem.value} />
-                                    <Divider style={{ margin: "1vw 0vw 1vw 0vw" }} variant="middle" >
-                                        <Chip label="Fees" />
-                                    </Divider>
-                                    <Grid item container>
-                                        {Object.entries(priceData).map(([label, value]) => (
-                                            <React.Fragment key={label}>
-                                                <Grid item xs={6} key={label}>
-                                                    <Typography gutterBottom variant="h5" style={{ fontSize: '14px' }}>{label}</Typography>
-                                                </Grid>
-                                                <Grid item xs={6} key={label}>
-                                                    <Typography gutterBottom variant="h5" style={{ fontSize: '14px', textAlign: 'right' }}>RM {value}</Typography>
-                                                </Grid>
-                                            </React.Fragment>
-                                        ))}
-                                    </Grid>
-                                </Grid>
-                                <Grid item xs={6} container direction="column" flex={true}>
-                                    <Grid item container>
-                                        <Typography gutterBottom variant="title" style={{ fontSize: '14px' }}>
-                                           Select your Session
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item container>
-                                        <Typography gutterBottom variant="subtitle" style={{ fontSize: '14px' }}>
-                                            Select up to 1 (optional)
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item container>
-                                        <FormControl component="fieldset">
-                                            <RadioGroup name="myRadioGroup" value={selectedOption} onChange={e => setSelectedOption(e.target.value)}>
-                                                {renderChoices}
-                                            </RadioGroup>
-                                        </FormControl>
-                                    </Grid>
-                                    <Grid item container justifyContent="flex-end" direction="row" style={{ marginTop: 'auto' }} spacing={2}>
-                                        <Grid item xs={4}>
-                                            <InputNumber
-                                                onChange={(quantity) => {
-                                                    setnumberOFItem(quantity); setPriceData((prevPriceData) => ({
-                                                        ...prevPriceData,
-                                                        'Subtotal': initialPriceData['Subtotal'] * quantity,
-                                                        'Total (Incl. Service Tax)': (initialPriceData['Subtotal'] * quantity) + 17
-                                                    }));
-                                                }}
-                                                value={numberOFItem}
-                                                min={1}
-                                                size="sm"
-                                            />
-                                        </Grid>
-                                        <Grid item xs={8}>
-                                            <Button
-                                                size="large"
-                                                fullWidth
-                                                style={{ backgroundColor: '#8fb03d', color: 'white' }}
-                                                onClick={() => { setOpencartModal(false) }}
-                                            ><ShoppingCartIcon />Add to cart</Button>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </div>
-                    </ModalComponent>
+        open={opencartModal}
+        maxWidth={"sm"}
+        title={selectedItem.name}
+        draggable={false}
+        className="modalLanding"
+        handleOnClose={() => setOpencartModal(!opencartModal)}
+      >
+        <div>
+          <Grid container spacing={2}>
+            <Grid item xs={6} container direction="column">
+              <img src={selectedItem.image} style={{ width: "100%", maxWidth: 400 }} borderWidth="0px" alt={selectedItem.value} />
+              <Divider style={{ margin: "1vw 0vw 1vw 0vw" }} variant="middle" >
+                <Chip label="Fees" />
+              </Divider>
+              <Grid item container>
+                {Object.entries(priceData).map(([label, value]) => (
+                  <React.Fragment key={label}>
+                    <Grid item xs={6} key={label}>
+                      <Typography gutterBottom variant="h5" style={{ fontSize: '14px' }}>{label}</Typography>
+                    </Grid>
+                    <Grid item xs={6} key={label}>
+                      <Typography gutterBottom variant="h5" style={{ fontSize: '14px', textAlign: 'right' }}>RM {value}</Typography>
+                    </Grid>
+                  </React.Fragment>
+                ))}
+              </Grid>
+            </Grid>
+            <Grid item xs={6} container direction="column" flex={true}>
+              <Grid item container>
+                <Typography gutterBottom variant="title" style={{ fontSize: '14px' }}>
+                  Select your Session
+                </Typography>
+              </Grid>
+              <Grid item container>
+                <Typography gutterBottom variant="subtitle" style={{ fontSize: '14px' }}>
+                  Select up to 1 (optional)
+                </Typography>
+              </Grid>
+              <Grid item container>
+                <FormControl component="fieldset">
+                  <RadioGroup name="myRadioGroup" value={selectedOption} onChange={e => setSelectedOption(e.target.value)}>
+                    {renderChoices}
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
+              <Grid item container justifyContent="flex-end" direction="row" style={{ marginTop: 'auto' }} spacing={2}>
+                <Grid item xs={4}>
+                  <InputNumber
+                    onChange={(quantity) => {
+                      setnumberOFItem(quantity); setPriceData((prevPriceData) => ({
+                        ...prevPriceData,
+                        'Subtotal': initialPriceData['Subtotal'] * quantity,
+                        'Total (Incl. Service Tax)': (initialPriceData['Subtotal'] * quantity) + 17
+                      }));
+                    }}
+                    value={numberOFItem}
+                    min={1}
+                    size="sm"
+                  />
+                </Grid>
+                <Grid item xs={8}>
+                  <Button
+                    size="large"
+                    fullWidth
+                    style={{ backgroundColor: '#8fb03d', color: 'white' }}
+                    onClick={() => { setOpencartModal(false) }}
+                  ><ShoppingCartIcon />Add to cart</Button>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </div>
+      </ModalComponent>
     </div>
   )
 }

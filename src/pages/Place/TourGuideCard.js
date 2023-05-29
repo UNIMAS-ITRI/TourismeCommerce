@@ -50,7 +50,7 @@ export default function TourGuideCard({ x }) {
           onClick={() => window.open("https://wa.me/60168888422", "_blank")}
         >
           <Typography variant="body">
-            Contact
+            Add to cart
           </Typography>
         </Button>
       </CardContent>
