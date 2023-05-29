@@ -12,10 +12,12 @@ import InputNumber from "../../components/InputNumber/InputNumber";
 export default function ProductCard(props) {
   const [open, setOpen] = useState(false);
 
-  const [quantity, setQuantity] = useState([0]);
+  const [quantity, setQuantity] = useState([]);
 
-  const handleChangeQuantity = (data) => {
-    setQuantity(data);
+  const handleChangeQuantity = (data, index) => {
+    const Arr = [...quantity]
+    Arr[index] = data
+    setQuantity(Arr)
   };
 
   useEffect(() => {
@@ -25,6 +27,16 @@ export default function ProductCard(props) {
       }, 3000);
     }
   }, [open]);
+
+  
+  useEffect(() => {
+   const quantityArray = []
+   GeneralData.filter((y) => y.type === props.type).map((x)=>{
+    quantityArray.push(1)
+   })
+   setQuantity(quantityArray)
+
+  }, [props.type]);
 
   const handleOnClick = (x) => {
     switch (x.type) {
@@ -87,8 +99,8 @@ export default function ProductCard(props) {
                         className="product__quantity"
                         size="lg"
                         min={1}
-                        value={quantity}
-                        onChange={handleChangeQuantity}
+                        value={quantity[index]}
+                        onChange={(e)=> handleChangeQuantity(e, index)}
                       />
                     </div>
                   </div>
