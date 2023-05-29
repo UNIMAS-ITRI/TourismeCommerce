@@ -5,6 +5,7 @@ import { browserHistory } from "react-router";
 import { Link as RouterLink } from 'react-router-dom';
 import { Card, CardMedia, CardContent, Typography, Rating, Button } from '@mui/material';
 import OrangUlu from '../../assets/OrangUlu.jpg'
+import BasicModal from '../../components/AlertModal/ModalAddedCart';
 
 function mapStateToProps(state) {
     return {
@@ -51,7 +52,8 @@ const INITIAL_STATE = {
         { type: 'Transportation', productName: 'Bindass Taxi Kuching Meter', subtitle: 'Taxi Kuching Services', ratingStar: 5, rating: '5', description: "", price: 12, imgURL: "https://kuchingtaxi.com/flashimage/j.jpg" },
         { type: 'Transportation', productName: 'Airasia (KL- KCH)', subtitle: 'Bestway Tour & Travel SDN BHD', ratingStar: 5, rating: '5', description: "", price: 129, imgURL: "https://i0.wp.com/airinsight.com/wp-content/uploads/2021/03/A321neo-AirAsia-scaled.jpg?fit=2560%2C1920&ssl=1" },
         { type: 'Transportation', productName: 'Malaysia Airline (KL- KCH)', subtitle: 'CPH Travel Agencies', ratingStar: 5, rating: '5', description: "", price: 299, imgURL: "https://theaureview.com/wp-content/uploads/2020/01/D-A350Generic-200718-e1553060211680.jpg" },
-    ]
+    ],
+    open: false,
 }
 
 class ProductCard extends Component {
@@ -66,11 +68,15 @@ class ProductCard extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-
+        setTimeout(() => {
+            if(this.state.open) {
+                this.setState({ open: false });
+            }
+        }, 2000);
     }
 
     render() {
-        const { dummyCardData } = this.state;
+        const { dummyCardData, open } = this.state;
 
         return (
             <div className="row">
@@ -118,7 +124,7 @@ class ProductCard extends Component {
                                                 </Typography>
                                             </div>
                                             <div className="col-6" style={{ display: "flex", justifyContent: "end" }}>
-                                                <Button size="small" style={{ backgroundColor: "#8fb136", color: "white", width: "5.5vw" }} >
+                                                <Button size="small" style={{ backgroundColor: "#8fb136", color: "white", width: "5.5vw" }} onClick={() => this.setState({ open: true })}>
                                                     Add To Cart
                                                 </Button>
                                             </div>
@@ -129,6 +135,7 @@ class ProductCard extends Component {
                         )
                     })
                 }
+                <BasicModal open={open}/>
             </div>
         )
     }
