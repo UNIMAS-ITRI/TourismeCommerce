@@ -1,4 +1,6 @@
-import * as React from 'react';
+// import * as React from 'react';
+
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -21,6 +23,18 @@ export default function BasicModal(props) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    // useEffect(() => {
+    //     if (props.open === true) 
+    //     {
+    //         setTimeout(
+    //             function () {
+    //                 window.location.href = "./"
+    //             }.bind(this),
+    //             1000
+    //         );
+    //     }            
+    // }, [props.open]);
 
     return (
         <div>

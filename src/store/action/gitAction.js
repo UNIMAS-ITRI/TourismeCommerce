@@ -50,6 +50,38 @@ export class GitAction {
     };
   }
 
+  static AddUserCart = "AddUserCart";
+  static AddedUserCart = "AddedUserCart";
+
+  static CallAddProductCart(propsData) {
+    return {
+      type: GitAction.AddUserCart,
+      payload: propsData
+    };
+  }
+
+  
+  static ViewUserCart = "ViewUserCart";
+  static ViewedUserCart = "ViewedUserCart";
+
+  static CallViewProductCart(propsData) {
+    return {
+      type: GitAction.ViewUserCart,
+      payload: propsData
+    };
+  }
+
+
+  static ViewUserCartItem = "ViewUserCartItem";
+  static ViewedUserCartItem = "ViewedUserCartItem";
+
+  static CallViewProductCartItem(propsData) {
+    return {
+      type: GitAction.ViewUserCartItem,
+      payload: propsData
+    };
+  }
+
 
   ///////////////////////////////////////////////////  sidebar configuration  ///////////////////////////////////////////////////
   static FetchSidebar = "FETCH_SIDEBAR";

@@ -97,6 +97,28 @@ export class GitEpic {
     }));
 
 
+    User_AddProductCart = action$ =>
+    action$.pipe(filter(action => action.type === GitAction.AddUserCart), map(action => {
+      return dispatch => {
+        return dispatch({ type: GitAction.AddedUserCart, payload: localStorage.getItem("cartItemLength") });
+      }
+    }));
+
+    User_ViewProductCart = action$ =>
+    action$.pipe(filter(action => action.type === GitAction.ViewUserCart), map(action => {
+      return dispatch => {
+        return dispatch({ type: GitAction.ViewedUserCart, payload: localStorage.getItem("cartItemLength") });
+      }
+    }));
+
+    
+    User_ViewProductCartItem = action$ =>
+    action$.pipe(filter(action => action.type === GitAction.ViewUserCartItem), map(action => {
+      return dispatch => {
+        return dispatch({ type: GitAction.ViewedUserCartItem, payload: localStorage.getItem("cartItem") });
+      }
+    }));
+
 
   ///////////////////////////////////////////////////  user account credentials ///////////////////////////////////////////////////
 

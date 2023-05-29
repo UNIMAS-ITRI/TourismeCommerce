@@ -9,11 +9,14 @@ import BasicModal from '../../components/AlertModal/ModalAddedCart';
 
 function mapStateToProps(state) {
     return {
+        productCart: state.counterReducer["productCart"],
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
+        
+        CallAddProductCart: () => dispatch(GitAction.CallAddProductCart()),
     };
 }
 
@@ -74,9 +77,30 @@ class ProductCard extends Component {
             }
         }, 2000);
     }
+    
 
     render() {
         const { dummyCardData, open } = this.state;
+
+        const handleAddToCart = (data)=>{
+            const cartItem = localStorage.getItem("cartItem")
+            if(cartItem !== null)
+            {
+                let itemDetail = JSON.parse(cartItem)
+                let newItemArray = [...itemDetail, data]
+
+                localStorage.setItem("cartItemLength", newItemArray.length)
+                localStorage.setItem("cartItem", JSON.stringify(newItemArray))
+                this.props.CallAddProductCart()
+            }
+            else{
+                localStorage.setItem("cartItemLength", 1)
+                localStorage.setItem("cartItem", JSON.stringify([data]))
+                this.props.CallAddProductCart()
+            }
+            
+            this.setState({ open: true })
+        }
 
         return (
             <div className="row">
@@ -124,7 +148,7 @@ class ProductCard extends Component {
                                                 </Typography>
                                             </div>
                                             <div className="col-6" style={{ display: "flex", justifyContent: "end" }}>
-                                                <Button size="small" style={{ backgroundColor: "#8fb136", color: "white", width: "5.5vw" }} onClick={() => this.setState({ open: true })}>
+                                                <Button size="small" style={{ backgroundColor: "#8fb136", color: "white", width: "5.5vw" }} onClick={() => handleAddToCart(x)}>
                                                     Add To Cart
                                                 </Button>
                                             </div>
@@ -135,7 +159,7 @@ class ProductCard extends Component {
                         )
                     })
                 }
-                <BasicModal open={open}/>
+                <BasicModal open={open} />
             </div>
         )
     }

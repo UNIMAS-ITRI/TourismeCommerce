@@ -1,5 +1,7 @@
 // "user manual": You can set your footer here
-import React from 'react'
+import React, { useEffect } from 'react'
+
+import { useDispatch, useSelector  } from 'react-redux';
 import { Link } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
@@ -18,8 +20,16 @@ import {
 } from '@mui/material';
 import SearchBar from '../SearchBarNav';
 import { headerDetail } from '../../pages/Place/_mock';
+import { GitAction } from '../../store/action/gitAction';
 
 export default function PanelHeader(props) {
+  
+  const dispatch = useDispatch();
+  const { productCart, productCartItem} = useSelector(state => ({
+    productCart: state.counterReducer.productCart,
+    productCartItem: state.counterReducer.productCartItem,
+  }));
+
   const Page = [
     { name: "Home", url: "./", submenu: [] },
     { name: "Cities", url: "https://www.sarawaktourism.com/CityList.aspx", submenu: [] },
@@ -33,6 +43,11 @@ export default function PanelHeader(props) {
   const handleOnSearch = (searchTerm) => {
     console.log(searchTerm);
   }
+
+  useEffect(() => {
+    dispatch(GitAction.CallViewProductCart());
+    dispatch(GitAction.CallViewProductCartItem());
+}, [dispatch]);
 
   return (
     <header>
@@ -82,7 +97,7 @@ export default function PanelHeader(props) {
           {/* </Grid> */}
           <Grid item>
             <IconButton component={Link} to='/ShoppingCart'>
-              <Badge color="secondary" badgeContent={3}>
+              <Badge color="secondary" badgeContent={productCart!== null ? productCart : "0"}>
                 <ShoppingCartIcon style={{ color: "white" }} fontSize="small" />
               </Badge>
             </IconButton>

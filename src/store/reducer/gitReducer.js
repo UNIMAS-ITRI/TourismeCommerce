@@ -5,6 +5,8 @@ const INITIAL_STATE = {
   logonUser: [],
   userProfile: [],
   registrationReturn: [],
+  productCart: [],
+  productCartItem: [],
   sidebars: [],
 };
 
@@ -46,6 +48,30 @@ export function counterReducer(state = INITIAL_STATE, action) {
       });
     case GitAction.ResetUserProfile:
       return Object.assign({}, state, { userProfile: [] });
+
+      case GitAction.AddUserCart:
+        return Object.assign({}, state, { loading: true });
+      case GitAction.AddedUserCart:
+        return Object.assign({}, state, {
+          loading: false,
+          productCart: action.payload
+        });
+
+        case GitAction.ViewUserCart:
+          return Object.assign({}, state, { loading: true });
+        case GitAction.ViewedUserCart:
+          return Object.assign({}, state, {
+            loading: false,
+            productCart: action.payload
+          });
+
+          case GitAction.ViewUserCartItem:
+            return Object.assign({}, state, { loading: true });
+          case GitAction.ViewedUserCartItem:
+            return Object.assign({}, state, {
+              loading: false,
+              productCartItem: action.payload
+            });
 
     ///////////////////////////////////////////////////  sidebar configuration ///////////////////////////////////////////////////
 
