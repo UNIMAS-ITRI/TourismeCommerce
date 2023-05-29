@@ -13,9 +13,10 @@ import {
 
 TourGuideCard.propTypes = {
   x: PropTypes.object,
+  addToCart: PropTypes.func,
 };
 
-export default function TourGuideCard({ x }) {
+export default function TourGuideCard({ x, addToCart }) {
   return (
     <Card>
       <img src={x.image} width='100%' height='auto' />
@@ -47,7 +48,7 @@ export default function TourGuideCard({ x }) {
             borderRadius: '0.5vw',
             boxShadow: '2px 3px 5px #888888',
           }}
-          onClick={() => window.open("https://wa.me/60168888422", "_blank")}
+          onClick={() => addToCart()}
         >
           <Typography variant="body">
             Add to cart
