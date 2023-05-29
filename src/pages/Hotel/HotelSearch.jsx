@@ -723,7 +723,7 @@ class HotelSearch extends Component {
                                   color: "white",
                                 }}
                                 onClick={() =>
-                                  (window.location.href = "/HotelDetail")
+                                  (window.location.href = "./HotelDetail")
                                 }
                               >
                                 View Hotel

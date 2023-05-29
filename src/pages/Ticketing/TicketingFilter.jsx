@@ -169,7 +169,7 @@ class TicketingFilter extends Component {
                         }}
                         fullWidth
                         onClick={() =>
-                            (window.location.href = "/PlaceDetailsForTour")
+                            (window.location.href = "./PlaceDetailsForTour")
                         }
                     >
                         Add to cart
