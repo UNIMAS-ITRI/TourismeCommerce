@@ -69,26 +69,26 @@ const INITIAL_STATE = {
   swiperImg: [
     
     {
-      image: "https://cf.bstatic.com/images/hotel/max1024x768/366/36635705.jpg",
+      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/64528988.jpg?k=2a0e2c8b700a309d2bf32859de7447261402988e9d47afb03efab23f5c33e7b3&o=&hp=1",
     },
     
     {
-      image: "https://cf.bstatic.com/images/hotel/max1024x768/374/37425110.jpg",
+      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/157520042.jpg?k=20d57e7771d9a2bfb1c044b3ff91b9aae6cbec6c5fb32eac53a4bba1cad1874d&o=&hp=1",
     },
     {
-      image: "https://cf.bstatic.com/images/hotel/max1024x768/374/37427954.jpg",
-    },
-    {
-      image:
-        "https://pix8.agoda.net/hotelImages/615/615521/615521_15052808220027881002.jpg?ca=4&ce=1&s=1024x768",
+      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/214872604.jpg?k=8923943180c4f29141bfcf73ca8af9cf2ad25197ebda18a55da879ee789ad566&o=&hp=1",
     },
     {
       image:
-        "https://www.greatsmallhotels.com/photos/66156_the-ranee-boutique-suites_.jpg",
+        "https://cf.bstatic.com/xdata/images/hotel/max1024x768/64596156.jpg?k=d6387eedd94d25075c03365a5f9598517c99cac8daecca10c7872e7edaf0d12e&o=&hp=1",
     },
     {
       image:
-        "https://www.imperialhotelkuching.com.my/images/picture1/event.jpg",
+        "https://cf.bstatic.com/xdata/images/hotel/max1024x768/64529017.jpg?k=77332c887db5c8be58bb9b375113c5dec0c55600d51081a0b7d27678ff807722&o=&hp=1",
+    },
+    {
+      image:
+        "https://cf.bstatic.com/xdata/images/hotel/max1024x768/64531143.jpg?k=45451bd450d75d7e618de3e0e65deb565c3d9bbe2f9cc8fd2caeb29c2e225baa&o=&hp=1",
     },
    
   ],
@@ -103,7 +103,7 @@ const INITIAL_STATE = {
     //   title: "Old Kuching Heritage Building and Monuments",
     //   url: "",
     // },
-    { title: "Imperial Hotel Kuching", url: "" },
+    { title: "The Waterfront Hotel", url: "" },
   ],
   indexImageHover: "",
   indexMediaHower: "",
@@ -259,11 +259,11 @@ class HotelDetails extends Component {
     ];
     const HotelDetails = [
       {
-        name: "Imperial Hotel Kuching",
+        name: "The Waterfront Hotel",
         State: "Kuching",
         Email: "-",
-        Website: "Website",
-        Contact: "+60 - 82588999",
+        Website: "https://thewaterfrontkuching.com/",
+        Contact: "+6012 880 8189",
         OperateTime: "Open 24-hours",
         Rating: 5,
         Review: [
@@ -284,7 +284,8 @@ class HotelDetails extends Component {
         latitude: 1.51317,
         longitude: 110.3357,
         PlaceDesc:
-          "Imperial Hotel Kuching, the latest addition to the fast expanding Imperial Group Hotels is a 4-star business class hotel, strategicallt located in the heart of Kuching, just 5 minutes drive from the Kuching International Airport and 10 minutes to the city's central business district. It sits on top of the Boulevard Shoppping Mall and is adjacent to the Imperial Suites",
+          "Set atop Plaza Merdeka Shopping Centre, The Waterfront Hotel Kuching offers modern guest rooms with free WiFi access. The property boasts a semi-outdoor infinity pool and 2 dining options. For guests who drive, free parking is provided. Every room is fitted with air conditioning and a flat-screen cable TV, while the en suite bathroom comes with a shower and free toiletries. Some rooms have city view and a bathub. Buffet breakfast is served daily at Cafe Via Mare, which also opens for all day dining. Drinks, snacks and live entertainment are offered at Kilig Bar Lounge" +
+          "You can exercise at the fitness centre or enjoy the city view by the poolside. Friendly staff at the 24-hour reception can assist you with airport transfers at an additional charge. Alternatively, taxi booking service is available. For your comfort, daily housekeeping and luggage storage are provided for free.  Kuching Waterfront is 270 m from The Waterfront Hotel Kuching, while Sarawak Museum is 500 m from the property. Kuching International Airport is a 9.5 km drive away.",
       },
     ];
 
@@ -467,9 +468,82 @@ class HotelDetails extends Component {
         PriceInclude: ["Free Wi-Fi", "Pay At Hotel", "Free Cancellation"],
         Capacity: 2,
       },
-
       {
         RoomID: 1,
+        RoomName: "Deluxe Twin",
+        Price: 380.0,
+        HotelID: 3,
+        Bed: [{ BedCategoryID: 1, BedCat_Name: "Single Bed" }],
+        RoomImages: [
+          {
+            ImageID: 4,
+            ImageURL:
+              "https://cf.bstatic.com/xdata/images/hotel/max1024x768/214870964.jpg?k=efd2b69118929436a74bc3758e2638c4251d0503d75ff327d5cf40a8f5feeff3&o=",
+          },
+          {
+            ImageID: 5,
+            ImageURL:
+              "https://cf.bstatic.com/xdata/images/hotel/max1024x768/64531093.jpg?k=9057957ecf578bf8e0d7d4d6b76d9927f60012a45eb053b6411d968ec8ba8869&o=&hp=1",
+          },
+          {
+            ImageID: 6,
+            ImageURL:
+              "https://cf.bstatic.com/xdata/images/hotel/max1024x768/214870964.jpg?k=1ab85e65acf5052bec6b907198759fbe267a793795de9e177a0d2aa89b35021c&o=&hp=1",
+          },
+          // {
+          //   ImageID: 7,
+          //   ImageURL:
+          //     "https://cf.bstatic.com/xdata/images/hotel/max1024x768/64531398.jpg?k=ffe92a68d382cebbf9b14c9a86d517544b6fbc1f68e625cbf00c739bf1f87961&o=",
+          // },
+        ],
+        FreeCancellation_Stat: true,
+        Advance_Pay: true,
+        Breakfast_Included: true,
+        AvailableRoom_Qty: 2,
+        Facilities: [
+          {
+            AmenityID: 0,
+            AmenityName: "Bath/ Shower",
+          },
+          {
+            AmenityID: 1,
+            AmenityName: "Hairdryer",
+          },
+          {
+            AmenityID: 2,
+            AmenityName: "Fan",
+          },
+          {
+            AmenityID: 3,
+            AmenityName: "Towel",
+          },
+          {
+            AmenityID: 4,
+            AmenityName: "Refrigerator",
+          },
+          {
+            AmenityID: 5,
+            AmenityName: "Wardrobe",
+          },
+          {
+            AmenityID: 6,
+            AmenityName: "Bathtub",
+          },
+          {
+            AmenityID: 7,
+            AmenityName: "Coffee Maker",
+          },
+        ],
+        PriceInclude: [
+          "Free Wi-Fi",
+          "Pay At Hotel",
+          "Free Cancellation",
+          "Breakfast for two",
+        ],
+        Capacity: 2,
+      },
+      {
+        RoomID: 2,
         RoomName: "Deluxe Queen Suite",
         Price: 380.0,
         HotelID: 3,
@@ -543,7 +617,7 @@ class HotelDetails extends Component {
         Capacity: 2,
       },
       {
-        RoomID: 1,
+        RoomID: 3,
         RoomName: "Executive King Suite",
         Price: 480.0,
         HotelID: 4,
@@ -684,7 +758,7 @@ class HotelDetails extends Component {
                   fontSize: "1.0vw",
                 }}
               >
-                {HotelDetails[0].Rating} ( 7799
+                {HotelDetails[0].Rating} ( 9074
                 {/* {HotelDetails[0].Review.length} */} Review(s))
               </label>
             </span>
@@ -1137,6 +1211,7 @@ class HotelDetails extends Component {
                           <Button
                             variant="contained"
                             style={{
+                              padding:"5px",
                               backgroundColor: "#F89880",
                               borderRadius: "10px",
                               marginTop: "20px",
@@ -1158,7 +1233,8 @@ class HotelDetails extends Component {
                                 borderRadius: "10px",
                                 marginTop: "20px",
                                 width: "fit-content",
-                                marginLeft: "10px",
+                                marginLeft: "10px", 
+                                padding:"5px",
                               }}
                             >
                               STREAMING SERVICE
@@ -1171,6 +1247,7 @@ class HotelDetails extends Component {
                                 marginTop: "20px",
                                 width: "fit-content",
                                 marginLeft: "10px",
+                                padding:"5px",
                               }}
                             >
                               SOUNDPROFING
@@ -1265,7 +1342,10 @@ class HotelDetails extends Component {
                             variant="contained"
                             style={{
                               backgroundColor: "#95b43c",
-                              fontSize: "23px",
+                              fontSize: "20px",
+                              fontWeight:"bold",
+                              padding:"10px",
+                              borderRadius:"10px"
                             }}
                             onClick={() =>
                               this.setState({
@@ -1339,7 +1419,7 @@ class HotelDetails extends Component {
                 >
                   {" "}
                   {/* {HotelDetails[0].Review.length}  */}
-                  7799 Review(s)
+                  9074 Review(s)
                 </label>
               </div>
             </div>

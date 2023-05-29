@@ -247,7 +247,7 @@ function HotelModal(props) {
                 spacing={2}
                 style={{ alignItems: "center", marginTop: "2%" }}
               >
-                <Button variant="contained" color="primary" size="small">
+                <Button variant="contained" color="primary" size="small" style={{ padding: "5px", borderRadius: "10px" }}>
                   Add breakfast
                 </Button>
                 <Typography
@@ -279,7 +279,7 @@ function HotelModal(props) {
               </Stack>
             </Grid>
             <Grid item xs={12} sm={12} style={{ marginTop: "4%" }}>
-              <Button variant="contained" color="success" fullWidth>
+              <Button variant="contained" color="success" fullWidth  style={{ padding: "5px", borderRadius: "10px" }}>
                 Book Now
               </Button>
             </Grid>

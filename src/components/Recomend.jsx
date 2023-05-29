@@ -292,7 +292,7 @@ function Recommend(props) {
     {
       index: 0,
       // children: renderHotelLayout(),
-      children: <ProductCard type="Accomodation" />,
+      children: <ProductCard type="Accommodation" />,
       value: 0,
       type: "Accommodation",
     },

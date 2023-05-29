@@ -320,7 +320,7 @@ class ProductsDetail extends Component {
                     </div>
                 </div>
 
-                <Recommend type="Accommodation" />
+                <Recommend type="Product" />
 
             </div >
         );

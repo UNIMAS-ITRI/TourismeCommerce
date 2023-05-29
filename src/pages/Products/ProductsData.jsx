@@ -1,3 +1,6 @@
+
+import OrangUlu from '../../assets/OrangUlu.jpg'
+
 export const recommend = [
     {
         image:
@@ -47,6 +50,34 @@ export const recommend = [
         shopName: "Shop Anni",
         price: "10",
         discountedPrice: "5",
+        rating: 8.5,
+        Breakfast_Available: true,
+        hotelStar: 5,
+        locationWise: 8.8,
+        Neighborhood: "Kuching",
+        reviewNum: 1809,
+        review: "Excellent",
+    },
+    {
+        image: OrangUlu,
+        name: "Orang Ulu Multi Purpose Accessory",
+        shopName: "Shop Anni",
+        price: "120",
+        discountedPrice: "100",
+        rating: 5,
+        Breakfast_Available: true,
+        hotelStar: 5,
+        locationWise: 8.8,
+        Neighborhood: "Kuching",
+        reviewNum: 1809,
+        review: "Excellent",
+    },
+    {
+        image: "https://ae01.alicdn.com/kf/S6e8520772ef6467fb77dfb1743f919b9c/Lucky-Charm-Tibetan-Buddhism-Bracelets-Bangles-For-Women-Men-Handmade-Knots-Rope-Budda-Thread-Braided-Bracelet.jpg_Q90.jpg_.webp",
+        name: "Bracelet (Unisex)",
+        shopName: "Shop Anni",
+        price: "60",
+        discountedPrice: "55",
         rating: 8.5,
         Breakfast_Available: true,
         hotelStar: 5,
