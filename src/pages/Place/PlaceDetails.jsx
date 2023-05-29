@@ -265,7 +265,7 @@ class PlaceDetails extends Component {
             { image: "http://tourism.denoo.my/TourismApi/images/place/496/496_slider1.jpg", url: "http://tourism.denoo.my/PlaceDetail.aspx?pid=496&plat=1.558591000000000&plng=110.344826000000000", name: "The Pavilion (Textile Museum)" },
             { image: "http://tourism.denoo.my/TourismApi/images/place/10/10_slider1.jpg", url: "http://tourism.denoo.my/PlaceDetail.aspx?pid=10&plat=1.558551000000000&plng=110.345679000000000", name: "Mei Xin's Laksa, Lau Ya Keng Foodcourt" },
             { image: "http://tourism.denoo.my/TourismApi/images/place/179/179_slider1.jpg", url: "http://tourism.denoo.my/PlaceDetail.aspx?pid=179&plat=1.559484000000000&plng=110.346528000000000", name: "Kuching Waterfront" },
-            { image: "http://tourism.denoo.my/images/main.png", url: "http://tourism.denoo.my/PlaceDetail.aspx?pid=3000&plat=1.559484000000000&plng=110.346528000000000", name: "Sarawak Regatta" }
+            { image: "http://tourism.denoo.my/visitsarawak/images/main.png", url: "http://tourism.denoo.my/PlaceDetail.aspx?pid=3000&plat=1.559484000000000&plng=110.346528000000000", name: "Sarawak Regatta" }
         ]
 
         const RatingList = [{ id: 5, value: 5 }, { id: 4, value: 4 }, { id: 3, value: 3 }, { id: 2, value: 2 }, { id: 1, value: 1 }]

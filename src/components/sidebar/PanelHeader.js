@@ -63,7 +63,7 @@ export default function PanelHeader(props) {
       <Box sx={{ backgroundColor: "#8fb136" }} py={1} px={4}>
         <Grid container display='flex' direction='row' alignItems='center' justifyContent='space-between'>
           <Grid item>
-            <a href='/'>
+            <a href='/etourismmarketplace'>
               <img src='https://www.sarawaktourism.com/images/logo_w.png' alt="Sarawak tourism" />
             </a>
           </Grid>
