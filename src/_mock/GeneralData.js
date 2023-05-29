@@ -201,7 +201,7 @@ const GeneralData = [
     rating: "5",
     description: "The Rainforest World Music Festival (often abbreviated as RWMF) is an annual three-day music festival celebrating the diversity of world music, held in Kuching, Sarawak, Malaysia, with daytime music workshops, cultural displays, craft displays, food stalls, and main-stage evening concerts.",
     price: 345,
-    imgURL: "https://scontent-kut2-2.xx.fbcdn.net/v/t39.30808-6/340076149_552984940150405_2294230660054685995_n.jpg?stp=dst-jpg_s960x960&_nc_cat=111&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeHDYKD4tJzRZOdfP91MpY4XSlv0LJysofFKW_QsnKyh8VO6nh_skvhZ7KZnh60U9AMwKl2mZJ0GwODRYa-VcIsm&_nc_ohc=XvlLRTXv-PMAX_bjFto&_nc_ht=scontent-kut2-2.xx&oh=00_AfDlY5DznyMt3TF_1DEPhjWJoMjR0lqNDLqEEwMD3TNr4w&oe=64731A17",
+    imgURL: "https://rwmf.net/wp-content/uploads/2023/04/RWMF-WEB-BANNER-1-1.jpg",
   },
   {
     type: "Ticketing",
@@ -211,7 +211,7 @@ const GeneralData = [
     rating: "5",
     description: "The Rainforest World Music Festival (often abbreviated as RWMF) is an annual three-day music festival celebrating the diversity of world music, held in Kuching, Sarawak, Malaysia, with daytime music workshops, cultural displays, craft displays, food stalls, and main-stage evening concerts.",
     price: 140,
-    imgURL: "https://scontent-kut2-2.xx.fbcdn.net/v/t39.30808-6/340076149_552984940150405_2294230660054685995_n.jpg?stp=dst-jpg_s960x960&_nc_cat=111&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeHDYKD4tJzRZOdfP91MpY4XSlv0LJysofFKW_QsnKyh8VO6nh_skvhZ7KZnh60U9AMwKl2mZJ0GwODRYa-VcIsm&_nc_ohc=XvlLRTXv-PMAX_bjFto&_nc_ht=scontent-kut2-2.xx&oh=00_AfDlY5DznyMt3TF_1DEPhjWJoMjR0lqNDLqEEwMD3TNr4w&oe=64731A17",
+    imgURL: "https://rwmf.net/wp-content/uploads/2023/04/RWMF-WEB-BANNER-1-1.jpg",
   },
   {
     type: "Ticketing",
@@ -221,7 +221,7 @@ const GeneralData = [
     rating: "5",
     description: "The Rainforest World Music Festival (often abbreviated as RWMF) is an annual three-day music festival celebrating the diversity of world music, held in Kuching, Sarawak, Malaysia, with daytime music workshops, cultural displays, craft displays, food stalls, and main-stage evening concerts.",
     price: 1020,
-    imgURL: "https://scontent-kut2-2.xx.fbcdn.net/v/t39.30808-6/340076149_552984940150405_2294230660054685995_n.jpg?stp=dst-jpg_s960x960&_nc_cat=111&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeHDYKD4tJzRZOdfP91MpY4XSlv0LJysofFKW_QsnKyh8VO6nh_skvhZ7KZnh60U9AMwKl2mZJ0GwODRYa-VcIsm&_nc_ohc=XvlLRTXv-PMAX_bjFto&_nc_ht=scontent-kut2-2.xx&oh=00_AfDlY5DznyMt3TF_1DEPhjWJoMjR0lqNDLqEEwMD3TNr4w&oe=64731A17",
+    imgURL: "https://rwmf.net/wp-content/uploads/2023/04/RWMF-WEB-BANNER-1-1.jpg",
   },
   {
     type: "Product",

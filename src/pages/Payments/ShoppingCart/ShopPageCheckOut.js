@@ -29,13 +29,14 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import OrangUlu from '../../../assets/OrangUlu.jpg'
 
 class ShopPageCheckOut extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            address:2,
+            address: 2,
             /** example: [{itemId: 8, value: 1}] */
             quantities: [],
             ProductStockAmountlimit: false,
@@ -54,38 +55,97 @@ class ShopPageCheckOut extends Component {
             selectedProductDetailList: [],
             isDataAccepted: false,
             isCheckOutSubmit: false,
-            open:false,
-
-
+            open: false,
+            
             // dummy data
-            data :[{
-                MerchantShopName:'Jual Barang Sdn Bhd',
-                Image:"https://www.mycraftshoppe.com/storage/TVpUEqwfMHPDy2qOAXGvYXSpFq8fsx6sOHEQI2Fv.png",
-                ProductName:"Orang Ulu Glass Beads Earring",
-                Desc: "1 pair unique handcraft earring of Orang Ulu",
-                Price: 30,
-                Quantity: 1,
-                Total: 30,
-            },
-           { MerchantShopName:'Jual Barang Sdn Bhd',
-            Image:"https://cf.bstatic.com/xdata/images/hotel/max1280x900/214872686.jpg?k=6718d84d29397892d8868126483553c65c02f616a389ec2b57f29004266e9f3e&o=&hp=1",
-            ProductName:"Kuching Waterfront Hotel Deluxe Room",
-            Desc:"null",
-            Duration:"3 Days 2 Night",
-            Price: 804,
-            Quantity: 1,
-            Total: 804
-        },
-
-            { MerchantShopName:'Jual Barang Sdn Bhd',
-            Image:"https://borneo.com.au/wp-content/uploads/2020/10/scv0104-1.jpg",
-            ProductName:"Sarawak Cultural Village",
-            Desc:"Exploring the unique features of Sarawak.",
-            Price: 60,
-            Quantity: 1,
-            Total: 60,},
-
-        ],
+            data: [
+                {
+                    MerchantShopName: 'Jual Barang Sdn Bhd',
+                    id: 122,
+                    Image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/214870964.jpg?k=efd2b69118929436a74bc3758e2638c4251d0503d75ff327d5cf40a8f5feeff3&o=",
+                    ProductName: "Deluxe Twin @ The Waterfront Hotel Kuching",
+                    Desc: "Hotel for staycation",
+                    Price: 380,
+                    Quantity: 1,
+                    Total: 380,
+                },
+                {
+                    MerchantShopName: 'King Laksa',
+                    id: 126,
+                    Image: "https://d1sag4ddilekf6.cloudfront.net/compressed_webp/items/MYITE2021091315121721845/detail/menueditor_item_a14892b327e3456caa59f1b653dba0b4_1631546447521441096.webp",
+                    ProductName: "Sarawak Laksa Special",
+                    Desc: "null",
+                    Duration: "-",
+                    Price: 11,
+                    Quantity: 1,
+                    Total: 11
+                },
+                {
+                    MerchantShopName: 'Mira Cake House',
+                    id: 130,
+                    Image: "https://miracakehouse.com/new/wp-content/uploads/2020/08/Kek-Almond-Cheese-400x267.jpg",
+                    ProductName: "Kek Lapis Coffee",
+                    Desc: "null",
+                    Duration: "-",
+                    Price: 15,
+                    Quantity: 2,
+                    Total: 30
+                },
+                {
+                    MerchantShopName: 'Jual Barang Sdn Bhd',
+                    id: 133,
+                    Image: "https://blog.qelola.com/wp-content/uploads/2020/06/gunung-mulu-national-park.jpg",
+                    ProductName: "Mulu National Park Tour",
+                    Desc: "null",
+                    Duration: "2 Day 1 Night",
+                    Price: 159,
+                    Quantity: 1,
+                    Total: 159
+                },
+                {
+                    MerchantShopName: 'Agency Sdn Bhd',
+                    id: 154,
+                    Image: "https://www.amazingborneo.com/img/luq.jpg",
+                    ProductName: "Luq (Tour Guide)",
+                    Desc: "null",
+                    Duration: "2 Day 1 Night",
+                    Price: 75,
+                    Quantity: 1,
+                    Total: 75
+                },
+                {
+                    MerchantShopName: 'Jual Barang Sdn Bhd',
+                    id: 163,
+                    Image: OrangUlu,
+                    ProductName: "Orang Ulu Multipurpose Accessory",
+                    Desc: "null",
+                    Duration: "-",
+                    Price: 120,
+                    Quantity: 1,
+                    Total: 120
+                },
+                {
+                    MerchantShopName: 'Jual Barang Sdn Bhd',
+                    id: 100,
+                    Image: "https://ae01.alicdn.com/kf/S6e8520772ef6467fb77dfb1743f919b9c/Lucky-Charm-Tibetan-Buddhism-Bracelets-Bangles-For-Women-Men-Handmade-Knots-Rope-Budda-Thread-Braided-Bracelet.jpg_Q90.jpg_.webp",
+                    ProductName: "Bracelet (Unisex)",
+                    Desc: "null",
+                    Duration: "-",
+                    Price: 60,
+                    Quantity: 1,
+                    Total: 60
+                },
+                {
+                    MerchantShopName: 'Jual Barang Sdn Bhd',
+                    id: 137,
+                    Image: "https://images.wapcar.my/file1/08660ae50f18495082c8905fccafdef6_606x402.jpg",
+                    ProductName: "Honda City",
+                    Desc: "Exploring the unique features of Sarawak.",
+                    Price: 200,
+                    Quantity: 1,
+                    Total: 200,
+                },
+            ],
             activeStep: 0,
             skipped: new Set(),
 
@@ -99,29 +159,29 @@ class ShopPageCheckOut extends Component {
 
     // Stepper
     getSteps() {
-      return ['Check Order', 'Shipping Address'];
+        return ['Check Order', 'Shipping Address'];
     }
-    
+
 
     handleNext = () => {
-      this.setState({activeStep:this.state.activeStep + 1});
+        this.setState({ activeStep: this.state.activeStep + 1 });
     };
-  
+
     handleBack = () => {
-      this.setState({activeStep:this.state.activeStep - 1});
+        this.setState({ activeStep: this.state.activeStep - 1 });
     };
-  
+
     handleReset = () => {
-      this.setState({activeStep:0});
+        this.setState({ activeStep: 0 });
     };
 
     // handleDialog
     handleClickOpen = () => {
-      this.setState({open:true});
+        this.setState({ open: true });
     };
-  
+
     handleClose = () => {
-      this.setState({open:false});
+        this.setState({ open: false });
     };
 
 
@@ -315,7 +375,7 @@ class ShopPageCheckOut extends Component {
 
             image = (
                 <div className="product-image">
-                    <img className="product-image__img" src={displayCart.Image} alt=""/>
+                    <img className="product-image__img" src={displayCart.Image} alt="" />
                     {/* <Link to={url.product(item.product)} className="product-image__body">
                         <img className="product-image__img" src={item.product.ProductImage !== null && item.product.ProductImage !== undefined && item.product.ProductImage.length > 0 ? item.product.ProductImage : Logo} alt="Emporia" onError={(e) => { e.target.onerror = null; e.target.src = Logo }} />
                     </Link> */}
@@ -396,139 +456,139 @@ class ShopPageCheckOut extends Component {
 
     renderCart() {
 
-      const steps = this.getSteps();
+        const steps = this.getSteps();
 
-        return(
-            <Box sx={{padding:"10px",backgroundColor:"white",minwidth: '100vh'}} >
-            <Paper style={{padding:'15px',backgroundColor:"transparent"}} elevation={0}>
-                <Grid container 
-                      alignItems="center"
-                      justify="center"
-                      style={{padding:'15px'}}
-                >
-                <Grid item xs={12} sm={12}>
-               
-      <Stepper activeStep={this.state.activeStep} alternativeLabel>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
+        return (
+            <Box sx={{ padding: "10px", backgroundColor: "white", minwidth: '100vh' }} >
+                <Paper style={{ padding: '15px', backgroundColor: "transparent" }} elevation={0}>
+                    <Grid container
+                        alignItems="center"
+                        justify="center"
+                        style={{ padding: '15px' }}
+                    >
+                        <Grid item xs={12} sm={12}>
 
-                </Grid>
+                            <Stepper activeStep={this.state.activeStep} alternativeLabel>
+                                {steps.map((label) => (
+                                    <Step key={label}>
+                                        <StepLabel>{label}</StepLabel>
+                                    </Step>
+                                ))}
+                            </Stepper>
 
-               {this.state.activeStep === 0 &&  
-               <>
-                <Grid item xs={12} sm={12} style={{marginBottom:'20px'}}>
-                    <Typography variant="h6" style={{fontWeight:"bold"}}>Sarawak Tourism E-Commerce</Typography>
-                </Grid>
-                <Grid item xs={12} sm={12} style={{marginBottom:'20px'}}>
-                    <TableContainer>
-                    <Table >
-                        <TableRow>
-                            <TableCell><Checkbox /></TableCell>
-                            <TableCell >Purchase</TableCell>
-                            <TableCell >Purchase Info</TableCell>
-                            <TableCell >Quantity</TableCell>
-                            <TableCell >Total</TableCell>
-                            <TableCell >Action</TableCell>
-                        </TableRow>
-                       
-                        <TableBody>
-                        {this.state.data.map((row) => (
-                            <TableRow
-                            key={row.name}
-                            >
-                            <TableCell><Checkbox checked/></TableCell>
-                            <TableCell><img src={row.Image} alt="" width="100px"/></TableCell>
-                            <TableCell>
-                                <div><Typography variant="h6">{row.ProductName}</Typography></div>
-                                {row.Desc !== "null" &&
-                                <div><Typography variant="caption">{row.Desc}</Typography></div>
-                                }
+                        </Grid>
 
-                                {row.Duration !== "" &&
-                                    <div><Typography variant="caption">{row.Duration}</Typography></div>
-                                }
-                                
-                                </TableCell>
-                            <TableCell><Typography variant="h6">{row.Quantity}</Typography></TableCell>
-                            <TableCell><Typography variant="h6">RM {row.Total}</Typography></TableCell>
-                            <TableCell>
-                                <IconButton
-                                    // onClick={()=this.deleteProductCart()}
-                                >
-                                    <CloseIcon/>
-                                </IconButton>
-                            </TableCell>
-                            </TableRow>
-                        ))}
-                        </TableBody>
-                    </Table>
-                    </TableContainer>
-                    </Grid>
+                        {this.state.activeStep === 0 &&
+                            <>
+                                <Grid item xs={12} sm={12} style={{ marginBottom: '20px' }}>
+                                    <Typography variant="h6" style={{ fontWeight: "bold" }}>Sarawak Tourism E-Commerce</Typography>
+                                </Grid>
+                                <Grid item xs={12} sm={12} style={{ marginBottom: '20px' }}>
+                                    <TableContainer>
+                                        <Table >
+                                            <TableRow>
+                                                <TableCell><Checkbox /></TableCell>
+                                                <TableCell >Purchase</TableCell>
+                                                <TableCell >Purchase Info</TableCell>
+                                                <TableCell >Quantity</TableCell>
+                                                <TableCell >Total</TableCell>
+                                                <TableCell >Action</TableCell>
+                                            </TableRow>
 
-                    <Grid item xs={12} sm={12} justify="right" alignItems="right">
-                        <Stack direction="row" spacing={2} style={{justifyContent:'right'}}>
-                            <Typography variant="h6" style={{fontWeight:'bold', textAlign:'right'}}>Subtotal</Typography>
-                            <Typography variant="h6" style={{textAlign:"right"}}>RM { this.state.data.reduce((sum, i) => (
-                                sum += i.Total
-                                ), 0)}</Typography>
-                        </Stack>
-                        
-                    </Grid>
-                    </>
-    }
+                                            <TableBody>
+                                                {this.state.data.map((row) => (
+                                                    <TableRow
+                                                        key={row.name}
+                                                    >
+                                                        <TableCell><Checkbox checked /></TableCell>
+                                                        <TableCell><img src={row.Image} alt="" width="100px" /></TableCell>
+                                                        <TableCell>
+                                                            <div><Typography variant="h6">{row.ProductName}</Typography></div>
+                                                            {row.Desc !== "null" &&
+                                                                <div><Typography variant="caption">{row.Desc}</Typography></div>
+                                                            }
 
-    {this.state.activeStep === 1 &&
+                                                            {row.Duration !== "" &&
+                                                                <div><Typography variant="caption">{row.Duration}</Typography></div>
+                                                            }
 
-    <Grid item xs={12} sm={12}>
-      <Grid item container spacing={2}>
-        <Grid item xs={12} sm={4} >
-          <Paper style={{padding:'10px',minHeight:'200px', backgroundColor:this.state.address === 1 ? '#FFCD71' : 'transparent'}} elevation={2}>
-          {this.state.address === 1 &&
-                <Typography variant="caption" style={{fontWeight:"bold"}}>Selected</Typography>
-            }
-              <Typography variant='h6' style={{margin:"auto", textAlign:'center', paddingTop:"20px"}}>Self Pickup</Typography>
-              {this.state.address !==1 &&
-              <div style={{display:"flex", justifyContent:"center", paddingTop:"20px"}}>
-                    <Button variant="contained" color="primary" onClick={()=>this.setState({address:1})}>Select</Button>
-              </div>
-                }
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={4} >
-          <Paper style={{padding:'10px',minHeight:'200px', backgroundColor:this.state.address === 2 ? '#FFCD71' : 'transparent'}}
-          elevation={2}>
-              <div>
-            {this.state.address ===2 &&
-                <Typography variant="caption" style={{fontWeight:"bold"}}>Selected</Typography>
-            }
-              <Typography variant='h6' style={{margin:"auto", textAlign:'center', paddingTop:"20px"}}>Lot 123, Jalan Mutiara, 94300, Kota Samarahan, Sarawak</Typography>
-              </div>
+                                                        </TableCell>
+                                                        <TableCell><Typography variant="h6">{row.Quantity}</Typography></TableCell>
+                                                        <TableCell><Typography variant="h6">RM {row.Total}</Typography></TableCell>
+                                                        <TableCell>
+                                                            <IconButton
+                                                            // onClick={()=this.deleteProductCart()}
+                                                            >
+                                                                <CloseIcon />
+                                                            </IconButton>
+                                                        </TableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer>
+                                </Grid>
 
-              {this.state.address !== 2 &&
-              <div style={{display:"flex", justifyContent:"center", paddingTop:"20px"}}>
-                    <Button variant="contained" color="primary" onClick={()=>this.setState({address:2})}>Select</Button>
-              </div>
-                }
-              
-          </Paper>
-        </Grid>
+                                <Grid item xs={12} sm={12} justify="right" alignItems="right">
+                                    <Stack direction="row" spacing={2} style={{ justifyContent: 'right' }}>
+                                        <Typography variant="h6" style={{ fontWeight: 'bold', textAlign: 'right' }}>Subtotal</Typography>
+                                        <Typography variant="h6" style={{ textAlign: "right" }}>RM {this.state.data.reduce((sum, i) => (
+                                            sum += i.Total
+                                        ), 0)}</Typography>
+                                    </Stack>
 
-        <Grid item xs={12} sm={4} >
-        <Paper style={{padding:'10px',minHeight:'200px'}} elevation={2}>
-             <div style={{display:'flex', justifyContent:'center', paddingTop:"50px"}}>
-               <IconButton onClick={this.handleClickOpen}>
-                  <AddCircleOutlineIcon fontSize='large'/>
-               </IconButton>
-             </div>
-          </Paper>
-        </Grid>
+                                </Grid>
+                            </>
+                        }
 
-       
-            {/* <HandleAddress
+                        {this.state.activeStep === 1 &&
+
+                            <Grid item xs={12} sm={12}>
+                                <Grid item container spacing={2}>
+                                    <Grid item xs={12} sm={4} >
+                                        <Paper style={{ padding: '10px', minHeight: '200px', backgroundColor: this.state.address === 1 ? '#FFCD71' : 'transparent' }} elevation={2}>
+                                            {this.state.address === 1 &&
+                                                <Typography variant="caption" style={{ fontWeight: "bold" }}>Selected</Typography>
+                                            }
+                                            <Typography variant='h6' style={{ margin: "auto", textAlign: 'center', paddingTop: "20px" }}>Self Pickup</Typography>
+                                            {this.state.address !== 1 &&
+                                                <div style={{ display: "flex", justifyContent: "center", paddingTop: "20px" }}>
+                                                    <Button variant="contained" color="primary" onClick={() => this.setState({ address: 1 })}>Select</Button>
+                                                </div>
+                                            }
+                                        </Paper>
+                                    </Grid>
+                                    <Grid item xs={12} sm={4} >
+                                        <Paper style={{ padding: '10px', minHeight: '200px', backgroundColor: this.state.address === 2 ? '#FFCD71' : 'transparent' }}
+                                            elevation={2}>
+                                            <div>
+                                                {this.state.address === 2 &&
+                                                    <Typography variant="caption" style={{ fontWeight: "bold" }}>Selected</Typography>
+                                                }
+                                                <Typography variant='h6' style={{ margin: "auto", textAlign: 'center', paddingTop: "20px" }}>Lot 123, Jalan Mutiara, 94300, Kota Samarahan, Sarawak</Typography>
+                                            </div>
+
+                                            {this.state.address !== 2 &&
+                                                <div style={{ display: "flex", justifyContent: "center", paddingTop: "20px" }}>
+                                                    <Button variant="contained" color="primary" onClick={() => this.setState({ address: 2 })}>Select</Button>
+                                                </div>
+                                            }
+
+                                        </Paper>
+                                    </Grid>
+
+                                    <Grid item xs={12} sm={4} >
+                                        <Paper style={{ padding: '10px', minHeight: '200px' }} elevation={2}>
+                                            <div style={{ display: 'flex', justifyContent: 'center', paddingTop: "50px" }}>
+                                                <IconButton onClick={this.handleClickOpen}>
+                                                    <AddCircleOutlineIcon fontSize='large' />
+                                                </IconButton>
+                                            </div>
+                                        </Paper>
+                                    </Grid>
+
+
+                                    {/* <HandleAddress
                   isOpen={this.state.open}
                   // handleOpen={this.handleAddNewCard}
                   // handleAddCreditCard={this.handleAddCreditCard}
@@ -542,79 +602,79 @@ class ShopPageCheckOut extends Component {
                   address={this.state.isAddAddress === false ? this.state.selectedAddresstoEdit : []}
                 /> */}
 
-      </Grid>
-    </Grid>
-    
-    }
-                  
-                </Grid>
+                                </Grid>
+                            </Grid>
 
-                <Grid container 
-                      alignItems="right"
-                      justify="right"
-                      style={{padding:'15px'}}
-                >
-                   
-                      <Grid item xs={12} sm={6} style={{margin:'auto', paddingTop:'15px'}}>
-                        <div style={{display:'flex', justifyContent:'flex-start'}}>
-                          <Button
-                            disabled={this.state.activeStep === 0}
-                            onClick={this.handleBack}
-                            variant="contained"
-                          >
-                            Back
-                          </Button>
-                        </div>
-                      </Grid>
+                        }
 
-                      <Grid item xs={12} sm={6} style={{margin:'auto', paddingTop:'15px'}}>
-                      <div style={{display:'flex', justifyContent:'flex-end'}}>
-                        {this.state.activeStep === 2 ? 
-                         <Button variant="contained" color="primary" onClick={this.props.history.push('/PurchaseSummary')}>
-                         Submit
-                        </Button>
-                        :
+                    </Grid>
 
-                        <Button variant="contained" color="primary" onClick={this.handleNext}>
-                          Next
-                       </Button>
+                    <Grid container
+                        alignItems="right"
+                        justify="right"
+                        style={{ padding: '15px' }}
+                    >
 
-                      }
-                         
-                      </div>
-                      </Grid>
-  
-                </Grid>
+                        <Grid item xs={12} sm={6} style={{ margin: 'auto', paddingTop: '15px' }}>
+                            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                                <Button
+                                    disabled={this.state.activeStep === 0}
+                                    onClick={this.handleBack}
+                                    variant="contained"
+                                >
+                                    Back
+                                </Button>
+                            </div>
+                        </Grid>
+
+                        <Grid item xs={12} sm={6} style={{ margin: 'auto', paddingTop: '15px' }}>
+                            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                {this.state.activeStep === 2 ?
+                                    <Button variant="contained" color="primary" onClick={this.props.history.push('/PurchaseSummary')}>
+                                        Submit
+                                    </Button>
+                                    :
+
+                                    <Button variant="contained" color="primary" onClick={this.handleNext}>
+                                        Next
+                                    </Button>
+
+                                }
+
+                            </div>
+                        </Grid>
+
+                    </Grid>
                 </Paper>
             </Box>
         )
     }
 
-    render() {       
+    render() {
 
         let content;
         let continueshopping = (
 
-            <Box sx={{ flexGrow: 1, margin:"20%", padding:"20px"}} 
-            className="block block-empty"
-            alignItems="center"
-            justify="center">
-            <Paper style={{padding:'15px'}}>
-                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}
-                      alignItems="center"
-                      justify="center"
+            <Box sx={{ flexGrow: 1, margin: "20%", padding: "20px" }}
+                className="block block-empty"
+                alignItems="center"
+                justify="center">
+                <Paper style={{ padding: '15px' }}>
+                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}
+                        alignItems="center"
+                        justify="center"
 
-                >
-                    <Grid item xs={12} sm={12}>
-                        <Typography style={{textAlign:'center'}}>Your Shopping Cart is empty!</Typography>
+                    >
+                        <Grid item xs={12} sm={12}>
+                            <Typography style={{ textAlign: 'center' }}>Your Shopping Cart is empty!</Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={12}>
+                            <div style={{ display: "flex", justifyContent: "center" }}>
+                                <Button variant="contained" color="primary"> Continue Shopping </Button>
+                            </div>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} sm={12}>
-                        <div style={{display:"flex", justifyContent:"center"}}>
-                            <Button variant="contained" color="primary"> Continue Shopping </Button>
-                        </div>
-                    </Grid>
-                </Grid>
-            </Paper>
+                </Paper>
             </Box>
             // <div className="block block-empty" >
             //     {/* <PageHeader header="Shopping Cart" breadcrumb={breadcrumb} /> */}
