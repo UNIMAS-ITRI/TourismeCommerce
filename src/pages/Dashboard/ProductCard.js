@@ -11,9 +11,11 @@ import InputNumber from "../../components/InputNumber/InputNumber";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import TourGuideCard from "../Place/TourGuideCard";
 import { tourGuides } from "../Place/_mock/tourGuides";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function ProductCard(props) {
+
+
   const [open, setOpen] = useState(false);
 
   const [openTour, setOpenTour] = useState(false);
@@ -28,6 +30,7 @@ export default function ProductCard(props) {
     setQuantity(Arr)
   };
 
+
   useEffect(() => {
     if (open) {
       setTimeout(() => {
@@ -35,7 +38,6 @@ export default function ProductCard(props) {
       }, 3000);
     }
   }, [open]);
-
 
   useEffect(() => {
     const quantityArray = []

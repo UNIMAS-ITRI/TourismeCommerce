@@ -6,8 +6,11 @@ const INITIAL_STATE = {
   userProfile: [],
   registrationReturn: [],
   productCart: [],
+  productCartAction: [],
   productCartItem: [],
   sidebars: [],
+
+  productList: [],
 };
 
 export function counterReducer(state = INITIAL_STATE, action) {
@@ -29,6 +32,10 @@ export function counterReducer(state = INITIAL_STATE, action) {
         logonUser: action.payload
       });
 
+
+    case GitAction.ResetLoginAction:
+      return Object.assign({}, state, { logonUser: [] });
+
     case GitAction.RegisterUser:
       return Object.assign({}, state, { loading: true });
     case GitAction.UserRegistered:
@@ -49,29 +56,66 @@ export function counterReducer(state = INITIAL_STATE, action) {
     case GitAction.ResetUserProfile:
       return Object.assign({}, state, { userProfile: [] });
 
-      case GitAction.AddUserCart:
-        return Object.assign({}, state, { loading: true });
-      case GitAction.AddedUserCart:
-        return Object.assign({}, state, {
-          loading: false,
-          productCart: action.payload
-        });
+    case GitAction.AddUserCart:
+      return Object.assign({}, state, { loading: true });
+    case GitAction.AddedUserCart:
+      return Object.assign({}, state, {
+        loading: false,
+        productCart: action.payload
+      });
 
-        case GitAction.ViewUserCart:
-          return Object.assign({}, state, { loading: true });
-        case GitAction.ViewedUserCart:
-          return Object.assign({}, state, {
-            loading: false,
-            productCart: action.payload
-          });
+    case GitAction.ViewUserCart:
+      return Object.assign({}, state, { loading: true });
+    case GitAction.ViewedUserCart:
+      return Object.assign({}, state, {
+        loading: false,
+        productCart: action.payload
+      });
 
-          case GitAction.ViewUserCartItem:
-            return Object.assign({}, state, { loading: true });
-          case GitAction.ViewedUserCartItem:
-            return Object.assign({}, state, {
-              loading: false,
-              productCartItem: action.payload
-            });
+    case GitAction.AddUserCart:
+      return Object.assign({}, state, { loading: true });
+    case GitAction.AddedUserCart:
+      return Object.assign({}, state, {
+        loading: false,
+        productCartAction: action.payload
+      });
+
+
+    case GitAction.UpdateUserCart:
+      return Object.assign({}, state, { loading: true });
+    case GitAction.UpdatedUserCart:
+      return Object.assign({}, state, {
+        loading: false,
+        productCartAction: action.payload
+      });
+
+
+    case GitAction.DeleteUserCart:
+      return Object.assign({}, state, { loading: true });
+    case GitAction.DeletedUserCart:
+      return Object.assign({}, state, {
+        loading: false,
+        productCartAction: action.payload
+      });
+
+    case GitAction.ViewUserCartItem:
+      return Object.assign({}, state, { loading: true });
+    case GitAction.ViewedUserCartItem:
+      return Object.assign({}, state, {
+        loading: false,
+        productCartItem: action.payload
+      });
+
+
+    // ----------------------------- PRODUCT LISTING -------------------------------------
+
+    case GitAction.ViewProductListing:
+      return Object.assign({}, state, { loading: true });
+    case GitAction.ViewedProductListing:
+      return Object.assign({}, state, {
+        loading: false,
+        productList: action.payload
+      });
 
     ///////////////////////////////////////////////////  sidebar configuration ///////////////////////////////////////////////////
 

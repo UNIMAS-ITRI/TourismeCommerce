@@ -22,6 +22,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import ProductCard from "./ProductCard";
+import ProductListingCard from "./ProductListingCard";
+
 
 function mapStateToProps(state) {
   return {
@@ -104,11 +106,12 @@ const INITIAL_STATE = {
   isCollapse: true,
   // panel1a-header: true,
   headerDetail: [
+    
+    { index: 4, headerName: "Product" },
     { index: 0, headerName: "Accomodation" },
     { index: 1, headerName: "Restaurants" },
     { index: 2, headerName: "Tour Package" },
     { index: 3, headerName: "Ticketing" },
-    { index: 4, headerName: "Product" },
     { index: 5, headerName: "Transportation" },
   ],
   value: 0,
@@ -120,12 +123,13 @@ const INITIAL_STATE = {
   //     {index: 4, children: "Product", value: 4,},
   //     {index: 5, children: "Transportation", value: 5,},
   // ],
+
   bodyDetail: [
+    { index: 4, children: <ProductListingCard type="Product" />, value: 4, },
     { index: 0, children: <ProductCard type="Accommodation" />, value: 0, },
     { index: 1, children: <ProductCard type="Restaurants" />, value: 1, },
     { index: 2, children: <ProductCard type="Tourpackage" />, value: 2, },
     { index: 3, children: <ProductCard type="Ticketing" />, value: 3, },
-    { index: 4, children: <ProductCard type="Product" />, value: 4, },
     { index: 5, children: <ProductCard type="Transportation" />, value: 5, },
   ],
 }

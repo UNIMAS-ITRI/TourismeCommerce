@@ -12,8 +12,15 @@ const rootEpic = combineEpics(
   gitEpic.User_ProfileByID,
   gitEpic.User_ViewPage,
   gitEpic.User_ViewProductCartItem,
-  gitEpic.User_AddProductCart,
+
   gitEpic.User_ViewProductCart,
+  gitEpic.User_DeleteProductCart,
+  gitEpic.User_AddProductCart,
+  gitEpic.User_UpdateProductCart,
+
+  gitEpic.User_ViewProductListing
+
+
 );
 
 const epicMiddleware = createEpicMiddleware();

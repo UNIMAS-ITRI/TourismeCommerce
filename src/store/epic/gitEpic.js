@@ -15,7 +15,7 @@ const { filter, map } = require('rxjs/operators');
 //           options          //
 //   1. testing server url    //
 //   2. live server url       // 
-const url = ServerConfiguration.testingServerUrl;
+const url = ServerConfiguration.dataUrl;
 export class GitEpic {
   ///////////////////////////////////////////////////  user account credentials ///////////////////////////////////////////////////
 
@@ -23,11 +23,13 @@ export class GitEpic {
     action$.pipe(filter(action => action.type === GitAction.Login), map(action => {
       return dispatch => {
         try {
-          return fetch(url + "VerifyUserLogin?" +
-            "StaffUsername=" + action.payload.username +
-            "&StaffPassword=" + action.payload.password)
+          return fetch(url + "User_Login?" +
+            "username=" + action.payload.Username +
+            "&password=" + action.payload.Password +
+            "&ProjectDomainName=myemporia")
             .then(response => response.json())
             .then(json => {
+              console.log("dassdsa", json)
               json = JSON.parse(json)
               return dispatch({ type: GitAction.LoginSuccess, payload: json });
             });
@@ -97,25 +99,134 @@ export class GitEpic {
     }));
 
 
-    User_AddProductCart = action$ =>
+    // ----------------------------- PRODUCT CART -------------------------------------
+
+  User_AddProductCart = action$ =>
     action$.pipe(filter(action => action.type === GitAction.AddUserCart), map(action => {
       return dispatch => {
-        return dispatch({ type: GitAction.AddedUserCart, payload: localStorage.getItem("cartItemLength") });
+        try {
+          return fetch(url + "Product_AddProductCart?" +
+            "USERID=" + action.payload.userID + 
+            "&PRODUCTID=" + action.payload.productID + 
+            "&PRODUCTQUANTITY=" + action.payload.quantity + 
+            "&PRODUCTVARIATIONDETAILID=" + action.payload.variationDetailID + 
+            "&APPLYINGPROMOCODE=" + action.payload.promoCode  )
+            .then(response => response.json())
+            .then(json => {
+              json = JSON.parse(json)
+              return dispatch({ type: GitAction.AddedUserCart, payload: json });
+            });
+        } catch (error) {
+          toast.error("Error Code: AddedUserCart")
+          return dispatch({ type: GitAction.AddedUserCart, payload: [] });
+        }
       }
     }));
 
-    User_ViewProductCart = action$ =>
+    
+  User_UpdateProductCart = action$ =>
+  action$.pipe(filter(action => action.type === GitAction.UpdateUserCart), map(action => {
+    return dispatch => {
+      try {
+        return fetch(url + "Product_UpdateProductCart?" +
+        "USERCARTID=" + action.payload.userCartID + 
+        "&PRODUCTQUANTITY=" + action.payload.quantity )
+          .then(response => response.json())
+          .then(json => {
+            json = JSON.parse(json)
+            return dispatch({ type: GitAction.UpdatedUserCart, payload: json });
+          });
+      } catch (error) {
+        toast.error("Error Code: UpdatedUserCart")
+        return dispatch({ type: GitAction.UpdatedUserCart, payload: [] });
+      }
+    }
+  }));
+
+  User_DeleteProductCart = action$ =>
+  action$.pipe(filter(action => action.type === GitAction.DeleteUserCart), map(action => {
+    return dispatch => {
+      try {
+        return fetch(url + "Product_DeleteProductCart?" +
+        "USERCARTID=" + action.payload.userCartID  )
+          .then(response => response.json())
+          .then(json => {
+            json = JSON.parse(json)
+            return dispatch({ type: GitAction.DeletedUserCart, payload: json });
+          });
+      } catch (error) {
+        toast.error("Error Code: DeletedUserCart")
+        return dispatch({ type: GitAction.DeletedUserCart, payload: [] });
+      }
+    }
+  }));
+    
+  User_ViewProductCart = action$ =>
     action$.pipe(filter(action => action.type === GitAction.ViewUserCart), map(action => {
       return dispatch => {
-        return dispatch({ type: GitAction.ViewedUserCart, payload: localStorage.getItem("cartItemLength") });
+        try {
+          return fetch(url + "Product_ItemListInCartByUserID?" +
+            "USERID=" + action.payload.userID)
+            .then(response => response.json())
+            .then(json => {
+              json = JSON.parse(json)
+
+              if (json[0].ReturnVal === 1)
+                return dispatch({ type: GitAction.ViewedUserCart, payload: JSON.parse(json[0].ReturnData) });
+              else
+                return dispatch({ type: GitAction.ViewedUserCart, payload: [] });
+            });
+        } catch (error) {
+          toast.error("Error Code: ViewedUserCart")
+          return dispatch({ type: GitAction.ViewedUserCart, payload: [] });
+        }
       }
     }));
+
+
+    // User_ViewProductCart = action$ =>
+    // action$.pipe(filter(action => action.type === GitAction.ViewUserCart), map(action => {
+    //   return dispatch => {
+    //     return dispatch({ type: GitAction.ViewedUserCart, payload: localStorage.getItem("cartItemLength") });
+    //   }
+    // }));
 
     
     User_ViewProductCartItem = action$ =>
     action$.pipe(filter(action => action.type === GitAction.ViewUserCartItem), map(action => {
       return dispatch => {
         return dispatch({ type: GitAction.ViewedUserCartItem, payload: localStorage.getItem("cartItem") });
+      }
+    }));
+
+    
+    // ----------------------------- PRODUCT LISTING -------------------------------------
+    
+    User_ViewProductListing = action$ =>
+    action$.pipe(filter(action => action.type === GitAction.ViewProductListing), map(action => {
+      return dispatch => {
+        try {
+          return fetch(url + "Product_ItemListByType?" +
+            "TYPE=" + action.payload.type + 
+            "&TYPEVALUE=" + action.payload.typeValue + 
+            "&USERID=" + action.payload.userID +
+            "&PRODUCTPERPAGE=" + action.payload.productPage +
+            "&PAGE=" + action.payload.page +
+            "&PLATFORMTYPE=" + action.payload.platformType +
+            "&PROJECTID=2"  )
+            .then(response => response.json())
+            .then(json => {
+              json = JSON.parse(json)
+
+              if (json[0].ReturnVal === 1)
+                return dispatch({ type: GitAction.ViewedProductListing, payload: JSON.parse(json[0].ReturnData) });
+              else
+                return dispatch({ type: GitAction.ViewedProductListing, payload: [] });
+            });
+        } catch (error) {
+          toast.error("Error Code: ViewedProductListing")
+          return dispatch({ type: GitAction.ViewedProductListing, payload: [] });
+        }
       }
     }));
 

@@ -1,13 +1,15 @@
 // "user manual": You can set your footer here
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { useDispatch, useSelector  } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import "./PanelHeader.css";
+
+
 // @mui/material
 import {
   Box,
@@ -16,19 +18,38 @@ import {
   Typography,
   IconButton,
   Stack,
-  Badge
+  Badge,
+  Dialog,
+  DialogContent,
+  Alert,
+  Snackbar
 } from '@mui/material';
 import SearchBar from '../SearchBarNav';
 import { headerDetail } from '../../pages/Place/_mock';
 import { GitAction } from '../../store/action/gitAction';
 
+import LoginComponent from '../../pages/Login/LoginComponent'
+
 export default function PanelHeader(props) {
-  
+
   const dispatch = useDispatch();
-  const { productCart, productCartItem} = useSelector(state => ({
+  const { productCart, productList, logonUser } = useSelector(state => ({
     productCart: state.counterReducer.productCart,
-    productCartItem: state.counterReducer.productCartItem,
+    logonUser: state.counterReducer.logonUser,
+    productList: state.counterReducer.productList,
   }));
+
+
+  const userData = localStorage.getItem("user") !== undefined ? JSON.parse(localStorage.getItem("user")) : []
+  const [openDialog, setOpenDialog] = useState(false);
+  const [openNotification, setOpenNotification] = useState(false);
+  const [verificationError, setVerificationError] = useState(false);
+  const [productItem, setProductItem] = useState([]);
+
+  const vertical = 'top'
+  const horizontal = 'right'
+
+  let UserID = localStorage.getItem("UserID")
 
   const Page = [
     { name: "Home", url: "./", submenu: [] },
@@ -47,7 +68,47 @@ export default function PanelHeader(props) {
   useEffect(() => {
     dispatch(GitAction.CallViewProductCart());
     dispatch(GitAction.CallViewProductCartItem());
-}, [dispatch]);
+    
+    dispatch(GitAction.CallViewProductListing({
+      type: "Merchant",
+      typeValue: 0,
+      userId: 0,
+      productPage: 999,
+      page: 1,
+      platformType: "myemporia"
+    }))
+
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (UserID)
+      dispatch(GitAction.CallViewProductCart({ userID: UserID }));
+  }, [dispatch, UserID]);
+
+  useEffect(() => {
+    if (logonUser.length > 0) {
+      if (logonUser[0].ReturnVal === 0)
+        setVerificationError(true)
+      else {
+        dispatch(GitAction.CallResetLoginAction())
+        setVerificationError(false)
+        localStorage.setItem("isLogin", true);
+        localStorage.setItem("user", logonUser[0].ReturnData);
+        localStorage.setItem("UserID", JSON.parse(logonUser[0].ReturnData)[0].UserID);
+        setOpenNotification(true)
+        handleCloseDialog()
+      }
+    }
+  }, [logonUser]);
+
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false)
+  }
+
+  const handleSubmit = (username, password) => {
+    dispatch(GitAction.CallUserLogin({ Username: username, Password: password }));
+  }
 
   return (
     <header>
@@ -86,7 +147,7 @@ export default function PanelHeader(props) {
                     },
                   }}
                   component={Link}
-                to={item.url}
+                  to={item.url}
                 >
                   <Typography variant='subtitle2' color="white">{item.headerName}</Typography>
                 </Button>
@@ -94,14 +155,41 @@ export default function PanelHeader(props) {
             </Stack>
           </div>
 
-          {/* </Grid> */}
           <Grid item>
             <IconButton component={Link} to='/ShoppingCart'>
-              <Badge color="secondary" badgeContent={productCart!== null ? productCart : "0"}>
+              <Badge color="secondary" badgeContent={productCart.length === 0 ? "0" : productCart.length}>
                 <ShoppingCartIcon style={{ color: "white" }} fontSize="small" />
               </Badge>
             </IconButton>
+
+            <IconButton onClick={() => userData.length === 0 ? setOpenDialog(true) : setOpenDialog(true)} >
+              <PersonIcon style={{ color: "white" }} fontSize="small" />
+            </IconButton>
           </Grid>
+
+          {console.log("userData", userData)}
+          <Dialog
+            fullWidth
+            maxWidth="sm"
+            open={openDialog}
+            onClose={() => setOpenDialog(false)}>
+            <DialogContent sx={{ overflow: 'unset' }}>
+              <LoginComponent verificationError={verificationError} handleSubmit={handleSubmit} />
+            </DialogContent>
+          </Dialog>
+
+
+          <Snackbar
+            anchorOrigin={{ vertical, horizontal }}
+            open={openNotification}
+            autoHideDuration={1000}
+            key={vertical + horizontal}
+          >
+            <Alert onClose={() => setOpenNotification(false)} severity="success" sx={{ width: '100%' }}>
+              Login Successfully
+            </Alert>
+          </Snackbar>
+
         </Grid>
       </Box>
     </header>
