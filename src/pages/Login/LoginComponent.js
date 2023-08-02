@@ -27,7 +27,11 @@ import { GitAction } from '../../store/action/gitAction';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-export default function LoginComponent({  handleSubmit, verificationError }) {
+export default function LoginComponent() {
+
+    const { logonUser } = useSelector(state => ({
+        logonUser: state.counterReducer.logonUser,
+      }));
 
     const dispatch = useDispatch();
     const [passwordErr, setPasswordErr] = useState(false);
@@ -37,8 +41,25 @@ export default function LoginComponent({  handleSubmit, verificationError }) {
     const [username, setUsername] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
     const [forgetPassword, setForgetPassword] = useState(false);
-    const [signUpDialog, setSignUpDialog] = useState(false);
+    const [signUpDialog, setSignUpDialog] = useState(false);  
+    const [verificationError, setVerificationError] = useState(false);
+
+
+    useEffect(() => {
+        if (logonUser.length > 0) {
+          if (logonUser[0].ReturnVal === 0)
+            setVerificationError(true)
+          else 
+            setVerificationError(false)
+          
+        }
+      }, [logonUser]);
+    
  
+  const handleSubmit = (username, password) => {
+    dispatch(GitAction.CallUserLogin({ Username: username, Password: password }));
+  }
+
     return (
         <Box sx={{ padding: 1.5 }}>
             <div className="text-center  mt-3">

@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { GitAction } from "../../store/action/gitAction";
 import { browserHistory } from "react-router";
 import { Link as RouterLink } from 'react-router-dom';
-import { Card, CardMedia, CardContent, Typography, Rating, Button, TextField, Grid, Stack } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, Rating, Button, TextField, Grid, Stack,
+  Dialog,
+  DialogContent, } from '@mui/material';
 import OrangUlu from '../../assets/OrangUlu.jpg'
 import BasicModal from '../../components/AlertModal/ModalAddedCart';
 import GeneralData from "../../_mock/GeneralData";
@@ -17,30 +19,23 @@ import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper';
 // Direct React component imports
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import LoginComponent from '../../pages/Login/LoginComponent'
+
 export default function ProductListingCard(props) {
 
-  const { productList, productCart, productCartAction } = useSelector(state => ({
+  const { productList, productCart, logonUser } = useSelector(state => ({
     productCart: state.counterReducer.productCart,
-    productCartAction: state.counterReducer.productCartAction,
     productList: state.counterReducer.productList,
+    logonUser: state.counterReducer.logonUser,
   }));
 
-
   const [open, setOpen] = useState(false);
-
-  const [openTour, setOpenTour] = useState(false);
-
-  const [quantity, setQuantity] = useState([0]);
-
+  const [openDialog, setOpenDialog] = useState(false);
+  
   const dispatch = useDispatch();
 
   const UserID = localStorage.getItem("UserID")
-  const handleChangeQuantity = (data, index) => {
-    const Arr = [...quantity]
-    Arr[index] = data
-    setQuantity(Arr)
-  };
-  
+
   useEffect(() => {
     if (open) {
       setTimeout(() => {
@@ -51,80 +46,46 @@ export default function ProductListingCard(props) {
 
 
   useEffect(() => {
-    const quantityArray = []
-    productList.map((x) => {
-      quantityArray.push(1)
-    })
-    setQuantity(quantityArray)
-
-  }, [productList]);
-
-  const handleAddToCart = (data) => {
-    if (UserID) {
-      if (productCart.length > 0) {
-        let variationID = ""
-
-        if (data.ProductVariation !== null && data.ProductVariation !== "[]")
-          variationID = JSON.parse(data.ProductVariation)[0].ProductVariationDetailID
-
-        const filterData = productCart.filter((x) => x.ProductID === data.ProductID && x.ProductVariationDetailID === Number(variationID))
-        if (filterData.length > 0)
-          dispatch(GitAction.CallUpdateProductCartItem({
-            userCartID: filterData[0].UserCartID,
-            quantity: Number(filterData[0].ProductQuantity) + 1
-          }))
-        else{
-          let variationID = ""
-          if(variationID !== "")    
-          {
-            dispatch(GitAction.CallAddProductCart({
-              userID: UserID,
-              productID: data.ProductID,
-              quantity: 1,
-              variationDetailID: variationID,
-              promoCode: 0
-            }))
-          }   
-        }
-      }
-      else {
-
+    if (logonUser.length > 0) {
+      if (logonUser[0].ReturnVal === 1){
+        setOpenDialog(false)
       }
     }
-console.log("sadsad")
-    // const cartItem = localStorage.getItem("cartItem")
-    // if (cartItem !== null) {
-    //   let itemDetail = JSON.parse(cartItem)
-    //   let newItemArray = [...itemDetail, data]
+  }, [logonUser]);
 
-    //   localStorage.setItem("cartItemLength", newItemArray.length)
-    //   localStorage.setItem("cartItem", JSON.stringify(newItemArray))
-    // }
-    // else {
-    //   localStorage.setItem("cartItemLength", 1)
-    //   localStorage.setItem("cartItem", JSON.stringify([data]))
-    // }
+  const handleAddToCart = (data) => {
+    if (productCart.length > 0) {
+      let variationID = ""
 
-    // dispatch(GitAction.CallAddProductCart())
-    // setOpen(true);
+      if (data.ProductVariation !== null && data.ProductVariation !== "[]")
+        variationID = JSON.parse(data.ProductVariation)[0].ProductVariationDetailID
+
+      const filterData = productCart.filter((x) => x.ProductID === data.ProductID && x.ProductVariationDetailID === Number(variationID))
+      if (filterData.length > 0)
+        dispatch(GitAction.CallUpdateProductCartItem({
+          userCartID: filterData[0].UserCartID,
+          quantity: Number(filterData[0].ProductQuantity) + 1
+        }))
+      else {
+        let variationID = ""
+        if (variationID !== "") {
+          dispatch(GitAction.CallAddProductCart({
+            userID: UserID,
+            productID: data.ProductID,
+            quantity: 1,
+            variationDetailID: variationID,
+            promoCode: 0
+          }))
+        }
+      }
+    }
   }
 
   const handleOnClick = (x) => {
-    switch (x.type) {
-      case "Tourpackage":
-        console.log('hello')
-        setOpenTour(true);
-        break;
-
-      default:
-        handleAddToCart(x)
-        break;
-    }
-  }
-
-  const handleAddTourGuide = () => {
-    handleAddToCart({ id: 1, productName: "Tour Guide", price: 100, quantity: 1 })
-    setOpenTour(false);
+    if(UserID)    
+    handleAddToCart(x)
+    else
+      setOpenDialog(true)
   }
 
   return (
@@ -157,9 +118,6 @@ console.log("sadsad")
                           <Typography color="text" style={{ fontWeight: "bold", textAlign: "left",  minHeight: "2.5vw", }} >
                             {x.ProductName}
                           </Typography>
-                          {/* <Typography color="text" variant="body2" fontWeight="700" >
-                            {x.Brand}
-                          </Typography> */}
 
                           <Typography color="text" variant="body2" fontWeight="700" >
                             {x.ProductVariation !== null && x.ProductVariation !== "[]" &&
@@ -178,9 +136,6 @@ console.log("sadsad")
                               <Typography variant="body2">{x.rating} ratings</Typography>
                             </div>
                           </div>
-                          {/* <div className="col-12" style={{ height: "5.5vw", lineHeight: 1, overflowY: "auto" }}>
-                            <Typography variant="caption">{x.description} </Typography>
-                          </div> */}
                           <div className="row mt-3">
                             <div className="col-6">
                               <Typography style={{ color: "#8fb136", fontWeight: "bold", fontSize: "20px", }} >
@@ -190,17 +145,6 @@ console.log("sadsad")
                                 }
                               </Typography>
                             </div>
-                            {/* <div className="col-6" >
-                              <InputNumber
-                                id="product-quantity1"
-                                aria-label="Quantity"
-                                className="product__quantity"
-                                size="sm"
-                                min={1}
-                                // value={quantity[index]}
-                                onChange={(e) => console.log("HIHIHHHI")}
-                              />
-                            </div> */}
                           </div>
 
                           <div className="row mt-3">
@@ -227,88 +171,17 @@ console.log("sadsad")
           }
         </div>
       </div>
-    </Swiper>
-
+      
+      </Swiper>
+      <Dialog
+        fullWidth
+        maxWidth="sm"
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}>
+        <DialogContent sx={{ overflow: 'unset' }}>
+          <LoginComponent  />
+        </DialogContent>
+      </Dialog>
     </>
-   
-
-    
-
-    // <div className="row">
-    //   {
-    //     productList.map((x, index) => {
-    //       return (
-    //         <div class="CardView" className="col">
-    //           <Card sx={{ minHeight: 350, boxShadow: "0.2vw 0.3vw 0.5vw #888888", }}
-    //           // onClick={() => window.open(x.url, "_blank")}  
-    //           >
-    //             <CardMedia
-    //               component="img"
-    //               height="194"
-    //               image={x.ProductImage}
-    //               alt={x.ProductName}
-    //             />
-    //             <CardContent>
-    //               <Typography color="text" style={{ fontWeight: "bold", textAlign: "left", }} >
-    //                 {x.ProductName}
-    //               </Typography>
-    //               <Typography color="text" variant="body2" fontWeight="700" >
-    //                 {x.Brand}
-    //               </Typography>
-    //               {
-    //                 x.ProductVariation !== null && x.ProductVariation !== "[]" &&
-    //                 <Typography color="text" variant="body2" fontWeight="700" >
-    //                   {JSON.parse(x.ProductVariation)[0].ProductVariationValue}
-    //                 </Typography>
-    //               }
-    //               <div className="row">
-    //                 <div className="col-4">
-    //                   <Rating
-    //                     style={{ fontSize: "1.0rem" }}
-    //                     value={x.ratingStar}
-    //                   />{" "}
-    //                 </div>
-    //                 <div className="col-8">
-    //                   <Typography variant="body2">{x.rating} ratings</Typography>
-    //                 </div>
-    //               </div>
-    //               <div className="col-12" style={{ height: "5.5vw", lineHeight: 1, overflowY: "auto" }}>
-    //                 <Typography variant="caption">{x.description} </Typography>
-    //               </div>
-    //               <div className="row mt-2">
-    //                 <div className="col-6">
-    //                   <Typography style={{ color: "#8fb136", fontWeight: "bold", fontSize: "20px", }} >
-    //                     RM {
-    //                       x.ProductVariation !== null && x.ProductVariation !== "[]" &&
-    //                       JSON.parse(x.ProductVariation)[0].ProductVariationPrice
-    //                     }
-    //                   </Typography>
-    //                 </div>
-    //                 <div className="col-6">
-    //                   <InputNumber
-    //                     id="product-quantity"
-    //                     aria-label="Quantity"
-    //                     className="product__quantity"
-    //                     size="md"
-    //                     min={1}
-    //                     value={quantity[index]}
-    //                     onChange={(e) => handleChangeQuantity(e, index)}
-    //                   />
-    //                 </div>
-    //               </div>
-    //               <Grid mt={1} container display='flex' justifyContent='flex-end'>
-    //                 <Button size="large" style={{ backgroundColor: "#8fb136", color: "white", width: "6vw", borderRadius: "0.3vw", padding: "0.25vw" }} onClick={() => handleOnClick(x)}>
-    //                   Add To Cart
-    //                 </Button>
-    //               </Grid>
-    //             </CardContent>
-    //           </Card>
-    //         </div>
-    //       )
-    //     })
-    //   }
-
-
-    // </div>
   )
 }

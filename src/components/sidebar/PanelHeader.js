@@ -41,11 +41,11 @@ export default function PanelHeader(props) {
   }));
 
 
-  const userData = localStorage.getItem("user") !== undefined ? JSON.parse(localStorage.getItem("user")) : []
+  // const userData = localStorage.getItem("user") !== undefined && localStorage.getItem("user") !== null ? JSON.parse(localStorage.getItem("user")) : []
   const [openDialog, setOpenDialog] = useState(false);
   const [openNotification, setOpenNotification] = useState({  open: false, msg: "", type: ""  });
-  const [verificationError, setVerificationError] = useState(false);
-  const [productItem, setProductItem] = useState([]);
+  // const [verificationError, setVerificationError] = useState(false);
+  // const [productItem, setProductItem] = useState([]);
 
   const vertical = 'top'
   const horizontal = 'right'
@@ -88,11 +88,9 @@ export default function PanelHeader(props) {
 
   useEffect(() => {
     if (logonUser.length > 0) {
-      if (logonUser[0].ReturnVal === 0)
-        setVerificationError(true)
-      else {
+      if (logonUser[0].ReturnVal === 1){
         dispatch(GitAction.CallResetLoginAction())
-        setVerificationError(false)
+        // setVerificationError(false)
         localStorage.setItem("isLogin", true);
         localStorage.setItem("user", logonUser[0].ReturnData);
         localStorage.setItem("UserID", JSON.parse(logonUser[0].ReturnData)[0].UserID);
@@ -128,14 +126,13 @@ export default function PanelHeader(props) {
   }, [productCartAction]);
 
 
-
   const handleCloseDialog = () => {
     setOpenDialog(false)
   }
 
-  const handleSubmit = (username, password) => {
-    dispatch(GitAction.CallUserLogin({ Username: username, Password: password }));
-  }
+  // const handleSubmit = (username, password) => {
+  //   dispatch(GitAction.CallUserLogin({ Username: username, Password: password }));
+  // }
 
   return (
     <header>
@@ -181,15 +178,18 @@ export default function PanelHeader(props) {
               ))}
             </Stack>
           </div>
-
+{/* {console.log("userData", userData)} */}
           <Grid item>
-            <IconButton component={Link} to='/ShoppingCart'>
-              <Badge color="secondary" badgeContent={productCart.length === 0 ? "0" : productCart.length}>
-                <ShoppingCartIcon style={{ color: "white" }} fontSize="small" />
-              </Badge>
-            </IconButton>
+            {
+              UserID &&
+              <IconButton component={Link} to='/ShoppingCart'>
+                <Badge color="secondary" badgeContent={productCart.length === 0 ? "0" : productCart.length}>
+                  <ShoppingCartIcon style={{ color: "white" }} fontSize="small" />
+                </Badge>
+              </IconButton>
+            }         
 
-            <IconButton onClick={() => userData.length === 0 ? setOpenDialog(true) : setOpenDialog(true)} >
+            <IconButton onClick={() => UserID ? setOpenDialog(true) : setOpenDialog(true)} >
               <PersonIcon style={{ color: "white" }} fontSize="small" />
             </IconButton>
           </Grid>
@@ -200,7 +200,8 @@ export default function PanelHeader(props) {
             open={openDialog}
             onClose={() => setOpenDialog(false)}>
             <DialogContent sx={{ overflow: 'unset' }}>
-              <LoginComponent verificationError={verificationError} handleSubmit={handleSubmit} />
+            <LoginComponent />
+              {/* <LoginComponent verificationError={verificationError} handleSubmit={handleSubmit} /> */}
             </DialogContent>
           </Dialog>
 

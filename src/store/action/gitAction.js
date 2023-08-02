@@ -47,6 +47,7 @@ export class GitAction {
 
   static ResetLoginAction = "ResetLoginAction";
   static CallResetLoginAction() {
+    console.log("CallResetLoginAction")
     return {
       type: GitAction.ResetLoginAction,
     };
@@ -99,15 +100,15 @@ export class GitAction {
 
 
   
-  static AddUserCart = "AddUserCart";
-  static AddedUserCart = "AddedUserCart";
+  // static AddUserCart = "AddUserCart";
+  // static AddedUserCart = "AddedUserCart";
 
-  static CallAddProductCartItem(propsData) {
-    return {
-      type: GitAction.AddUserCart,
-      payload: propsData
-    };
-  }
+  // static CallAddProductCartItem(propsData) {
+  //   return {
+  //     type: GitAction.AddUserCart,
+  //     payload: propsData
+  //   };
+  // }
 
 
   
