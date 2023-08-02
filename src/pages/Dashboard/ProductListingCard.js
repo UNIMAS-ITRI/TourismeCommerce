@@ -19,8 +19,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function ProductListingCard(props) {
 
-  const { productList, productCart } = useSelector(state => ({
+  const { productList, productCart, productCartAction } = useSelector(state => ({
     productCart: state.counterReducer.productCart,
+    productCartAction: state.counterReducer.productCartAction,
     productList: state.counterReducer.productList,
   }));
 
@@ -33,17 +34,13 @@ export default function ProductListingCard(props) {
 
   const dispatch = useDispatch();
 
+  const UserID = localStorage.getItem("UserID")
   const handleChangeQuantity = (data, index) => {
-
-    console.log("dasdasdas", data)
-    console.log("dasdasdas index", index)
     const Arr = [...quantity]
     Arr[index] = data
     setQuantity(Arr)
   };
-
-
-
+  
   useEffect(() => {
     if (open) {
       setTimeout(() => {
@@ -62,32 +59,39 @@ export default function ProductListingCard(props) {
 
   }, [productList]);
 
-  
-  console.log("productCart", productCart)
   const handleAddToCart = (data) => {
-    console.log("datadata", data)
-    let UserID = localStorage.getItem("UserID")
     if (UserID) {
       if (productCart.length > 0) {
-        const filterData = []
-        productCart.filter((x) => x.ProductID === data.ProductID).map((y) =>
-          y.ProductVariation !== null && y.ProductVariation !== "[]" && filterData.push(JSON.parse(y.ProductVariation)[0])
-        )
+        let variationID = ""
+
+        if (data.ProductVariation !== null && data.ProductVariation !== "[]")
+          variationID = JSON.parse(data.ProductVariation)[0].ProductVariationDetailID
+
+        const filterData = productCart.filter((x) => x.ProductID === data.ProductID && x.ProductVariationDetailID === Number(variationID))
         if (filterData.length > 0)
-          dispatch(GitAction.CallUpdateProductCartItem(filterData[0].UserCartID, Number(filterData[0].ProductQuantity)))
+          dispatch(GitAction.CallUpdateProductCartItem({
+            userCartID: filterData[0].UserCartID,
+            quantity: Number(filterData[0].ProductQuantity) + 1
+          }))
         else{
-          const variationID = ""
-          if(data.ProductVariation !== null && data.ProductVariation !== "[]")    
-            variationID = JSON.parse(data.ProductVariation)[0].ProductVariationDetailID
-          // dispatch(GitAction.CallAddProductCart(filterData[0].UserCartID, Number(filterData[0].ProductQuantity)))
+          let variationID = ""
+          if(variationID !== "")    
+          {
+            dispatch(GitAction.CallAddProductCart({
+              userID: UserID,
+              productID: data.ProductID,
+              quantity: 1,
+              variationDetailID: variationID,
+              promoCode: 0
+            }))
+          }   
         }
-        
       }
       else {
 
       }
     }
-
+console.log("sadsad")
     // const cartItem = localStorage.getItem("cartItem")
     // if (cartItem !== null) {
     //   let itemDetail = JSON.parse(cartItem)
@@ -123,10 +127,9 @@ export default function ProductListingCard(props) {
     setOpenTour(false);
   }
 
-  console.log("productList", productList)
-
   return (
-    <Swiper
+    <>
+     <Swiper
       modules={[Navigation]}
       slidesPerView={6}
       // slidesPerColumn={5}
@@ -225,6 +228,11 @@ export default function ProductListingCard(props) {
         </div>
       </div>
     </Swiper>
+
+    </>
+   
+
+    
 
     // <div className="row">
     //   {

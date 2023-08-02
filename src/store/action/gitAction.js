@@ -45,6 +45,7 @@ export class GitAction {
     };
   }  
 
+  static ResetLoginAction = "ResetLoginAction";
   static CallResetLoginAction() {
     return {
       type: GitAction.ResetLoginAction,
@@ -86,6 +87,13 @@ export class GitAction {
     return {
       type: GitAction.ViewUserCartItem,
       payload: propsData
+    };
+  }
+
+  static ResetCartAction = "ResetCartAction";
+  static CallResetProductCartAction() {
+    return {
+      type: GitAction.ResetCartAction,
     };
   }
 

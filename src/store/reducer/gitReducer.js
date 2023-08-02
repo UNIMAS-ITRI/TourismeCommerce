@@ -56,13 +56,13 @@ export function counterReducer(state = INITIAL_STATE, action) {
     case GitAction.ResetUserProfile:
       return Object.assign({}, state, { userProfile: [] });
 
-    case GitAction.AddUserCart:
-      return Object.assign({}, state, { loading: true });
-    case GitAction.AddedUserCart:
-      return Object.assign({}, state, {
-        loading: false,
-        productCart: action.payload
-      });
+    // case GitAction.AddUserCart:
+    //   return Object.assign({}, state, { loading: true });
+    // case GitAction.AddedUserCart:
+    //   return Object.assign({}, state, {
+    //     loading: false,
+    //     productCart: action.payload
+    //   });
 
     case GitAction.ViewUserCart:
       return Object.assign({}, state, { loading: true });
@@ -106,6 +106,8 @@ export function counterReducer(state = INITIAL_STATE, action) {
         productCartItem: action.payload
       });
 
+      case GitAction.ResetCartAction:
+        return Object.assign({}, state, { productCartAction: [] });
 
     // ----------------------------- PRODUCT LISTING -------------------------------------
 

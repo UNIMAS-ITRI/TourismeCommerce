@@ -33,16 +33,17 @@ import LoginComponent from '../../pages/Login/LoginComponent'
 export default function PanelHeader(props) {
 
   const dispatch = useDispatch();
-  const { productCart, productList, logonUser } = useSelector(state => ({
+  const { productCart, productList, logonUser ,productCartAction} = useSelector(state => ({
     productCart: state.counterReducer.productCart,
     logonUser: state.counterReducer.logonUser,
     productList: state.counterReducer.productList,
+    productCartAction: state.counterReducer.productCartAction,
   }));
 
 
   const userData = localStorage.getItem("user") !== undefined ? JSON.parse(localStorage.getItem("user")) : []
   const [openDialog, setOpenDialog] = useState(false);
-  const [openNotification, setOpenNotification] = useState(false);
+  const [openNotification, setOpenNotification] = useState({  open: false, msg: "", type: ""  });
   const [verificationError, setVerificationError] = useState(false);
   const [productItem, setProductItem] = useState([]);
 
@@ -95,11 +96,37 @@ export default function PanelHeader(props) {
         localStorage.setItem("isLogin", true);
         localStorage.setItem("user", logonUser[0].ReturnData);
         localStorage.setItem("UserID", JSON.parse(logonUser[0].ReturnData)[0].UserID);
-        setOpenNotification(true)
+        setOpenNotification({
+          open: true,
+          msg: "Login Successfully",
+          type: "success"
+        })
         handleCloseDialog()
       }
     }
   }, [logonUser]);
+
+  
+  useEffect(() => {
+    if (productCartAction.length > 0) {
+      if (productCartAction[0].ReturnVal === 1){
+        dispatch(GitAction.CallViewProductCart({ userID: UserID }));
+        dispatch(GitAction.CallResetProductCartAction());
+        setOpenNotification({
+          open: true,
+          msg: "Added to Cart",
+          type:"success"
+        })
+      }else
+        setOpenNotification({
+          open: true,
+          msg: "Error Add Cart Item",
+          type:"error"
+        })
+      
+    }
+  }, [productCartAction]);
+
 
 
   const handleCloseDialog = () => {
@@ -167,7 +194,6 @@ export default function PanelHeader(props) {
             </IconButton>
           </Grid>
 
-          {console.log("userData", userData)}
           <Dialog
             fullWidth
             maxWidth="sm"
@@ -181,12 +207,12 @@ export default function PanelHeader(props) {
 
           <Snackbar
             anchorOrigin={{ vertical, horizontal }}
-            open={openNotification}
+            open={openNotification.open}
             autoHideDuration={1000}
             key={vertical + horizontal}
           >
-            <Alert onClose={() => setOpenNotification(false)} severity="success" sx={{ width: '100%' }}>
-              Login Successfully
+            <Alert onClose={() => setOpenNotification({open: false, msg:"", type:""})} severity={openNotification.type} sx={{ width: '100%' }}>
+              {openNotification.msg}
             </Alert>
           </Snackbar>
 
