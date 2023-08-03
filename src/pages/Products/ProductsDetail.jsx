@@ -124,6 +124,58 @@ export default function ProductsDetail(props) {
             setOpenDialog(true)
     }
 
+    const handleAddDefaultCart =(data)=>{
+        if (UserID) {
+
+            // if (productCart.length > 0) {
+            //     let variationID = ""
+          
+            //     if (data.ProductVariation !== null && data.ProductVariation !== "[]")
+            //       variationID = JSON.parse(data.ProductVariation)[0].ProductVariationDetailID
+          
+            //     const filterData = productCart.filter((x) => x.ProductID === data.ProductID && x.ProductVariationDetailID === Number(variationID))
+            //     if (filterData.length > 0)
+            //       dispatch(GitAction.CallUpdateProductCart({
+            //         userCartID: filterData[0].UserCartID,
+            //         quantity: Number(filterData[0].ProductQuantity) + 1
+            //       }))
+            //     else {
+            //       let variationID = ""
+            //       if (variationID !== "") {
+            //         dispatch(GitAction.CallAddProductCart({
+            //           userID: UserID,
+            //           productID: data.ProductID,
+            //           quantity: 1,
+            //           variationDetailID: variationID,
+            //           promoCode: 0
+            //         }))
+            //       }
+            //     }
+            //   }
+
+            // if (selectedVariation.stock < selectedAmount)
+            //     setNotification({ open: true, msg: "Insufficient stock for your purchase", type: "error", isCart: true })
+            // else if (selectedVariation.stock >= selectedAmount) {
+            //     const filterData = productCart.filter((x) => x.ProductVariationDetailID === selectedVariation.id && x.ProductID === id)
+            //     if (filterData.length > 0)
+            //         dispatch(GitAction.CallUpdateProductCartItem({
+            //             userCartID: filterData[0].UserCartID,
+            //             quantity: selectedAmount + Number(filterData[0].ProductQuantity)
+            //         }))
+            //     else
+            //         dispatch(GitAction.CallAddProductCart({
+            //             userID: UserID,
+            //             productID: id,
+            //             quantity: selectedAmount,
+            //             variationDetailID: selectedVariation.id,
+            //             promoCode: 0
+            //         }))
+            // } else
+            //     setNotification({ open: true, msg: "Please select required variation", type: "warning", isCart: true })
+        } else
+            setOpenDialog(true)
+    }
+
     return (
 
 
@@ -347,6 +399,7 @@ export default function ProductsDetail(props) {
                             setOpenModal={() => { }}
                             cards={productDetails[0].ProductRecommendation !== null && productDetails[0].ProductRecommendation !== "[]" ? JSON.parse(productDetails[0].ProductRecommendation) : []}
                             page="productDetails[0]"
+                            handleOnClick={handleAddDefaultCart}
                         />
 
                     </div>
