@@ -11,6 +11,7 @@ const INITIAL_STATE = {
   sidebars: [],
 
   productList: [],
+  productDetails: [],
 };
 
 export function counterReducer(state = INITIAL_STATE, action) {
@@ -118,6 +119,15 @@ export function counterReducer(state = INITIAL_STATE, action) {
         loading: false,
         productList: action.payload
       });
+
+      case GitAction.ViewProductDetail:
+        return Object.assign({}, state, { loading: true });
+      case GitAction.ViewedProductDetail:
+        return Object.assign({}, state, {
+          loading: false,
+          productDetails: action.payload
+        });
+  
 
     ///////////////////////////////////////////////////  sidebar configuration ///////////////////////////////////////////////////
 

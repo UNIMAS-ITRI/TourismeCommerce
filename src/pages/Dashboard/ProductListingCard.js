@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import { GitAction } from "../../store/action/gitAction";
-import { browserHistory } from "react-router";
-import { Link as RouterLink } from 'react-router-dom';
 import { Card, CardMedia, CardContent, Typography, Rating, Button, TextField, Grid, Stack,
   Dialog,
   DialogContent, } from '@mui/material';
-import OrangUlu from '../../assets/OrangUlu.jpg'
-import BasicModal from '../../components/AlertModal/ModalAddedCart';
-import GeneralData from "../../_mock/GeneralData";
-import InputNumber from "../../components/InputNumber/InputNumber";
-import ModalComponent from "../../components/ModalComponent/ModalComponent";
-import TourGuideCard from "../Place/TourGuideCard";
-import { tourGuides } from "../Place/_mock/tourGuides";
 import { useDispatch, useSelector } from "react-redux";
 // Core modules imports are same as usual
 import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper';
@@ -31,9 +22,9 @@ export default function ProductListingCard(props) {
 
   const [open, setOpen] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
-  
+  const [indexImageHover, setindexImageHover] = useState(false);
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const UserID = localStorage.getItem("UserID")
 
   useEffect(() => {
@@ -62,7 +53,7 @@ export default function ProductListingCard(props) {
 
       const filterData = productCart.filter((x) => x.ProductID === data.ProductID && x.ProductVariationDetailID === Number(variationID))
       if (filterData.length > 0)
-        dispatch(GitAction.CallUpdateProductCartItem({
+        dispatch(GitAction.CallUpdateProductCart({
           userCartID: filterData[0].UserCartID,
           quantity: Number(filterData[0].ProductQuantity) + 1
         }))
@@ -106,16 +97,18 @@ export default function ProductListingCard(props) {
                   <SwiperSlide >
                     <div class="CardView" className="col">
                       
-                      <Card sx={{ minHeight: 420, margin:0.5,  paddingLeft: 1 , paddingRight: 1, boxShadow: "0.2vw 0.3vw 0.5vw #888888", }}>
+                      <Card sx={{ minHeight: 420, margin:0.5,  paddingLeft: 1 , paddingRight: 1, boxShadow: "0.2vw 0.3vw 0.5vw #888888", }} >
                         
                         <CardContent>
                         <CardMedia
                           component="img"
-                          style={{ height: "10vw", width: "10vw", opacity: 1 }}
+                          style={{ height: "10vw", width: "10vw", opacity: indexImageHover === index ? "50%" : "100%" }}
                           image={x.ProductImage}
-                          alt={x.ProductName}
+                          alt={x.ProductName}    
+                          onClick={() => history.push(`/ProductsDetail/${x.ProductID}`)}
                         /> 
-                          <Typography color="text" style={{ fontWeight: "bold", textAlign: "left",  minHeight: "2.5vw", }} >
+                          <Typography color="text" style={{ fontWeight: "bold", textAlign: "left",  minHeight: "2.5vw", }} 
+                          onClick={() => history.push(`/ProductsDetail/${x.ProductID}`)}>
                             {x.ProductName}
                           </Typography>
 

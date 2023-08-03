@@ -18,7 +18,8 @@ const rootEpic = combineEpics(
   gitEpic.User_AddProductCart,
   gitEpic.User_UpdateProductCart,
 
-  gitEpic.User_ViewProductListing
+  gitEpic.User_ViewProductListing,
+  gitEpic.User_ViewProductDetails
 
 
 );

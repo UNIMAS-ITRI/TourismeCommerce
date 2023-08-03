@@ -110,7 +110,7 @@ const routes = [
         element: <ProductsFilter />,
     },
     {
-        path: "/ProductsDetail",
+        path: "/ProductsDetail/:id",
         exact: true,
         element: <ProductsDetail />,
     },

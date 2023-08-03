@@ -1,5 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { useHistory } from 'react-router-dom';
+import { GitAction } from "../../store/action/gitAction";
 
 import { Pagination, EffectFade, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,61 +18,116 @@ import {
     Divider,
     Button,
     Container,
-    LinearProgress
+    LinearProgress,
+    Chip,
+    Snackbar,
+    Alert,
+    Dialog,
+    DialogContent,
 } from "@mui/material";
 import "../Hotel/HotelDetails";
-import { swiperImg, recommend ,RatingList} from './ProductsData';
+import { swiperImg, recommend, RatingList } from './ProductsData';
 import InputNumber from '../../components/InputNumber/InputNumber';
 import './product.scss';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import { VerticalCardListing } from '../../components/verticalCardListing/verticalCardListing';
+import { VerticalProductCardListing } from '../../components/verticalCardListing/verticalProductCardListing';
 import StarIcon from '@mui/icons-material/Star';
 import USER from "../../assets/user.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from 'react-router-dom';
 
-function mapStateToProps(state) {
-    return {
-        // foods: state.counterReducer["foods"],
-    };
-}
+import LoginComponent from '../../pages/Login/LoginComponent'
 
-function mapDispatchToProps(dispatch) {
-    return {
-        // CallTesting: () => dispatch(GitAction.CallTesting()),
-    };
-}
+export default function ProductsDetail(props) {
 
-const INITIAL_STATE = {
-    breadcrumb: [
+    const { productList, productCart, logonUser, productDetails } = useSelector(state => ({
+        productCart: state.counterReducer.productCart,
+        productList: state.counterReducer.productList,
+        logonUser: state.counterReducer.logonUser,
+        productDetails: state.counterReducer.productDetails,
+    }));
+
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const { id } = useParams();
+    const vertical = 'top'
+    const horizontal = 'right'
+
+    const [breadcrumb, setBreadcrumb] = useState([
         { title: "Home", url: "./" },
-        { title: "Products", url: "/Products" },
-        { title: "Wood color Beads", url: "" },
-    ],
-    indexImageHover: "",
-    indexMediaHower: "",
-    selectedMedia: "",
-    selectedMediaDetails: [],
-    mediaClick: "",
-    mediaList: [],
-    openModal: false,
-    openHotelModal: false,
-    selectedRoom: [],
-    variation: { "Shipping": "Free Shipping" },
-    numberOFItem: 1,
-    isExpand: false
-};
+        { title: "Products", url: "./Products" },
+        { title: "", url: "" },
+    ]);
+    let UserID = localStorage.getItem("UserID")
+    const [openDialog, setOpenDialog] = useState(false);
+    const [isExpand, setIsExpand] = useState(false);
+    const [selectedAmount, setSelectedAmount] = useState(1);
+    const [selectedVariation, setSelectedVariation] = useState({ id: "", price: "", stock: "" });
+    const [notification, setNotification] = useState({
+        open: false,
+        msg: "",
+        type: "success",
+        isCart: false
+    });
 
-class ProductsDetail extends Component {
-    constructor(props) {
-        super(props);
-        this.state = INITIAL_STATE;
+    useEffect(() => {
+        if (id) {
+            dispatch(GitAction.CallViewProductDetails({
+                productID: id,
+                userID: 0,
+                platformType: "myemporia"
+            }))
+        }
+    }, [dispatch, id]);
+
+    useEffect(() => {
+        if (logonUser.length > 0) {
+            if (logonUser[0].ReturnVal === 1) {
+                setOpenDialog(false)
+            }
+        }
+    }, [logonUser]);
+
+    useEffect(() => {
+        if (productDetails.length > 0) {
+            const listing = breadcrumb
+            listing[2] = { title: productDetails[0].ProductName, url: "" }
+            setBreadcrumb(listing)
+        }
+    }, [productDetails, breadcrumb]);
+
+    console.log("productDetails", productDetails)
+    console.log("productCart", productCart)
+
+    const handleAddCart = () => {
+        if (UserID) {
+            if (selectedVariation.stock < selectedAmount)
+                setNotification({ open: true, msg: "Insufficient stock for your purchase", type: "error", isCart: true })
+            else if (selectedVariation.stock >= selectedAmount) {
+                const filterData = productCart.filter((x) => x.ProductVariationDetailID === selectedVariation.id && x.ProductID === id)
+                if (filterData.length > 0)
+                    dispatch(GitAction.CallUpdateProductCartItem({
+                        userCartID: filterData[0].UserCartID,
+                        quantity: selectedAmount + Number(filterData[0].ProductQuantity)
+                    }))
+                else
+                    dispatch(GitAction.CallAddProductCart({
+                        userID: UserID,
+                        productID: id,
+                        quantity: selectedAmount,
+                        variationDetailID: selectedVariation.id,
+                        promoCode: 0
+                    }))
+            } else
+                setNotification({ open: true, msg: "Please select required variation", type: "warning", isCart: true })
+        } else
+            setOpenDialog(true)
     }
 
-    componentDidMount() { }
+    return (
 
-    componentDidUpdate(prevProps, prevState) { }
 
-    render() {
-        return (
+        productDetails.length > 0 ?
             <div style={{ backgroundColor: "white" }}>
 
                 <div
@@ -82,8 +139,9 @@ class ProductsDetail extends Component {
                         width: "100vw"
                     }}
                 >
-                    <PageHeader breadcrumb={this.state.breadcrumb} style={{ marginLeft: 0 }} />
+                    <PageHeader breadcrumb={breadcrumb} style={{ marginLeft: 0 }} />
                 </div>
+
 
                 <div className="product__content row ">
                     <div className="col-8 ms-5">
@@ -101,13 +159,14 @@ class ProductsDetail extends Component {
                             }}
                             loop={true}
                         >
-                            {swiperImg.map((el) => {
-                                return (
-                                    <SwiperSlide zIndex={0}>
-                                        <img src={el.image} alt='' />
-                                    </SwiperSlide>
-                                );
-                            })}
+                            {productDetails[0].ProductImages !== null && productDetails[0].ProductImages !== "[]"
+                                && JSON.parse(productDetails[0].ProductImages).map((el) => {
+                                    return (
+                                        <SwiperSlide >
+                                            <img src={el.ProductMediaUrl} alt={el.ProductMediaTitle} style={{ height: "100%", width: "100%", display: "block", objectFit: "cover", opacity: 1 }} />
+                                        </SwiperSlide>
+                                    );
+                                })}
                         </Swiper>
                     </div>
                     <div className="col-7">
@@ -115,66 +174,86 @@ class ProductsDetail extends Component {
                             <div className="row" >
                                 <Typography
                                     variant='title'
-                                    style={{ fontWeight: "bold", textAlign: "left", fontSize: "2rem" }} > {recommend[0].name} </Typography>
+                                    style={{ fontWeight: "bold", textAlign: "left", fontSize: "2rem" }} > {productDetails[0].ProductName} </Typography>
                                 <Typography className="col-12" >
-                                    Merchant Shop: {recommend[0].shopName}
+                                    Merchant Shop: {productDetails[0].ShopName}
                                 </Typography>
                             </div>
-                            <Grid item style={{ marginTop: "10px" }} >
-                                <Stack direction="column" spacing={1}>
+                            <div className="product__rating">
 
-                                    <Stack direction="row" spacing={1} divider={<Divider orientation="vertical" flexItem style={{ color: '596a2a' }} />}>
-                                        <Typography variant='subtitle2'>{recommend[0].hotelStar} <Rating
-                                            style={{ fontSize: "1.0rem" }}
-                                            value={recommend[0].hotelStar}
-                                        /></Typography>
-                                        <Typography variant='subtitle2'>{recommend[0].reviewNum} reviews</Typography>
-                                        <Typography variant='subtitle2'>{recommend[0].soldNum} sold</Typography>
-                                    </Stack>
-                                    {/* <Grid item container> */}
-                                    {/* <Grid item xs={2}>
-                                            <Typography gutterBottom variant="h5" style={{ fontSize: '14px' }}>Shipping</Typography>
-                                        </Grid> */}
-                                    {/* <Grid item xs> */}
-                                    {/* <Stack direction="column" spacing={1}>
-                                                <Typography gutterBottom variant="h5" style={{ fontSize: '14px' }}><LocalShippingIcon /> Free Shipping</Typography>
-                                                <Typography gutterBottom variant="h5" style={{ fontSize: '14px' }}><LocalShippingIcon /> Shipping To</Typography>
-                                            </Stack> */}
-                                    {/* </Grid> */}
-                                    {/* </Grid> */}
-                                </Stack>
-                            </Grid>
+                                <div className="product__rating-stars">
+                                    <Rating value={productDetails[0].ProductRating !== null ? productDetails[0].ProductRating : 0} />
+                                </div>
+
+                                <div className="product__rating-legend" style={{ paddingTop: "5px", paddingRight: "10px", paddingLeft: "10px", color: "grey" }}>
+                                    <Typography variant='subtitle2'> {(productDetails[0].ProductRating).toFixed(1)} / 5.0 </Typography>
+                                </div>
+                                <div className="product__rating-legend" style={{ paddingTop: "5px", paddingRight: "10px", paddingLeft: "10px", color: "grey" }}>
+                                    <Typography variant='subtitle2'>( {productDetails[0].ProductReviewCount} Reviews )</Typography>
+                                </div>
+                                <div className="product__rating-legend" style={{ paddingTop: "5px", color: "grey" }}>
+                                    <Typography variant='subtitle2'> Write A Review</Typography>
+                                </div>
+                            </div>
+                            {/* <Divider/> */}
                         </div>
+
+                        <ul className="product__meta">
+                            {/* {
+                                            productDetails[0].ProductPromotion && JSON.parse(productDetails[0].ProductPromotion).length > 0 &&
+                                            <Chip size="small" variant="outlined" label={`${JSON.parse(productDetails[0].ProductPromotion)[0].ProductDiscount} % OFF`} style={{ backgroundColor: "#d23f57", color: '#ffffff',borderRadius:'0px' }} />
+                                        }
+                                        &nbsp; */}
+                            {
+                                selectedVariation.id !== "" ?
+                                    selectedVariation.stock > 0 ?
+                                        <Chip size="small" variant="outlined" color="success" label={`In Stock" (  ${selectedVariation.id !== "" ? selectedVariation.stock : productDetails[0].ProductStockAmount > 0 ? productDetails[0].ProductStockAmount : 0} ) `} />
+                                        :
+                                        <Chip size="small" variant="outlined" color="error" label={`Out of Stock ( ${selectedVariation.id !== "" ? selectedVariation.stock : productDetails[0].ProductStockAmount > 0 ? productDetails[0].ProductStockAmount : 0} )`} />
+                                    :
+                                    productDetails[0].ProductStockAmount !== null && productDetails[0].ProductStockAmount > 0 ?
+                                        <Chip size="small" variant="outlined" color="success" label={`In Stock ( ${selectedVariation.id !== "" ? selectedVariation.stock : productDetails[0].ProductStockAmount > 0 ? productDetails[0].ProductStockAmount : 0} )`} />
+                                        :
+                                        <Chip size="small" variant="outlined" color="error" label={`Out of Stock ( ${selectedVariation.id !== "" ? selectedVariation.stock : productDetails[0].ProductStockAmount > 0 ? productDetails[0].ProductStockAmount : 0} )`} />
+                            }
+                            &nbsp;
+                            <Chip variant="outlined" color="secondary" label={"Brand: " + (productDetails[0].Brand === "-" ? "None" : productDetails[0].Brand)} size="small">
+                                {/* <Link to="/">{productDetails[0].Brand}</Link> */}
+                            </Chip>&nbsp;
+
+                            <Chip variant="outlined" color="info" label={"SKU: " + (productDetails[0].SKU === "-" ? "N/A" : productDetails[0].SKU)} size="small" />&nbsp;
+                        </ul>
+
                         <div className="product__sidebar">
                             <Typography variant='title'
                                 style={{ fontWeight: "bold", textAlign: "left", fontSize: "2rem" }}
                             >
-                                RM {this.state.numberOFItem === 0 ? recommend[0].price : recommend[0].price * this.state.numberOFItem}
+                                RM {selectedVariation.id !== "" ? selectedVariation.price === null ? "N/A" : (selectedVariation.price).toFixed(2) : productDetails[0].ProductPrice}
                             </Typography>
                             <div className="product__option">
-                                <label className="product__option-label">
+                                <label className="product__option-label" style={{ fontWeight: "bold", paddingTop: "10px" }}>
                                     Variation:
                                 </label>
                                 <div className="product__variation">
                                     {
-                                        recommend[0].variation.map((variation, index) => {
+                                        productDetails[0].ProductVariation !== null && productDetails[0].ProductVariation !== "[]" &&
+                                        JSON.parse(productDetails[0].ProductVariation).map((variation, index) => {
                                             return (
                                                 <button
                                                     key={index}
                                                     type="button"
                                                     className={
-                                                        variation.ProductVariationDetailID === this.state.productVariationDetailID ?
+                                                        variation.ProductVariationDetailID === selectedVariation.id ?
                                                             'btn product__variation-button--selected'
                                                             : 'btn product__variation-button'
                                                     }
-                                                    onClick={() => this.setState({
-                                                        productVariation: variation.ProductVariationValue,
-                                                        productQuantity: variation.ProductStockAmount,
-                                                        productPrice: variation.ProductVariationPrice,
-                                                        productVariationDetailID: variation.ProductVariationDetailID,
-                                                        selectedVariation: variation,
-                                                        isVariationSet: true
-                                                    })}
+                                                    onClick={() => {
+                                                        setSelectedVariation({
+                                                            id: variation.ProductVariationDetailID,
+                                                            stock: variation.ProductStockAmount === null ? 0 : variation.ProductStockAmount,
+                                                            price: variation.ProductVariationPrice === null ? 0 : variation.ProductVariationPrice
+                                                        })
+                                                    }}
                                                 >
                                                     {variation.ProductVariationValue}
                                                 </button>
@@ -190,6 +269,7 @@ class ProductsDetail extends Component {
                                         <label
                                             htmlFor="recommend-quantity"
                                             className="product__option-label"
+                                            style={{fontWeight:"bold"}}
                                         >
                                             Quantity
                                         </label>
@@ -199,17 +279,20 @@ class ProductsDetail extends Component {
                                             aria-label="Quantity"
                                             size="lg"
                                             min={1}
-                                            value={this.state.numberOFItem}
-                                            onChange={(numberOFItem) => this.setState({ numberOFItem })}
+                                            value={selectedAmount}
+                                            onChange={(numberOFItem) => setSelectedAmount(numberOFItem)}
                                         />
                                     </div>
                                 </div>
+                                {notification.type === "error" && notification.isCart === true
+                                    && <Alert severity="error" >{notification.msg}</Alert>}
+
                                 <div className="form-group product__option product__add-to-cart" >
                                     <div className="product__actions">
                                         <div className="product__actions-item product__actions-item--addtocart mx-1">
                                             <button
                                                 type="button"
-                                                onClick={() => { }}
+                                                onClick={handleAddCart}
                                                 className="btn  product__variation-button--selected "
                                                 style={{ borderRadius: "5px" }}
                                             >
@@ -238,17 +321,19 @@ class ProductsDetail extends Component {
                         </h2>
                     </span>
                     <div style={{ paddingTop: "10px" }}>
-                        <p>
-                            The Sarawak bead necklace is a traditional jewelry piece originating from Sarawak, a state in Malaysia. It is known for its intricate beadwork and cultural significance.</p>
-                        <p>
-                            The necklace is typically handcrafted using small, colorful beads made from various materials such as glass, seed, or gemstones. Skilled artisans meticulously string these beads together, creating beautiful patterns and designs that reflect the rich cultural heritage of Sarawak.
+                        <div className="typography">
+                            {/* <div className="product__description--title">Product Description</div> */}
 
-                            Each Sarawak bead necklace is unique, featuring a combination of vibrant colors and patterns that hold symbolic meaning. These necklaces often incorporate traditional motifs inspired by nature, folklore, or tribal influences. They serve as adornments for both everyday wear and special occasions, representing cultural identity and personal style.
-                        </p><p>
-                            Beyond their aesthetic appeal, Sarawak bead necklaces hold cultural and historical significance. They are cherished heirlooms passed down through generations, reflecting the traditions and customs of the indigenous communities in Sarawak. These necklaces are worn with pride, as they symbolize cultural heritage, craftsmanship, and the beauty of diversity.
-
-                            Whether worn as a fashion statement or as a cultural artifact, the Sarawak bead necklace showcases the artistry and craftsmanship of the Sarawakian people. It serves as a tangible connection to the region's history, traditions, and vibrant cultural tapestry.
-                        </p>
+                            {productDetails[0].ProductDescription === "" || productDetails[0].ProductDescription === null ?
+                                <div className="product__description"><label>Temporary there is no description for this product</label></div>
+                                :
+                                <div className={isExpand ? "product__description_expand" : "product__description"}>
+                                    <p style={{ fontSize: "20px", }} dangerouslySetInnerHTML={{ __html: productDetails[0].ProductDescription }} />
+                                    <p className="read-more" ></p>
+                                    <p className="read-more-text" style={{ fontSize: "20px", padding: "5px" }} onClick={() => setIsExpand(!isExpand)}>{isExpand ? "Read Less" : "Read More"} </p>
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
 
@@ -257,11 +342,11 @@ class ProductsDetail extends Component {
                         <h2 style={{ color: "#596a2a", paddingTop: "0.8vw", fontWeight: "500" }}>Products in this shop</h2>
                     </span>
                     <div className="row" style={{ paddingTop: "1vw" }}>
-                        <VerticalCardListing
+                        <VerticalProductCardListing
                             setSelectedItem={() => { }}
                             setOpenModal={() => { }}
-                            cards={recommend.length > 0 ? recommend : recommend}
-                            page="product"
+                            cards={productDetails[0].ProductRecommendation !== null && productDetails[0].ProductRecommendation !== "[]" ? JSON.parse(productDetails[0].ProductRecommendation) : []}
+                            page="productDetails[0]"
                         />
 
                     </div>
@@ -322,9 +407,34 @@ class ProductsDetail extends Component {
 
                 <Recommend type="Product" />
 
+                <Snackbar
+                    anchorOrigin={{ vertical, horizontal }}
+                    open={notification.open}
+                    autoHideDuration={1000}
+                    key={vertical + horizontal}
+                >
+                    <Alert onClose={() => setNotification({ open: false, msg: "", type: "", isCart: false })} severity={notification.type} sx={{ width: '100%' }}>
+                        {notification.msg}
+                    </Alert>
+                </Snackbar>
+
+                <Dialog
+                    fullWidth
+                    maxWidth="sm"
+                    open={openDialog}
+                    onClose={() => setOpenDialog(false)}>
+                    <DialogContent sx={{ overflow: 'unset' }}>
+                        <LoginComponent />
+                    </DialogContent>
+                </Dialog>
+
             </div >
-        );
-    }
+            :
+            ""
+
+
+
+
+    );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsDetail);

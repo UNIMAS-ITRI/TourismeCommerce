@@ -230,6 +230,32 @@ export class GitEpic {
       }
     }));
 
+        
+    User_ViewProductDetails = action$ =>
+    action$.pipe(filter(action => action.type === GitAction.ViewProductDetail), map(action => {
+      return dispatch => {
+        try {
+          return fetch(url + "Product_ItemDetailByProductID?" +
+            "PRODUCTID=" + action.payload.productID + 
+            "&USERID=" + action.payload.userID +
+            "&PLATFORMTYPE=" + action.payload.platformType +
+            "&PROJECTID=2"  )
+            .then(response => response.json())
+            .then(json => {
+              json = JSON.parse(json)
+
+              if (json[0].ReturnVal === 1)
+                return dispatch({ type: GitAction.ViewedProductDetail, payload: JSON.parse(json[0].ReturnData) });
+              else
+                return dispatch({ type: GitAction.ViewedProductDetail, payload: [] });
+            });
+        } catch (error) {
+          toast.error("Error Code: ViewedProductDetail")
+          return dispatch({ type: GitAction.ViewedProductDetail, payload: [] });
+        }
+      }
+    }));
+
 
   ///////////////////////////////////////////////////  user account credentials ///////////////////////////////////////////////////
 

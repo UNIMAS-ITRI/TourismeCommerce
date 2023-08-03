@@ -69,6 +69,16 @@ export class GitAction {
     };
   }
 
+  static UpdateUserCart = "UpdateUserCart";
+  static UpdatedUserCart = "UpdatedUserCart";
+
+  static CallUpdateProductCart(propsData) {
+    return {
+      type: GitAction.UpdateUserCart,
+      payload: propsData
+    };
+  }
+
   
   static ViewUserCart = "ViewUserCart";
   static ViewedUserCart = "ViewedUserCart";
@@ -110,19 +120,6 @@ export class GitAction {
   //   };
   // }
 
-
-  
-  static UpdateUserCart = "UpdateUserCart";
-  static UpdatedUserCart = "UpdatedUserCart";
-
-  static CallUpdateProductCartItem(propsData) {
-    return {
-      type: GitAction.UpdateUserCart,
-      payload: propsData
-    };
-  }
-
-
   
   static DeleteUserCart = "DeleteUserCart";
   static DeletedUserCart = "DeletedUserCart";
@@ -142,6 +139,17 @@ export class GitAction {
   static CallViewProductListing(propsData) {
     return {
       type: GitAction.ViewProductListing,
+      payload: propsData
+    };
+  }
+
+
+  static ViewProductDetail = "ViewProductDetail";
+  static ViewedProductDetail = "ViewedProductDetail";
+
+  static CallViewProductDetails(propsData) {
+    return {
+      type: GitAction.ViewProductDetail,
       payload: propsData
     };
   }
