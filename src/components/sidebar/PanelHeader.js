@@ -8,7 +8,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import "./PanelHeader.css";
-
+import BasicModal from '../../components/AlertModal/ModalAddedCart';
 
 // @mui/material
 import {
@@ -43,6 +43,7 @@ export default function PanelHeader(props) {
 
   // const userData = localStorage.getItem("user") !== undefined && localStorage.getItem("user") !== null ? JSON.parse(localStorage.getItem("user")) : []
   const [openDialog, setOpenDialog] = useState(false);
+  const [itemCartOpen, setItemCartOpen] = useState(false);
   const [openNotification, setOpenNotification] = useState({  open: false, msg: "", type: ""  });
   // const [verificationError, setVerificationError] = useState(false);
   // const [productItem, setProductItem] = useState([]);
@@ -90,7 +91,6 @@ export default function PanelHeader(props) {
     if (logonUser.length > 0) {
       if (logonUser[0].ReturnVal === 1){
         dispatch(GitAction.CallResetLoginAction())
-        // setVerificationError(false)
         localStorage.setItem("isLogin", true);
         localStorage.setItem("user", logonUser[0].ReturnData);
         localStorage.setItem("UserID", JSON.parse(logonUser[0].ReturnData)[0].UserID);
@@ -102,7 +102,7 @@ export default function PanelHeader(props) {
         handleCloseDialog()
       }
     }
-  }, [logonUser]);
+  }, [dispatch, logonUser]);
 
   
   useEffect(() => {
@@ -110,11 +110,7 @@ export default function PanelHeader(props) {
       if (productCartAction[0].ReturnVal === 1){
         dispatch(GitAction.CallViewProductCart({ userID: UserID }));
         dispatch(GitAction.CallResetProductCartAction());
-        setOpenNotification({
-          open: true,
-          msg: "Added to Cart",
-          type:"success"
-        })
+        setItemCartOpen(true)
       }else
         setOpenNotification({
           open: true,
@@ -123,16 +119,20 @@ export default function PanelHeader(props) {
         })
       
     }
-  }, [productCartAction]);
+  }, [dispatch, productCartAction, UserID]);
+
+  useEffect(() => {
+    if (itemCartOpen) {
+      setTimeout(() => {
+        setItemCartOpen(false);
+      }, 3000);
+    }
+  }, [itemCartOpen]);
 
 
   const handleCloseDialog = () => {
     setOpenDialog(false)
   }
-
-  // const handleSubmit = (username, password) => {
-  //   dispatch(GitAction.CallUserLogin({ Username: username, Password: password }));
-  // }
 
   return (
     <header>
@@ -152,7 +152,7 @@ export default function PanelHeader(props) {
               <img src='https://www.sarawaktourism.com/images/logo_w.png' alt="Sarawak tourism" />
             </a>
           </Grid>
-          {/* <Grid item display='flex' direction='column'> */}
+
           <div>
             <SearchBar onSearch={handleOnSearch} />
             <Stack direction='row' spacing={1}>
@@ -178,7 +178,7 @@ export default function PanelHeader(props) {
               ))}
             </Stack>
           </div>
-{/* {console.log("userData", userData)} */}
+
           <Grid item>
             {
               UserID &&
@@ -187,7 +187,7 @@ export default function PanelHeader(props) {
                   <ShoppingCartIcon style={{ color: "white" }} fontSize="small" />
                 </Badge>
               </IconButton>
-            }         
+            }
 
             <IconButton onClick={() => UserID ? setOpenDialog(true) : setOpenDialog(true)} >
               <PersonIcon style={{ color: "white" }} fontSize="small" />
@@ -200,8 +200,7 @@ export default function PanelHeader(props) {
             open={openDialog}
             onClose={() => setOpenDialog(false)}>
             <DialogContent sx={{ overflow: 'unset' }}>
-            <LoginComponent />
-              {/* <LoginComponent verificationError={verificationError} handleSubmit={handleSubmit} /> */}
+              <LoginComponent />
             </DialogContent>
           </Dialog>
 
@@ -216,6 +215,8 @@ export default function PanelHeader(props) {
               {openNotification.msg}
             </Alert>
           </Snackbar>
+
+          <BasicModal open={itemCartOpen} />
 
         </Grid>
       </Box>
