@@ -8,7 +8,7 @@ import Rating from "@material-ui/lab/Rating";
 
 export const VerticalCardListing = ({ cards, setSelectedItem, setOpenModal, page }) => {
     const [indexImageHover, setindexImageHover] = useState(false);
-    console.log("cardscardscards", cards)
+
     return (
         <Swiper
             modules={[Navigation]}
@@ -22,7 +22,7 @@ export const VerticalCardListing = ({ cards, setSelectedItem, setOpenModal, page
                         const ratings = card.comments.map((item) => item.rating);
                         card["averageRating"] = ratings.reduce((total, rating) => total + rating, 0) / ratings.length;
                         card['numRatings'] = ratings.length;
-                    }else{
+                    } else {
                         card["averageRating"] = card.hotelStar
                         card['numRatings'] = card.reviewNum;
                     }
@@ -63,7 +63,10 @@ export const VerticalCardListing = ({ cards, setSelectedItem, setOpenModal, page
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Button size="large" fullWidth style={{ backgroundColor: "#8fb136", color: "white" }} onClick={() => { setSelectedItem(card); setOpenModal(true); }}>
+                                            <Button size="large"
+                                                fullWidth
+                                                style={{ backgroundColor: "#8fb136", color: "white", width: "6vw", borderRadius: "0.3vw", padding: "0.25vw" }}
+                                                onClick={() => { setSelectedItem(card); setOpenModal(true); }}>
                                                 Add To Cart
                                             </Button>
                                         </Grid>

@@ -97,12 +97,14 @@ export default function ProductListingCard(props) {
                   <SwiperSlide >
                     <div class="CardView" className="col">
                       
-                      <Card sx={{ minHeight: 420, margin:0.5,  paddingLeft: 1 , paddingRight: 1, boxShadow: "0.2vw 0.3vw 0.5vw #888888", }} >
+                      <Card sx={{ minHeight: 440, maxHeight: 440, margin:0.5,  paddingLeft: 1 , paddingRight: 1, boxShadow: "0.2vw 0.3vw 0.5vw #888888", }} >
                         
                         <CardContent>
                         <CardMedia
-                          component="img"
-                          style={{ height: "10vw", width: "10vw", opacity: indexImageHover === index ? "50%" : "100%" }}
+                          // component="img"
+                          
+                          sx={{ height: 200 }}
+                          style={{ opacity: indexImageHover === index ? "50%" : "100%" }}
                           image={x.ProductImage}
                           alt={x.ProductName}    
                           onClick={() => history.push(`/ProductsDetail/${x.ProductID}`)}
@@ -113,8 +115,8 @@ export default function ProductListingCard(props) {
                           </Typography>
 
                           <Typography color="text" variant="body2" fontWeight="700" >
-                            {x.ProductVariation !== null && x.ProductVariation !== "[]" &&
-                              JSON.parse(x.ProductVariation)[0].ProductVariationValue
+                            {x.ProductVariation !== null && x.ProductVariation !== "[]" ?
+                              JSON.parse(x.ProductVariation)[0].ProductVariationValue : "-"
                             }
                           </Typography>
                         
@@ -158,7 +160,6 @@ export default function ProductListingCard(props) {
                     </div>
                   </SwiperSlide>
                 </>
-
               )
             })
           }

@@ -9,7 +9,7 @@ import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import { Drawer } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import "./PanelHeader.css";
-
+import BasicModal from '../../components/AlertModal/ModalAddedCart';
 
 // @mui/material
 import {
@@ -45,7 +45,8 @@ export default function PanelHeader(props) {
 
   // const userData = localStorage.getItem("user") !== undefined && localStorage.getItem("user") !== null ? JSON.parse(localStorage.getItem("user")) : []
   const [openDialog, setOpenDialog] = useState(false);
-  const [openNotification, setOpenNotification] = useState({ open: false, msg: "", type: "" });
+  const [itemCartOpen, setItemCartOpen] = useState(false);
+  const [openNotification, setOpenNotification] = useState({  open: false, msg: "", type: ""  });
   // const [verificationError, setVerificationError] = useState(false);
   // const [productItem, setProductItem] = useState([]);
 
@@ -93,7 +94,6 @@ export default function PanelHeader(props) {
     if (logonUser.length > 0) {
       if (logonUser[0].ReturnVal === 1) {
         dispatch(GitAction.CallResetLoginAction())
-        // setVerificationError(false)
         localStorage.setItem("isLogin", true);
         localStorage.setItem("user", logonUser[0].ReturnData);
         localStorage.setItem("UserID", JSON.parse(logonUser[0].ReturnData)[0].UserID);
@@ -107,12 +107,13 @@ export default function PanelHeader(props) {
     }
   }, [dispatch, logonUser]);
 
-
   useEffect(() => {
     if (productCartAction.length > 0) {
       if (productCartAction[0].ReturnVal === 1) {
         dispatch(GitAction.CallViewProductCart({ userID: UserID }));
         dispatch(GitAction.CallResetProductCartAction());
+        setItemCartOpen(true)
+      }else
         setOpenNotification({
           open: true,
           msg: "Added to Cart",
@@ -126,16 +127,20 @@ export default function PanelHeader(props) {
         })
 
     }
-  }, [UserID, dispatch, productCartAction]);
+  , [dispatch, productCartAction, UserID]);
+
+  useEffect(() => {
+    if (itemCartOpen) {
+      setTimeout(() => {
+        setItemCartOpen(false);
+      }, 3000);
+    }
+  }, [itemCartOpen]);
 
 
   const handleCloseDialog = () => {
     setOpenDialog(false)
   }
-
-  // const handleSubmit = (username, password) => {
-  //   dispatch(GitAction.CallUserLogin({ Username: username, Password: password }));
-  // }
 
   return (
     <header>
@@ -157,7 +162,7 @@ export default function PanelHeader(props) {
               <img src='https://www.sarawaktourism.com/images/logo_w.png' alt="Sarawak tourism" />
             </a>
           </Grid>
-          {/* <Grid item display='flex' direction='column'> */}
+
           <div>
             <SearchBar onSearch={handleOnSearch} />
             <Stack direction='row' spacing={1}>
@@ -207,7 +212,6 @@ export default function PanelHeader(props) {
             onClose={() => setOpenDialog(false)}>
             <DialogContent sx={{ overflow: 'unset' }}>
               <LoginComponent />
-              {/* <LoginComponent verificationError={verificationError} handleSubmit={handleSubmit} /> */}
             </DialogContent>
           </Dialog>
 
@@ -222,6 +226,8 @@ export default function PanelHeader(props) {
               {openNotification.msg}
             </Alert>
           </Snackbar>
+
+          <BasicModal open={itemCartOpen} />
 
         </Grid>
       </Box>

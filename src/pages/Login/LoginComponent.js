@@ -77,8 +77,11 @@ export default function LoginComponent() {
 
                     {verificationError && <Alert severity="error" >Invalid Username or Password</Alert>}
 
-                    <TextField id="username" label="Username" variant="outlined"
-                        className="w-100 my-3" value={username}
+                    <Typography variant='subtitle2' >Username :</Typography>
+                    <TextField id="username" 
+                    // label="Username" 
+                    variant="outlined"
+                        className="w-100" value={username}
                         onChange={({ target }) => {
                             setUsername(target.value)
                             if (target.value === "") setUsernameErr(true)
@@ -87,11 +90,12 @@ export default function LoginComponent() {
                         error={usernameErr}
                         helperText={usernameErr && "Invalid username"} />
 
-                    <FormControl variant="outlined" className="w-100 my-2">
-                        <InputLabel htmlFor="password">Password</InputLabel>
+                    <Typography variant='subtitle2' sx={{paddingTop:"15px"}} >Password :</Typography>
+                    <FormControl variant="outlined" className="w-100">
+                        {/* <InputLabel htmlFor="password">Password</InputLabel> */}
                         <OutlinedInput
                             id="password"
-                            label="Password"
+                            // label="Password"
                             error={passwordErr}
                             type={hidden ? 'password' : 'text'}
                             value={password}
@@ -112,9 +116,10 @@ export default function LoginComponent() {
                                 </InputAdornment>
                             }
                         />
-                        {passwordErr && <FormHelperText style={{ color: "red" }}>Invalid password</FormHelperText>}
-                    </FormControl>
-                    <div className="form-group">
+                    </FormControl>                    
+                    {passwordErr && <FormHelperText style={{ color: "red" }}>Invalid password</FormHelperText>}
+                    
+                    <div className="form-group" style={{paddingTop:"15px"}}>
                         <div className="custom-control custom-checkbox">
                             <input
                                 type="checkbox"
